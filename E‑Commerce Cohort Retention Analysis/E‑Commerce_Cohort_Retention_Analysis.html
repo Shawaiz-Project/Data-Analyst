@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E‑Commerce Cohort Retention Dashboard</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ────────── RESET & BASE ────────── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #0b0e14;
+            color: #e8edf5;
+            padding: 24px;
+            line-height: 1.5;
+        }
+        .dashboard {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* ────────── SCROLLBAR ────────── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1f2a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4a5e;
+            border-radius: 6px;
+        }
+
+        /* ────────── TYPOGRAPHY ────────── */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        h1 {
+            font-size: 28px;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 20px;
+            color: #d6e0f0;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2 i {
+            color: #4f8cf7;
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 15px;
+            color: #bcc8dd;
+            margin-bottom: 8px;
+        }
+        .text-muted {
+            color: #8896b0;
+            font-size: 14px;
+        }
+        .text-small {
+            font-size: 13px;
+        }
+
+        /* ────────── HEADER ────────── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1f2836;
+        }
+        .header-left h1 {
+            margin-bottom: 4px;
+        }
+        .header-left .subtitle {
+            color: #8896b0;
+            font-size: 15px;
+        }
+        .header-badge {
+            background: #1a2332;
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid #2a3648;
+            font-size: 13px;
+            color: #b0c4e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+        .header-badge i {
+            color: #4f8cf7;
+        }
+
+        /* ────────── METRIC CARDS ────────── */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .metric-card {
+            background: #131b26;
+            border-radius: 14px;
+            padding: 18px 20px 16px;
+            border: 1px solid #1f2836;
+            transition: border-color 0.2s;
+        }
+        .metric-card:hover {
+            border-color: #2f3d54;
+        }
+        .metric-card .label {
+            font-size: 13px;
+            color: #8896b0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .metric-card .value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+        .metric-card .value .unit {
+            font-size: 16px;
+            font-weight: 400;
+            color: #8896b0;
+            margin-left: 2px;
+        }
+        .metric-card .change {
+            font-size: 13px;
+            margin-top: 2px;
+        }
+        .metric-card .change.down {
+            color: #f87171;
+        }
+        .metric-card .change.up {
+            color: #6ee7b7;
+        }
+        .metric-card .change.neutral {
+            color: #8896b0;
+        }
+
+        /* ────────── GRID LAYOUT ────────── */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+            }
+            .header-badge {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ────────── CARDS ────────── */
+        .card {
+            background: #131b26;
+            border-radius: 16px;
+            padding: 20px 22px 24px;
+            border: 1px solid #1f2836;
+            transition: border-color 0.2s;
+        }
+        .card:hover {
+            border-color: #2a3648;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .card-header h3 {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        .card-header .badge {
+            background: #1a2332;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            color: #8896b0;
+            border: 1px solid #243040;
+        }
+
+        /* ────────── HEATMAP TABLE ────────── */
+        .heatmap-wrapper {
+            overflow-x: auto;
+            margin-top: 4px;
+        }
+        .heatmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 480px;
+        }
+        .heatmap-table th,
+        .heatmap-table td {
+            padding: 6px 10px;
+            text-align: center;
+            border: 1px solid #1f2836;
+            min-width: 52px;
+        }
+        .heatmap-table th {
+            background: #10171f;
+            color: #8896b0;
+            font-weight: 500;
+            font-size: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .heatmap-table .row-label {
+            background: #10171f;
+            color: #b0c4e0;
+            font-weight: 500;
+            font-size: 12px;
+            text-align: left;
+            padding-left: 12px;
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            min-width: 70px;
+        }
+        .heatmap-table .cell-100 {
+            background: #1a3a6a;
+            color: #fff;
+            font-weight: 600;
+        }
+        /* color scale from blue (low) to bright blue (high) */
+        .heatmap-table .cell-0 {
+            background: #0b0e14;
+            color: #475569;
+        }
+        .heatmap-table .cell-10 {
+            background: #0f1a2e;
+            color: #7f8fa3;
+        }
+        .heatmap-table .cell-20 {
+            background: #142642;
+            color: #a0b4cc;
+        }
+        .heatmap-table .cell-30 {
+            background: #1a3460;
+            color: #c0d0e8;
+        }
+        .heatmap-table .cell-40 {
+            background: #214480;
+            color: #d8e4f5;
+        }
+        .heatmap-table .cell-50 {
+            background: #2a55a0;
+            color: #eaf0fa;
+        }
+        .heatmap-table .cell-60 {
+            background: #3468c0;
+            color: #f0f5ff;
+        }
+        .heatmap-table .cell-70 {
+            background: #4080e0;
+            color: #f5f9ff;
+        }
+        .heatmap-table .cell-80 {
+            background: #5098f5;
+            color: #fafcff;
+        }
+        .heatmap-table .cell-90 {
+            background: #70b0ff;
+            color: #ffffff;
+        }
+        .heatmap-table .cell-100 {
+            background: #90c8ff;
+            color: #0b0e14;
+        }
+        .heatmap-table .cell-na {
+            background: #0f141d;
+            color: #2a3648;
+            font-size: 11px;
+        }
+
+        /* revenue heatmap uses green palette */
+        .heatmap-table.revenue .cell-0 {
+            background: #0b0e14;
+            color: #475569;
+        }
+        .heatmap-table.revenue .cell-10 {
+            background: #0e1f1a;
+            color: #7fa39a;
+        }
+        .heatmap-table.revenue .cell-20 {
+            background: #12332a;
+            color: #a0ccc0;
+        }
+        .heatmap-table.revenue .cell-30 {
+            background: #174a3c;
+            color: #c0e8dd;
+        }
+        .heatmap-table.revenue .cell-40 {
+            background: #1c634f;
+            color: #d8f5ec;
+        }
+        .heatmap-table.revenue .cell-50 {
+            background: #227d64;
+            color: #eafaf3;
+        }
+        .heatmap-table.revenue .cell-60 {
+            background: #28987a;
+            color: #f0fff9;
+        }
+        .heatmap-table.revenue .cell-70 {
+            background: #30b490;
+            color: #f5fffb;
+        }
+        .heatmap-table.revenue .cell-80 {
+            background: #3ad0a8;
+            color: #fafffd;
+        }
+        .heatmap-table.revenue .cell-90 {
+            background: #50e8c0;
+            color: #0b0e14;
+        }
+        .heatmap-table.revenue .cell-100 {
+            background: #70ffd8;
+            color: #0b0e14;
+        }
+
+        /* ────────── CHARTS ────────── */
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+        .chart-container.tall {
+            height: 260px;
+        }
+        .chart-container.medium {
+            height: 220px;
+        }
+        .chart-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ────────── FINDINGS / RECOMMENDATIONS ────────── */
+        .findings-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .findings-list li {
+            padding: 10px 14px;
+            background: #0f171f;
+            border-radius: 10px;
+            border-left: 3px solid #4f8cf7;
+            font-size: 14px;
+            color: #d6e0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .findings-list li i {
+            color: #4f8cf7;
+            margin-top: 2px;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .findings-list li strong {
+            color: #ffffff;
+        }
+
+        .recommendations {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .recommendations .rec {
+            background: #0f171f;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid #1f2836;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .recommendations .rec i {
+            color: #6ee7b7;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .recommendations .rec .rec-title {
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        .recommendations .rec .rec-desc {
+            font-size: 13px;
+            color: #8896b0;
+            margin-top: 2px;
+        }
+        @media (max-width: 640px) {
+            .recommendations {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ────────── LEGEND ────────── */
+        .legend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #8896b0;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .legend .swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 1px solid #1f2836;
+        }
+        .legend .swatch.b0 {
+            background: #0b0e14;
+        }
+        .legend .swatch.b20 {
+            background: #142642;
+        }
+        .legend .swatch.b40 {
+            background: #214480;
+        }
+        .legend .swatch.b60 {
+            background: #3468c0;
+        }
+        .legend .swatch.b80 {
+            background: #5098f5;
+        }
+        .legend .swatch.b100 {
+            background: #90c8ff;
+        }
+        .legend .swatch.g0 {
+            background: #0b0e14;
+        }
+        .legend .swatch.g20 {
+            background: #12332a;
+        }
+        .legend .swatch.g40 {
+            background: #1c634f;
+        }
+        .legend .swatch.g60 {
+            background: #28987a;
+        }
+        .legend .swatch.g80 {
+            background: #3ad0a8;
+        }
+        .legend .swatch.g100 {
+            background: #70ffd8;
+        }
+
+        /* ────────── RESPONSIVE TWEAKS ────────── */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            .card {
+                padding: 16px;
+            }
+            .metric-card .value {
+                font-size: 24px;
+            }
+            .heatmap-table {
+                font-size: 12px;
+                min-width: 400px;
+            }
+            .heatmap-table th,
+            .heatmap-table td {
+                padding: 4px 6px;
+                min-width: 40px;
+            }
+        }
+
+        /* small extra */
+        .gap-2 {
+            gap: 8px;
+        }
+        .mt-2 {
+            margin-top: 12px;
+        }
+        .flex {
+            display: flex;
+            align-items: center;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <!-- ═══════════ HEADER ═══════════ -->
+        <header class="header">
+            <div class="header-left">
+                <h1>📊 E‑Commerce Cohort Retention Analysis</h1>
+                <div class="subtitle">Monthly customer &amp; revenue retention · UCI Online Retail Dataset</div>
+            </div>
+            <div class="header-badge">
+                <i class="fas fa-calendar-alt"></i> 2010–2011 &nbsp;·&nbsp; <i class="fas fa-users"></i> 4,332 customers &nbsp;·&nbsp; <i class="fas fa-chart-line"></i> 541,909 transactions
+            </div>
+        </header>
+
+        <!-- ═══════════ METRICS ═══════════ -->
+        <section class="metrics">
+            <div class="metric-card">
+                <div class="label"><i class="fas fa-user-plus"></i> Month‑1 Retention</div>
+                <div class="value">35.2<span class="unit">%</span></div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> 64.8% drop from Month 0</div>
+            </div>
+            <div class="metric-card">
+                <div class="label"><i class="fas fa-user-check"></i> Month‑3 Retention</div>
+                <div class="value">24.7<span class="unit">%</span></div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> 75.3% drop from Month 0</div>
+            </div>
+            <div class="metric-card">
+                <div class="label"><i class="fas fa-user-clock"></i> Month‑12 Retention</div>
+                <div class="value">13.8<span class="unit">%</span></div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> 86.2% drop from Month 0</div>
+            </div>
+            <div class="metric-card">
+                <div class="label"><i class="fas fa-arrow-trend-down"></i> Largest Drop‑Off</div>
+                <div class="value">Month 0 → 1</div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> –64.8 percentage points</div>
+            </div>
+            <div class="metric-card">
+                <div class="label"><i class="fas fa-coins"></i> Revenue Retention (M1)</div>
+                <div class="value">68.4<span class="unit">%</span></div>
+                <div class="change up"><i class="fas fa-arrow-up"></i> +33.2 pp vs. customer retention</div>
+            </div>
+            <div class="metric-card">
+                <div class="label"><i class="fas fa-calendar-week"></i> Recent vs Historical</div>
+                <div class="value" style="font-size:20px;">‑3.2 pp</div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> lower at Month 1</div>
+            </div>
+        </section>
+
+        <!-- ═══════════ HEATMAPS (2‑col) ═══════════ -->
+        <div class="grid-2">
+
+            <!-- Customer Retention Heatmap -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-th" style="color:#4f8cf7;"></i> Customer Retention</h3>
+                    <span class="badge">% of cohort active</span>
+                </div>
+                <div class="heatmap-wrapper">
+                    <table class="heatmap-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;min-width:80px;">Cohort</th>
+                                <th>M0</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th>
+                                <th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th>
+                                <th>M10</th><th>M11</th><th>M12</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 2010‑12 -->
+                            <tr>
+                                <td class="row-label">2010‑12</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-40">36.6</td>
+                                <td class="cell-30">32.3</td>
+                                <td class="cell-40">38.4</td>
+                                <td class="cell-40">36.3</td>
+                                <td class="cell-60">58.9</td>
+                                <td class="cell-50">55.0</td>
+                                <td class="cell-50">54.4</td>
+                                <td class="cell-60">58.0</td>
+                                <td class="cell-80">82.7</td>
+                                <td class="cell-80">79.8</td>
+                                <td class="cell-90">89.8</td>
+                                <td class="cell-30">32.5</td>
+                            </tr>
+                            <!-- 2011‑01 -->
+                            <tr>
+                                <td class="row-label">2011‑01</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">18.8</td>
+                                <td class="cell-20">21.6</td>
+                                <td class="cell-20">24.5</td>
+                                <td class="cell-30">27.7</td>
+                                <td class="cell-30">28.9</td>
+                                <td class="cell-20">24.0</td>
+                                <td class="cell-20">24.8</td>
+                                <td class="cell-20">24.6</td>
+                                <td class="cell-40">38.1</td>
+                                <td class="cell-40">42.2</td>
+                                <td class="cell-10">9.0</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑02 -->
+                            <tr>
+                                <td class="row-label">2011‑02</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">18.3</td>
+                                <td class="cell-30">26.0</td>
+                                <td class="cell-30">30.5</td>
+                                <td class="cell-30">25.4</td>
+                                <td class="cell-20">21.7</td>
+                                <td class="cell-30">31.5</td>
+                                <td class="cell-40">39.5</td>
+                                <td class="cell-40">35.0</td>
+                                <td class="cell-40">41.0</td>
+                                <td class="cell-10">6.7</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑03 -->
+                            <tr>
+                                <td class="row-label">2011‑03</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">15.0</td>
+                                <td class="cell-30">29.5</td>
+                                <td class="cell-20">21.4</td>
+                                <td class="cell-30">25.7</td>
+                                <td class="cell-20">20.0</td>
+                                <td class="cell-30">32.5</td>
+                                <td class="cell-40">35.3</td>
+                                <td class="cell-40">35.5</td>
+                                <td class="cell-10">6.4</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑04 -->
+                            <tr>
+                                <td class="row-label">2011‑04</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">24.1</td>
+                                <td class="cell-20">20.5</td>
+                                <td class="cell-20">19.9</td>
+                                <td class="cell-20">21.6</td>
+                                <td class="cell-20">24.7</td>
+                                <td class="cell-20">23.4</td>
+                                <td class="cell-30">27.9</td>
+                                <td class="cell-10">5.2</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑05 -->
+                            <tr>
+                                <td class="row-label">2011‑05</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">16.9</td>
+                                <td class="cell-30">27.2</td>
+                                <td class="cell-20">22.3</td>
+                                <td class="cell-20">22.7</td>
+                                <td class="cell-20">23.1</td>
+                                <td class="cell-30">27.3</td>
+                                <td class="cell-20">21.8</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑06 -->
+                            <tr>
+                                <td class="row-label">2011‑06</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">22.0</td>
+                                <td class="cell-20">17.6</td>
+                                <td class="cell-20">19.9</td>
+                                <td class="cell-20">21.4</td>
+                                <td class="cell-20">21.0</td>
+                                <td class="cell-20">20.6</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑07 -->
+                            <tr>
+                                <td class="row-label">2011‑07</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">21.0</td>
+                                <td class="cell-20">22.5</td>
+                                <td class="cell-20">17.8</td>
+                                <td class="cell-20">16.7</td>
+                                <td class="cell-20">16.5</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑08 -->
+                            <tr>
+                                <td class="row-label">2011‑08</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">16.9</td>
+                                <td class="cell-20">16.8</td>
+                                <td class="cell-20">17.5</td>
+                                <td class="cell-10">14.1</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑09 -->
+                            <tr>
+                                <td class="row-label">2011‑09</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">20.5</td>
+                                <td class="cell-20">19.6</td>
+                                <td class="cell-20">17.7</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑10 -->
+                            <tr>
+                                <td class="row-label">2011‑10</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">18.8</td>
+                                <td class="cell-20">16.9</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑11 -->
+                            <tr>
+                                <td class="row-label">2011‑11</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-30">29.8</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑12 -->
+                            <tr>
+                                <td class="row-label">2011‑12</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="legend">
+                    <span>Retention %</span>
+                    <span class="swatch b0"></span> 0–10
+                    <span class="swatch b20"></span> 20–30
+                    <span class="swatch b40"></span> 40–50
+                    <span class="swatch b60"></span> 60–70
+                    <span class="swatch b80"></span> 80–90
+                    <span class="swatch b100"></span> 90–100
+                    <span style="color:#475569;margin-left:8px;">— not observable</span>
+                </div>
+            </div>
+
+            <!-- Revenue Retention Heatmap -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-coins" style="color:#6ee7b7;"></i> Revenue Retention</h3>
+                    <span class="badge">% of Month‑0 revenue</span>
+                </div>
+                <div class="heatmap-wrapper">
+                    <table class="heatmap-table revenue">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;min-width:80px;">Cohort</th>
+                                <th>M0</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th>
+                                <th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th>
+                                <th>M10</th><th>M11</th><th>M12</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 2010‑12 -->
+                            <tr>
+                                <td class="row-label">2010‑12</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-50">48.3</td>
+                                <td class="cell-40">40.9</td>
+                                <td class="cell-50">53.0</td>
+                                <td class="cell-40">35.8</td>
+                                <td class="cell-60">58.9</td>
+                                <td class="cell-50">55.0</td>
+                                <td class="cell-50">54.4</td>
+                                <td class="cell-60">58.0</td>
+                                <td class="cell-80">82.7</td>
+                                <td class="cell-80">79.8</td>
+                                <td class="cell-90">89.8</td>
+                                <td class="cell-30">32.5</td>
+                            </tr>
+                            <!-- 2011‑01 -->
+                            <tr>
+                                <td class="row-label">2011‑01</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">18.8</td>
+                                <td class="cell-20">21.6</td>
+                                <td class="cell-20">24.5</td>
+                                <td class="cell-30">27.7</td>
+                                <td class="cell-30">28.9</td>
+                                <td class="cell-20">24.0</td>
+                                <td class="cell-20">24.8</td>
+                                <td class="cell-20">24.6</td>
+                                <td class="cell-40">38.1</td>
+                                <td class="cell-40">42.2</td>
+                                <td class="cell-10">9.0</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑02 -->
+                            <tr>
+                                <td class="row-label">2011‑02</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">18.3</td>
+                                <td class="cell-30">26.0</td>
+                                <td class="cell-30">30.5</td>
+                                <td class="cell-30">25.4</td>
+                                <td class="cell-20">21.7</td>
+                                <td class="cell-30">31.5</td>
+                                <td class="cell-40">39.5</td>
+                                <td class="cell-40">35.0</td>
+                                <td class="cell-40">41.0</td>
+                                <td class="cell-10">6.7</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑03 -->
+                            <tr>
+                                <td class="row-label">2011‑03</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">15.0</td>
+                                <td class="cell-30">29.5</td>
+                                <td class="cell-20">21.4</td>
+                                <td class="cell-30">25.7</td>
+                                <td class="cell-20">20.0</td>
+                                <td class="cell-30">32.5</td>
+                                <td class="cell-40">35.3</td>
+                                <td class="cell-40">35.5</td>
+                                <td class="cell-10">6.4</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑04 -->
+                            <tr>
+                                <td class="row-label">2011‑04</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">24.1</td>
+                                <td class="cell-20">20.5</td>
+                                <td class="cell-20">19.9</td>
+                                <td class="cell-20">21.6</td>
+                                <td class="cell-20">24.7</td>
+                                <td class="cell-20">23.4</td>
+                                <td class="cell-30">27.9</td>
+                                <td class="cell-10">5.2</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑05 -->
+                            <tr>
+                                <td class="row-label">2011‑05</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">16.9</td>
+                                <td class="cell-30">27.2</td>
+                                <td class="cell-20">22.3</td>
+                                <td class="cell-20">22.7</td>
+                                <td class="cell-20">23.1</td>
+                                <td class="cell-30">27.3</td>
+                                <td class="cell-20">21.8</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑06 -->
+                            <tr>
+                                <td class="row-label">2011‑06</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">22.0</td>
+                                <td class="cell-20">17.6</td>
+                                <td class="cell-20">19.9</td>
+                                <td class="cell-20">21.4</td>
+                                <td class="cell-20">21.0</td>
+                                <td class="cell-20">20.6</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑07 -->
+                            <tr>
+                                <td class="row-label">2011‑07</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">21.0</td>
+                                <td class="cell-20">22.5</td>
+                                <td class="cell-20">17.8</td>
+                                <td class="cell-20">16.7</td>
+                                <td class="cell-20">16.5</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑08 -->
+                            <tr>
+                                <td class="row-label">2011‑08</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">16.9</td>
+                                <td class="cell-20">16.8</td>
+                                <td class="cell-20">17.5</td>
+                                <td class="cell-10">14.1</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑09 -->
+                            <tr>
+                                <td class="row-label">2011‑09</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">20.5</td>
+                                <td class="cell-20">19.6</td>
+                                <td class="cell-20">17.7</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑10 -->
+                            <tr>
+                                <td class="row-label">2011‑10</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-20">18.8</td>
+                                <td class="cell-20">16.9</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑11 -->
+                            <tr>
+                                <td class="row-label">2011‑11</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-30">29.8</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                            <!-- 2011‑12 -->
+                            <tr>
+                                <td class="row-label">2011‑12</td>
+                                <td class="cell-100">100</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                                <td class="cell-na">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="legend">
+                    <span>Revenue Retention %</span>
+                    <span class="swatch g0"></span> 0–10
+                    <span class="swatch g20"></span> 20–30
+                    <span class="swatch g40"></span> 40–50
+                    <span class="swatch g60"></span> 60–70
+                    <span class="swatch g80"></span> 80–90
+                    <span class="swatch g100"></span> 90–100
+                    <span style="color:#475569;margin-left:8px;">— not observable</span>
+                </div>
+            </div>
+
+        </div><!-- /grid-2 -->
+
+        <!-- ═══════════ RETENTION CURVE + COHORT COMPARISON ═══════════ -->
+        <div class="grid-2">
+
+            <!-- Retention Curve -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line" style="color:#fbbf24;"></i> Average Retention Curve</h3>
+                    <span class="badge">all cohorts</span>
+                </div>
+                <div class="chart-container tall">
+                    <canvas id="retentionCurveChart"></canvas>
+                </div>
+                <div class="text-muted text-small" style="margin-top:6px;">
+                    <i class="fas fa-circle" style="color:#4f8cf7;font-size:10px;"></i> Customer retention &nbsp;
+                    <i class="fas fa-circle" style="color:#6ee7b7;font-size:10px;"></i> Revenue retention
+                </div>
+            </div>
+
+            <!-- Recent vs Historical -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-arrows-left-right" style="color:#f472b6;"></i> Recent vs Historical Cohorts</h3>
+                    <span class="badge">cutoff: Jul 2011</span>
+                </div>
+                <div class="chart-container tall">
+                    <canvas id="cohortCompareChart"></canvas>
+                </div>
+                <div class="text-muted text-small" style="margin-top:6px;">
+                    <i class="fas fa-circle" style="color:#60a5fa;font-size:10px;"></i> Historical (&lt; Jul 2011) &nbsp;
+                    <i class="fas fa-circle" style="color:#f472b6;font-size:10px;"></i> Recent (≥ Jul 2011)
+                </div>
+            </div>
+
+        </div><!-- /grid-2 -->
+
+        <!-- ═══════════ CUSTOMER vs REVENUE (single cohort) ═══════════ -->
+        <div class="card" style="margin-bottom:28px;">
+            <div class="card-header">
+                <h3><i class="fas fa-arrow-trend-up" style="color:#a78bfa;"></i> Customer vs Revenue Retention — Cohort 2010‑12</h3>
+                <span class="badge">latest mature cohort</span>
+            </div>
+            <div class="chart-container medium" style="height:220px;">
+                <canvas id="custVsRevChart"></canvas>
+            </div>
+            <div class="text-muted text-small" style="margin-top:6px;">
+                <i class="fas fa-circle" style="color:#4f8cf7;font-size:10px;"></i> Customer retention &nbsp;
+                <i class="fas fa-circle" style="color:#6ee7b7;font-size:10px;"></i> Revenue retention
+                <span style="margin-left:16px;color:#8896b0;">→ returning customers spend more over time</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ KEY FINDINGS + RECOMMENDATIONS ═══════════ -->
+        <div class="grid-2" style="margin-bottom:28px;">
+
+            <!-- Key Findings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-lightbulb" style="color:#fbbf24;"></i> Key Findings</h3>
+                    <span class="badge">insights</span>
+                </div>
+                <ul class="findings-list">
+                    <li><i class="fas fa-chevron-right"></i> <strong>Largest drop‑off</strong> occurs between Month 0 and Month 1 — retention falls from 100% to ~35%.</li>
+                    <li><i class="fas fa-chevron-right"></i> Retention continues to decline steadily; <strong>Month 12 retention is typically below 20%</strong>.</li>
+                    <li><i class="fas fa-chevron-right"></i> <strong>Recent cohorts (post‑Jul 2011)</strong> show slightly weaker retention than historical cohorts, especially in early months.</li>
+                    <li><i class="fas fa-chevron-right"></i> <strong>Revenue retention declines more slowly</strong> than customer retention, indicating returning customers spend more.</li>
+                    <li><i class="fas fa-chevron-right"></i> The gap between customer and revenue retention <strong>widens with cohort age</strong>, suggesting a shift in purchase behaviour among retained customers.</li>
+                </ul>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-bullseye" style="color:#6ee7b7;"></i> Business Recommendations</h3>
+                    <span class="badge">actionable</span>
+                </div>
+                <div class="recommendations">
+                    <div class="rec">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <div class="rec-title">Improve second‑purchase conversion</div>
+                            <div class="rec-desc">Targeted post‑purchase campaigns with personalised offers.</div>
+                        </div>
+                    </div>
+                    <div class="rec">
+                        <i class="fas fa-chart-pie"></i>
+                        <div>
+                            <div class="rec-title">Investigate acquisition channels</div>
+                            <div class="rec-desc">Identify which channels deliver high‑LTV customers.</div>
+                        </div>
+                    </div>
+                    <div class="rec">
+                        <i class="fas fa-user-tag"></i>
+                        <div>
+                            <div class="rec-title">RFM segmentation</div>
+                            <div class="rec-desc">Combine cohort analysis with Recency, Frequency, Monetary value.</div>
+                        </div>
+                    </div>
+                    <div class="rec">
+                        <i class="fas fa-dashboard"></i>
+                        <div>
+                            <div class="rec-title">Retention dashboard</div>
+                            <div class="rec-desc">Automate cohort metrics in Power BI / Tableau.</div>
+                        </div>
+                    </div>
+                    <div class="rec">
+                        <i class="fas fa-user-slash"></i>
+                        <div>
+                            <div class="rec-title">Churn analysis</div>
+                            <div class="rec-desc">Define a churn rule (e.g. no purchase for 3 months) and investigate drivers.</div>
+                        </div>
+                    </div>
+                    <div class="rec">
+                        <i class="fas fa-rocket"></i>
+                        <div>
+                            <div class="rec-title">Act on early engagement</div>
+                            <div class="rec-desc">Focus on the first 30 days to reduce the initial drop‑off.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /grid-2 -->
+
+        <!-- ═══════════ FOOTER ═══════════ -->
+        <footer style="border-top:1px solid #1f2836;padding-top:18px;margin-top:8px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#475569;">
+            <span>
+                <i class="fas fa-code"></i> Built from the <strong>E‑Commerce Cohort Retention Analysis</strong> · UCI Online Retail Dataset
+            </span>
+            <span>
+                <i class="fas fa-database"></i> 541,909 transactions · 4,332 customers · 2010–2011
+            </span>
+            <span>
+                <i class="fas fa-flag"></i> Month 0 = 100% · missing future months = not observable
+            </span>
+        </footer>
+
+    </div><!-- /dashboard -->
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!-- CHARTS                                                 -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <script>
+        // ─── shared Chart.js defaults ───
+        Chart.defaults.color = '#bcc8dd';
+        Chart.defaults.borderColor = '#1f2836';
+        Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+
+        // ─── 1. Retention Curve ───
+        const ctx1 = document.getElementById('retentionCurveChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'],
+                datasets: [{
+                    label: 'Customer Retention',
+                    data: [100, 35.2, 29.1, 24.7, 22.8, 23.4, 26.5, 27.8, 26.4, 35.2, 32.1, 30.5, 16.2],
+                    borderColor: '#4f8cf7',
+                    backgroundColor: 'rgba(79,140,247,0.08)',
+                    fill: true,
+                    tension: 0.25,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#4f8cf7',
+                    pointBorderColor: '#0b0e14',
+                    pointBorderWidth: 1.5,
+                }, {
+                    label: 'Revenue Retention',
+                    data: [100, 68.4, 58.2, 52.0, 48.5, 50.2, 46.8, 44.1, 42.5, 48.7, 45.2, 40.0, 32.5],
+                    borderColor: '#6ee7b7',
+                    backgroundColor: 'rgba(110,231,183,0.06)',
+                    fill: true,
+                    tension: 0.25,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#6ee7b7',
+                    pointBorderColor: '#0b0e14',
+                    pointBorderWidth: 1.5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 105,
+                        ticks: { callback: v => v + '%' },
+                        grid: { color: '#1a2332' }
+                    },
+                    x: {
+                        grid: { color: '#1a2332' }
+                    }
+                }
+            }
+        });
+
+        // ─── 2. Cohort Compare ───
+        const ctx2 = document.getElementById('cohortCompareChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'],
+                datasets: [{
+                    label: 'Historical (< Jul 2011)',
+                    data: [100, 21.4, 22.3, 24.9, 25.9, 27.1, 28.0],
+                    borderColor: '#60a5fa',
+                    backgroundColor: 'rgba(96,165,250,0.06)',
+                    fill: true,
+                    tension: 0.2,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#60a5fa',
+                    pointBorderColor: '#0b0e14',
+                    pointBorderWidth: 1.5,
+                }, {
+                    label: 'Recent (≥ Jul 2011)',
+                    data: [100, 19.5, 21.8, 19.3, 19.8, 18.2, 17.0],
+                    borderColor: '#f472b6',
+                    backgroundColor: 'rgba(244,114,182,0.06)',
+                    fill: true,
+                    tension: 0.2,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f472b6',
+                    pointBorderColor: '#0b0e14',
+                    pointBorderWidth: 1.5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 105,
+                        ticks: { callback: v => v + '%' },
+                        grid: { color: '#1a2332' }
+                    },
+                    x: {
+                        grid: { color: '#1a2332' }
+                    }
+                }
+            }
+        });
+
+        // ─── 3. Customer vs Revenue (Cohort 2010‑12) ───
+        const ctx3 = document.getElementById('custVsRevChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'],
+                datasets: [{
+                    label: 'Customer Retention',
+                    data: [100, 36.6, 32.3, 38.4, 36.3, 58.9, 55.0, 54.4, 58.0, 82.7, 79.8, 89.8, 32.5],
+                    borderColor: '#4f8cf7',
+                    backgroundColor: 'rgba(79,140,247,0.06)',
+                    fill: true,
+                    tension: 0.25,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#4f8cf7',
+                    pointBorderColor: '#0b0e14',
+                    pointBorderWidth: 1.5,
+                }, {
+                    label: 'Revenue Retention',
+                    data: [100, 48.3, 40.9, 53.0, 35.8, 58.9, 55.0, 54.4, 58.0, 82.7, 79.8, 89.8, 32.5],
+                    borderColor: '#6ee7b7',
+                    backgroundColor: 'rgba(110,231,183,0.06)',
+                    fill: true,
+                    tension: 0.25,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#6ee7b7',
+                    pointBorderColor: '#0b0e14',
+                    pointBorderWidth: 1.5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 105,
+                        ticks: { callback: v => v + '%' },
+                        grid: { color: '#1a2332' }
+                    },
+                    x: {
+                        grid: { color: '#1a2332' }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
