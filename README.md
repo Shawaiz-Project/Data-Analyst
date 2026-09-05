@@ -69,4 +69,57 @@ Use the registry ID in daily assignments. The registry centralizes the required 
 - **Phase 5** — Days 51–65: Deep Learning  
 - **Phase 6** — Days 66–80: Generative AI + LLM Engineering  
 - **Phase 7** — Days 81–90: RAG + Agentic AI  
-- **Phase 8** — Days 91–100: Production AI + Research + MLOps  
+- **Phase 8** — Days 91–100: Production AI + Research + MLOps
+
+
+## Daily Program
+
+### Day 1 — Executive Sales Performance Diagnostic
+
+**Role**  
+Data Analyst
+
+**Business/Technical Scenario**  
+An e-commerce leadership team sees revenue growth but falling repeat purchases.
+
+**Problem Statement**  
+Find the operational drivers behind revenue, cancellations, and customer-value changes.
+
+**Objective**  
+Deliver a decision-ready diagnostic, not a generic EDA.
+
+**Dataset / Data Source**  
+DR01 — UCI Online Retail; ~541,909 transactions; Excel/Python import; key fields: InvoiceNo, StockCode, Quantity, InvoiceDate, UnitPrice, CustomerID, Country.
+
+**Task**  
+Build a revenue-quality diagnostic: clean transactions, define business rules for cancellations, calculate revenue/AOV/repeat-rate proxies, segment by country/product/customer, and write 5 evidence-backed actions.
+
+**Technologies**  
+Excel + Python + pandas + NumPy + Plotly
+
+**Required Deliverables**  
+Cleaned CSV/Parquet; analysis notebook; KPI table; executive dashboard; one-page decision memo.
+
+**Acceptance Criteria**  
+All KPI definitions documented; negative/cancelled transactions treated explicitly; totals reconcile to source; every recommendation cites a metric.
+
+**Professional Skills Tested**  
+Business KPI design, cleaning, aggregation, stakeholder communication
+
+**Common Failure Modes**  
+Treating cancelled invoices as ordinary sales; silently dropping missing CustomerID; mixing gross and net revenue.
+
+**Production Considerations**  
+Use a governed semantic layer and automated KPI tests before publishing.
+
+**Extension Challenge**  
+Add cohort-based repeat-purchase analysis by acquisition month.
+
+**Git Commit**  
+`feat(analytics): build ecommerce revenue diagnostic`
+
+**Portfolio Value**  
+Strong portfolio piece showing business thinking plus technical analytics; include dashboard screenshots and KPI definitions.
+
+---
+
