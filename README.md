@@ -4965,6 +4965,4 @@ Final portfolio centerpiece covering Data Analyst → Data Scientist → ML Engi
 
 ---
 
-## Professional Repository Blueprint
 
-Use this as the default multi-project structure and adapt per day:
