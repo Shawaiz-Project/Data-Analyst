@@ -106,11 +106,7 @@ Use a governed semantic layer and automated KPI tests before publishing.
 **Extension Challenge**  
 Add cohort-based repeat-purchase analysis by acquisition month.
 
-**Git Commit**  
-`feat(analytics): build ecommerce revenue diagnostic`
-
-**Portfolio Value**  
-Strong portfolio piece showing business thinking plus technical analytics; include dashboard screenshots and KPI definitions.
+[View Executive Sales Diagnostic Analysis](https://shawaiz-project.github.io/Data-Analyst/Executive_Sales_Diagnostic_Analysis/index.html)
 
 ---
 
