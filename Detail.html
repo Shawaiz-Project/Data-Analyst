@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Days of Professional Data Scientist + AI/ML Engineer</title>
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --surface: #111827;
+            --surface2: #1a2234;
+            --border: #2d3a52;
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --accent: #60a5fa;
+            --accent2: #a78bfa;
+            --accent3: #34d399;
+            --orange: #fb923c;
+            --red: #f87171;
+            --yellow: #fbbf24;
+            --pink: #f472b6;
+            --teal: #2dd4bf;
+            --indigo: #818cf8;
+            --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+            --sidebar-width: 300px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 20px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 20px 16px;
+            z-index: 1000;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }
+        .sidebar h2 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .sidebar .subtitle {
+            font-size: 0.75rem;
+            color: var(--text2);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .sidebar nav a {
+            display: block;
+            color: var(--text2);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            transition: all 0.15s ease;
+            border-left: 2px solid transparent;
+        }
+        .sidebar nav a:hover {
+            background: var(--surface2);
+            color: var(--text);
+            border-left-color: var(--accent);
+        }
+        .sidebar nav a.phase-link {
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 14px;
+            font-size: 0.85rem;
+            border-left-color: var(--accent2);
+        }
+        .sidebar nav a.phase-link:first-of-type {
+            margin-top: 0;
+        }
+        .sidebar .top-links {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .sidebar .top-links a {
+            font-size: 0.7rem;
+            background: var(--surface2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: var(--accent3);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.15s;
+        }
+        .sidebar .top-links a:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px 48px;
+            max-width: 1100px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .main-subtitle {
+            font-size: 1rem;
+            color: var(--text2);
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h2.section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+        }
+        h3.phase-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            color: var(--accent2);
+            letter-spacing: -0.3px;
+        }
+
+        /* Day card */
+        .day-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+        .day-card:hover {
+            border-color: var(--accent);
+        }
+        .day-card-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .day-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: var(--accent);
+            color: #000;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            font-family: var(--font-mono);
+        }
+        .day-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.3px;
+        }
+        .day-role {
+            font-size: 0.7rem;
+            color: var(--accent3);
+            background: rgba(52, 211, 153, 0.1);
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            font-weight: 600;
+        }
+        .day-card .field {
+            margin-bottom: 10px;
+        }
+        .day-card .field-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 2px;
+        }
+        .day-card .field-value {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+        .day-card .field-value.mono {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent2);
+        }
+        .day-card .deliverables {
+            background: var(--surface2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            font-size: 0.8rem;
+            border-left: 3px solid var(--accent3);
+        }
+        .day-card .deliverables strong {
+            color: var(--accent3);
+        }
+        .day-card .acceptance {
+            font-size: 0.8rem;
+            border-left: 3px solid var(--yellow);
+            padding-left: 14px;
+            margin: 8px 0;
+            color: var(--text2);
+        }
+        .day-card .acceptance strong {
+            color: var(--yellow);
+        }
+        .day-card .skills {
+            font-size: 0.75rem;
+            color: var(--pink);
+        }
+        .day-card .skills strong {
+            color: var(--pink);
+        }
+        .day-card .failure {
+            font-size: 0.75rem;
+            color: var(--red);
+        }
+        .day-card .failure strong {
+            color: var(--red);
+        }
+        .day-card .production {
+            font-size: 0.75rem;
+            color: var(--teal);
+        }
+        .day-card .production strong {
+            color: var(--teal);
+        }
+        .day-card .extension {
+            font-size: 0.75rem;
+            color: var(--indigo);
+        }
+        .day-card .extension strong {
+            color: var(--indigo);
+        }
+        .day-card .git-commit {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            background: #0d1117;
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: var(--accent3);
+            margin-top: 6px;
+            display: inline-block;
+        }
+
+        /* Tables */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.78rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .styled-table th {
+            background: var(--surface2);
+            color: var(--accent);
+            font-weight: 700;
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .styled-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text2);
+            vertical-align: top;
+        }
+        .styled-table tr:last-child td {
+            border-bottom: none;
+        }
+        .styled-table tr:hover td {
+            background: rgba(96, 165, 250, 0.05);
+        }
+
+        /* Back to top link */
+        .back-to-top {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            margin-top: 12px;
+        }
+        .back-to-top:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px 16px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .day-card {
+                padding: 16px 18px;
+            }
+        }
+
+        /* Badge colors for phases */
+        .phase-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .phase-1 { background: rgba(96,165,250,0.2); color: #60a5fa; }
+        .phase-2 { background: rgba(167,139,250,0.2); color: #a78bfa; }
+        .phase-3 { background: rgba(52,211,153,0.2); color: #34d399; }
+        .phase-4 { background: rgba(251,146,60,0.2); color: #fb923c; }
+        .phase-5 { background: rgba(244,114,182,0.2); color: #f472b6; }
+        .phase-6 { background: rgba(45,212,191,0.2); color: #2dd4bf; }
+        .phase-7 { background: rgba(251,191,36,0.2); color: #fbbf24; }
+        .phase-8 { background: rgba(248,113,113,0.2); color: #f87171; }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <h2>📋 100-Day Program</h2>
+        <p class="subtitle">Professional Data Scientist + AI/ML Engineer</p>
+        <div class="top-links">
+            <a href="#overview">Overview</a>
+            <a href="#skill-map">Skill Map</a>
+            <a href="#datasets">Datasets</a>
+            <a href="#phases">Phases</a>
+        </div>
+        <nav>
+            <a href="#overview">Program Design</a>
+            <a href="#operating-rules">Operating Rules</a>
+            <a href="#skill-map">Skill Map</a>
+            <a href="#datasets">Dataset Registry</a>
+            <a href="#phase-map">Phase Map</a>
+            <a class="phase-link" href="#phase1">Phase 1 — Days 1–10</a>
+            <a href="#day1">Day 1 — Sales Diagnostic</a>
+            <a href="#day2">Day 2 — Cohort Retention</a>
+            <a href="#day3">Day 3 — SQL Revenue Mart</a>
+            <a href="#day4">Day 4 — Statistical Review</a>
+            <a href="#day5">Day 5 — KPI Dashboard</a>
+            <a href="#day6">Day 6 — Excel Reconciliation</a>
+            <a href="#day7">Day 7 — A/B Test Analysis</a>
+            <a href="#day8">Day 8 — Revenue Forecast</a>
+            <a href="#day9">Day 9 — Churn Blueprint</a>
+            <a href="#day10">Day 10 — Phase 1 Capstone</a>
+            <a class="phase-link" href="#phase2">Phase 2 — Days 11–20</a>
+            <a href="#day11">Day 11 — API Pipeline</a>
+            <a href="#day12">Day 12 — Data Quality Contract</a>
+            <a href="#day13">Day 13 — Star Schema</a>
+            <a href="#day14">Day 14 — Late Events ELT</a>
+            <a href="#day15">Day 15 — Pipeline Observability</a>
+            <a href="#day16">Day 16 — Backfill Recovery</a>
+            <a href="#day17">Day 17 — SQL Optimization</a>
+            <a href="#day18">Day 18 — DVC Versioning</a>
+            <a href="#day19">Day 19 — KPI Report Generator</a>
+            <a href="#day20">Day 20 — Phase 2 Capstone</a>
+            <a class="phase-link" href="#phase3">Phase 3 — Days 21–35</a>
+            <a href="#day21">Day 21 — Revenue Regression</a>
+            <a href="#day22">Day 22 — Threshold Economics</a>
+            <a href="#day23">Day 23 — Leakage Audit</a>
+            <a href="#day24">Day 24 — Model Benchmark</a>
+            <a href="#day25">Day 25 — Imbalanced Classification</a>
+            <a href="#day26">Day 26 — Research Day: Tabular</a>
+            <a href="#day27">Day 27 — Feature Engineering</a>
+            <a href="#day28">Day 28 — Customer Segmentation</a>
+            <a href="#day29">Day 29 — DBSCAN Anomaly</a>
+            <a href="#day30">Day 30 — PCA Compression</a>
+            <a href="#day31">Day 31 — Hyperparameter Optimization</a>
+            <a href="#day32">Day 32 — SHAP Explanations</a>
+            <a href="#day33">Day 33 — Research Day: Ablation</a>
+            <a href="#day34">Day 34 — Error Analysis Lab</a>
+            <a href="#day35">Day 35 — Phase 3 Capstone</a>
+            <a class="phase-link" href="#phase4">Phase 4 — Days 36–50</a>
+            <a href="#day36">Day 36 — Production Package</a>
+            <a href="#day37">Day 37 — FastAPI Serving</a>
+            <a href="#day38">Day 38 — MLflow Tracking</a>
+            <a href="#day39">Day 39 — Debug: Accuracy Collapse</a>
+            <a href="#day40">Day 40 — Dockerize Service</a>
+            <a href="#day41">Day 41 — CI Pipeline</a>
+            <a href="#day42">Day 42 — Secret Hygiene</a>
+            <a href="#day43">Day 43 — Inference Load Test</a>
+            <a href="#day44">Day 44 — Research: Calibration</a>
+            <a href="#day45">Day 45 — Versioned Batch Inference</a>
+            <a href="#day46">Day 46 — Debug: SQL Regression</a>
+            <a href="#day47">Day 47 — Data Drift Monitor</a>
+            <a href="#day48">Day 48 — Retraining Gate</a>
+            <a href="#day49">Day 49 — Canary Rollback</a>
+            <a href="#day50">Day 50 — Phase 4 Capstone</a>
+            <a class="phase-link" href="#phase5">Phase 5 — Days 51–65</a>
+            <a href="#day51">Day 51 — PyTorch MLP</a>
+            <a href="#day52">Day 52 — CNN MNIST</a>
+            <a href="#day53">Day 53 — Transfer Learning</a>
+            <a href="#day54">Day 54 — Object Detection</a>
+            <a href="#day55">Day 55 — GPU Benchmark</a>
+            <a href="#day56">Day 56 — GRU Sentiment</a>
+            <a href="#day57">Day 57 — LSTM vs GRU</a>
+            <a href="#day58">Day 58 — Research: Vision Recipe</a>
+            <a href="#day59">Day 59 — Transformer Classification</a>
+            <a href="#day60">Day 60 — Semantic Similarity</a>
+            <a href="#day61">Day 61 — NER Pipeline</a>
+            <a href="#day62">Day 62 — Research: Embeddings</a>
+            <a href="#day63">Day 63 — LSTM Forecasting</a>
+            <a href="#day64">Day 64 — Debug: GPU Memory</a>
+            <a href="#day65">Day 65 — Phase 5 Capstone</a>
+            <a class="phase-link" href="#phase6">Phase 6 — Days 66–80</a>
+            <a href="#day66">Day 66 — LLM Architecture</a>
+            <a href="#day67">Day 67 — Structured Prompting</a>
+            <a href="#day68">Day 68 — Tool Calling</a>
+            <a href="#day69">Day 69 — Hallucination Reduction</a>
+            <a href="#day70">Day 70 — Research: Prompt Eval</a>
+            <a href="#day71">Day 71 — Streaming API</a>
+            <a href="#day72">Day 72 — Multimodal Extraction</a>
+            <a href="#day73">Day 73 — Debug: Cost Spike</a>
+            <a href="#day74">Day 74 — Bounded Agent</a>
+            <a href="#day75">Day 75 — Function-Calling Eval</a>
+            <a href="#day76">Day 76 — Research: Model Benchmark</a>
+            <a href="#day77">Day 77 — Context Memory</a>
+            <a href="#day78">Day 78 — AI API Reliability</a>
+            <a href="#day79">Day 79 — AI Access Control</a>
+            <a href="#day80">Day 80 — Phase 6 Capstone</a>
+            <a class="phase-link" href="#phase7">Phase 7 — Days 81–90</a>
+            <a href="#day81">Day 81 — RAG Ingestion</a>
+            <a href="#day82">Day 82 — Semantic Retrieval</a>
+            <a href="#day83">Day 83 — Hybrid Retrieval</a>
+            <a href="#day84">Day 84 — Research: Reranking</a>
+            <a href="#day85">Day 85 — RAG Citations</a>
+            <a href="#day86">Day 86 — Query Rewriting</a>
+            <a href="#day87">Day 87 — Debug: RAG Drift</a>
+            <a href="#day88">Day 88 — Conversational RAG ACL</a>
+            <a href="#day89">Day 89 — Research: RAG Eval</a>
+            <a href="#day90">Day 90 — Phase 7 Capstone</a>
+            <a class="phase-link" href="#phase8">Phase 8 — Days 91–100</a>
+            <a href="#day91">Day 91 — Cloud Mapping</a>
+            <a href="#day92">Day 92 — Research: RAG vs FT</a>
+            <a href="#day93">Day 93 — Debug: CI/CD Failure</a>
+            <a href="#day94">Day 94 — AI Security Red-Team</a>
+            <a href="#day95">Day 95 — AI Observability</a>
+            <a href="#day96">Day 96 — Research: Inference Opt</a>
+            <a href="#day97">Day 97 — AI Data Governance</a>
+            <a href="#day98">Day 98 — Debug: RAG Latency</a>
+            <a href="#day99">Day 99 — Research: System Benchmark</a>
+            <a href="#day100">Day 100 — Final Capstone</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>📊 100 Days of Professional Data Scientist + AI/ML Engineer</h1>
+        <p class="main-subtitle">A 100-day professional work simulation designed to produce artifacts, diagnose failures, defend engineering decisions, and build a portfolio — not to complete tutorial exercises.</p>
+
+        <!-- Program Design -->
+        <section id="overview">
+            <h2 class="section-title">Program Design</h2>
+            <p style="font-size:0.9rem; color:var(--text2); margin-bottom:16px;">This is a 100-day professional-work simulation. Each day is exactly one coherent assignment designed for approximately 2–5 hours, with capstones allowed to run longer. The progression follows the requested phases: professional analytics → data engineering → ML → production ML/MLOps → deep learning → GenAI → RAG → enterprise AI/research.</p>
+        </section>
+
+        <!-- Operating Rules -->
+        <section id="operating-rules">
+            <h2 class="section-title">Operating Rules</h2>
+            <ul style="font-size:0.85rem; color:var(--text2); margin-left:20px; list-style-type:disc;">
+                <li>Use a feature branch for each meaningful task and open a pull request at milestones.</li>
+                <li>Keep data, code, experiments, and reports versioned; never commit credentials.</li>
+                <li>For research days, record exact paper/dataset/model versions, baseline, experiment, results, error analysis, limitations, and reproducibility details.</li>
+                <li>Never fabricate dataset links, papers, results, or performance. Synthetic datasets must be labeled as synthetic.</li>
+                <li>Suggested work cadence: Day task → artifact → tests → README update → commit → short reflection.</li>
+            </ul>
+        </section>
+
+        <!-- Skill Map -->
+        <section id="skill-map">
+            <h2 class="section-title">Skill Map</h2>
+            <table class="styled-table">
+                <thead><tr><th>Skill</th><th>Days</th><th>Difficulty</th></tr></thead>
+                <tbody>
+                    <tr><td>Data Analytics</td><td>1–20</td><td>Advanced → Professional</td></tr>
+                    <tr><td>SQL / Databases</td><td>3, 11–20, 46, 50, 90–100</td><td>Advanced → Expert</td></tr>
+                    <tr><td>Data Engineering</td><td>6, 11–20, 45, 50, 91, 97, 100</td><td>Advanced → Production</td></tr>
+                    <tr><td>Machine Learning</td><td>9, 21–50, 92, 96, 100</td><td>Advanced → Production</td></tr>
+                    <tr><td>Deep Learning</td><td>51–65, 96, 100</td><td>Advanced → Systems</td></tr>
+                    <tr><td>NLP</td><td>56–62, 66–80, 100</td><td>Advanced → Production</td></tr>
+                    <tr><td>Generative AI</td><td>66–80, 90–100</td><td>Advanced → Production</td></tr>
+                    <tr><td>RAG</td><td>69, 81–90, 92, 98–100</td><td>Advanced → Enterprise</td></tr>
+                    <tr><td>MLOps</td><td>15, 18, 38–50, 78, 90–100</td><td>Advanced → Production</td></tr>
+                    <tr><td>DevOps / Cloud</td><td>40–50, 78, 91, 93–95, 100</td><td>Intermediate → Production</td></tr>
+                    <tr><td>Research</td><td>26, 33, 44, 57, 58, 62, 70, 76, 84, 89, 92, 96, 99</td><td>Advanced → Research</td></tr>
+                    <tr><td>Security / Reliability</td><td>42, 67–80, 88, 94–95, 97, 100</td><td>Advanced → Enterprise</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Dataset Registry -->
+        <section id="datasets">
+            <h2 class="section-title">Verified Dataset Registry</h2>
+            <p style="font-size:0.8rem; color:var(--text2); margin-bottom:12px;">Use the registry ID in daily assignments. The registry centralizes the required source, approximate scale, task type, target, and known challenges.</p>
+            <table class="styled-table" style="font-size:0.7rem;">
+                <thead><tr><th>ID</th><th>Dataset</th><th>Source</th><th>Size/Format</th><th>Task</th><th>Target</th><th>Challenges</th></tr></thead>
+                <tbody>
+                    <tr><td>DR01</td><td>UCI Online Retail</td><td>archive.ics.uci.edu/dataset/352</td><td>541,909 rows; 8 cols</td><td>transactions</td><td>CustomerID/InvoiceNo</td><td>cancellations, missing ID</td></tr>
+                    <tr><td>DR02</td><td>UCI Bank Marketing</td><td>archive.ics.uci.edu/dataset/222</td><td>45,211 rows; 17 vars</td><td>binary classification</td><td>y</td><td>imbalance, temporal</td></tr>
+                    <tr><td>DR03</td><td>UCI Wine Quality</td><td>archive.ics.uci.edu/dataset/186</td><td>4,898 rows</td><td>classification/regression</td><td>quality</td><td>ordinal, imbalance</td></tr>
+                    <tr><td>DR04</td><td>NYC TLC Trip Data</td><td>nyc.gov/site/tlc</td><td>monthly parquet/CSV</td><td>analytics/time series</td><td>fare_amount</td><td>large, schema changes</td></tr>
+                    <tr><td>DR05</td><td>UCI Adult</td><td>archive.ics.uci.edu/dataset/2</td><td>48,842 rows</td><td>classification/fairness</td><td>income</td><td>missing, sensitive</td></tr>
+                    <tr><td>DR06</td><td>UCI Student Performance</td><td>archive.ics.uci.edu/dataset/320</td><td>649 rows; 33 vars</td><td>regression/classification</td><td>G3</td><td>small, leakage</td></tr>
+                    <tr><td>DR07</td><td>UCI Student Dropout</td><td>archive.ics.uci.edu/dataset/697</td><td>4,424 rows; 36 preds</td><td>multiclass</td><td>target</td><td>imbalance, leakage</td></tr>
+                    <tr><td>DR08</td><td>Hugging Face Banking77</td><td>huggingface.co/mteb/banking77</td><td>13,083 utterances; 77 intents</td><td>intent classification</td><td>label</td><td>fine-grained confusion</td></tr>
+                    <tr><td>DR09</td><td>Hugging Face CoNLL-2003</td><td>huggingface.co/tner/conll2003</td><td>14k/3.2k/3.4k</td><td>NER</td><td>BIO tags</td><td>alignment, shift</td></tr>
+                    <tr><td>DR10</td><td>GLUE/SST-2</td><td>huggingface.co/nyu-mll/glue</td><td>sentiment benchmark</td><td>NLP classification</td><td>label</td><td>short text, ambiguity</td></tr>
+                    <tr><td>DR11</td><td>MNIST</td><td>yann.lecun.org/exdb/mnist</td><td>60k/10k 28×28</td><td>CV classification</td><td>digit</td><td>simple benchmark</td></tr>
+                    <tr><td>DR12</td><td>MIMIC-IV Demo</td><td>physionet.org/content/mimic-iv-demo</td><td>15.5 MB demo</td><td>clinical analytics</td><td>task-dependent</td><td>access, ethics</td></tr>
+                    <tr><td>DR13</td><td>MS MARCO</td><td>microsoft.github.io/msmarco</td><td>large QA collection</td><td>retrieval/reranking</td><td>relevance</td><td>licensing, scale</td></tr>
+                    <tr><td>DR14</td><td>Synthetic E-commerce Events</td><td>synthetic</td><td>1–5M events</td><td>analytics/ETL</td><td>event_type/revenue</td><td>duplicates, late events</td></tr>
+                    <tr><td>DR15</td><td>Synthetic Support Tickets</td><td>synthetic</td><td>100k–500k tickets</td><td>NLP/RAG</td><td>intent/severity</td><td>PII, adversarial</td></tr>
+                    <tr><td>DR16</td><td>Synthetic IoT Sensor Stream</td><td>synthetic</td><td>10M+ obs</td><td>time-series/anomaly</td><td>fault</td><td>drift, noise</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Phase Map -->
+        <section id="phase-map">
+            <h2 class="section-title">Phase Map</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:10px; font-size:0.8rem;">
+                <span class="phase-badge phase-1">Phase 1 — Days 1–10: Analytics</span>
+                <span class="phase-badge phase-2">Phase 2 — Days 11–20: Data Eng</span>
+                <span class="phase-badge phase-3">Phase 3 — Days 21–35: ML</span>
+                <span class="phase-badge phase-4">Phase 4 — Days 36–50: E2E ML</span>
+                <span class="phase-badge phase-5">Phase 5 — Days 51–65: Deep Learning</span>
+                <span class="phase-badge phase-6">Phase 6 — Days 66–80: GenAI + LLM</span>
+                <span class="phase-badge phase-7">Phase 7 — Days 81–90: RAG + Agentic</span>
+                <span class="phase-badge phase-8">Phase 8 — Days 91–100: Production AI</span>
+            </div>
+        </section>
+
+        <!-- PHASE 1 -->
+        <h3 class="phase-title" id="phase1">📌 Phase 1 — Days 1–10: Professional Data Analytics Foundations</h3>
+
+        <!-- Day 1 -->
+        <div class="day-card" id="day1">
+            <div class="day-card-header">
+                <span class="day-number">DAY 1</span>
+                <span class="day-title">Executive Sales Performance Diagnostic</span>
+                <span class="day-role">Data Analyst</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">An e-commerce leadership team sees revenue growth but falling repeat purchases.</div></div>
+            <div class="field"><div class="field-label">Problem Statement</div><div class="field-value">Find the operational drivers behind revenue, cancellations, and customer-value changes.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Deliver a decision-ready diagnostic, not a generic EDA.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01 — UCI Online Retail; ~541,909 transactions; Excel/Python import.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Build a revenue-quality diagnostic: clean transactions, define business rules for cancellations, calculate revenue/AOV/repeat-rate proxies, segment by country/product/customer, and write 5 evidence-backed actions.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Excel + Python + pandas + NumPy + Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Cleaned CSV/Parquet; analysis notebook; KPI table; executive dashboard; one-page decision memo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> All KPI definitions documented; negative/cancelled transactions treated explicitly; totals reconcile to source; every recommendation cites a metric.</div>
+            <div class="skills"><strong>Skills:</strong> Business KPI design, cleaning, aggregation, stakeholder communication</div>
+            <div class="failure"><strong>Common Failure:</strong> Treating cancelled invoices as ordinary sales; silently dropping missing CustomerID; mixing gross and net revenue.</div>
+            <div class="production"><strong>Production:</strong> Use a governed semantic layer and automated KPI tests before publishing.</div>
+            <div class="extension"><strong>Extension:</strong> Add cohort-based repeat-purchase analysis by acquisition month.</div>
+            <span class="git-commit">🔗 Git: feat(analytics): add executive sales diagnostic</span>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-card" id="day2">
+            <div class="day-card-header">
+                <span class="day-number">DAY 2</span>
+                <span class="day-title">Cohort Retention and Customer Value Analysis</span>
+                <span class="day-role">Data Analyst</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Marketing wants to know whether new customers become durable revenue contributors.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Construct acquisition cohorts and quantify retention, repeat purchase behavior, and customer value.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Produce cohort tables and an executive interpretation.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01 — UCI Online Retail; transaction dates and CustomerID.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Design cohort month, retention matrix, repeat-rate curve, RFM summary, and segment-level revenue concentration. Explain cohort leakage risks.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + NumPy + Plotly + Excel</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Cohort table; RFM table; visualization set; assumptions document.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Cohort assignment deterministic; retention denominators explicit; RFM uses only cutoff info.</div>
+            <div class="skills"><strong>Skills:</strong> Cohort analysis, RFM, time-aware features</div>
+            <div class="failure"><strong>Common Failure:</strong> First observed transaction as acquisition without caveat; look-ahead in RFM.</div>
+            <div class="production"><strong>Production:</strong> Persist cohort logic in reusable SQL/Python with tests.</div>
+            <div class="extension"><strong>Extension:</strong> Estimate CLV under two transparent assumptions.</div>
+            <span class="git-commit">🔗 Git: feat(analytics): add cohort retention and rfm</span>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-card" id="day3">
+            <div class="day-card-header">
+                <span class="day-number">DAY 3</span>
+                <span class="day-title">SQL Revenue Mart with Window Functions</span>
+                <span class="day-role">Data Analyst</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Finance needs a reusable monthly revenue dataset rather than repeated ad-hoc queries.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a normalized-to-analytics SQL mart using CTEs and window functions.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Answer ranking, MoM, and customer concentration questions in SQL.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01; load into SQLite; target tables: fact_sales, dim_customer, dim_product, dim_date.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Create star-style analytical mart; solve 10 advanced questions: top products by month, rolling 30-day revenue, customer rank, share of revenue, first/last purchase.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">SQLite + SQL + Python + SQLAlchemy</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> schema.sql; transform.sql; validation queries; query README.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> 10 queries return expected shapes; no Cartesian joins; indexes documented; query plans reviewed.</div>
+            <div class="skills"><strong>Skills:</strong> Advanced SQL, dimensional modeling</div>
+            <div class="failure"><strong>Common Failure:</strong> Joining on text descriptions; window-frame mistakes; duplicate counting.</div>
+            <div class="production"><strong>Production:</strong> Move to PostgreSQL; add migrations and incremental loads.</div>
+            <div class="extension"><strong>Extension:</strong> Add query-cost regression tests and materialized views.</div>
+            <span class="git-commit">🔗 Git: feat(sql): build sales analytics mart</span>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-card" id="day4">
+            <div class="day-card-header">
+                <span class="day-number">DAY 4</span>
+                <span class="day-title">Statistical Quality Review of Sales Drivers</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A merchandising lead claims discounts increase order value.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Test the claim with defensible statistical analysis.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Separate association from evidence of a meaningful effect.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01; construct order-level discount proxies; synthetic discount field clearly labeled if added.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Define hypotheses, choose tests, check assumptions, quantify effect sizes and confidence intervals, document multiple-comparison considerations.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + SciPy + pandas + statsmodels</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> statistical report; notebook; effect-size table; reproducibility script.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Hypotheses pre-registered; assumptions checked; CIs reported; practical significance discussed.</div>
+            <div class="skills"><strong>Skills:</strong> Hypothesis testing, effect sizes, statistical reasoning</div>
+            <div class="failure"><strong>Common Failure:</strong> Fishing for p-values; ignoring dependency; equating significance with causality.</div>
+            <div class="production"><strong>Production:</strong> Use experiment design and exposure logging for production claims.</div>
+            <div class="extension"><strong>Extension:</strong> Repeat with bootstrap robustness check.</div>
+            <span class="git-commit">🔗 Git: feat(stats): evaluate discount-revenue hypothesis</span>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-card" id="day5">
+            <div class="day-card-header">
+                <span class="day-number">DAY 5</span>
+                <span class="day-title">Management Dashboard with KPI Governance</span>
+                <span class="day-role">BI Analyst</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Executives consume different versions of revenue, AOV, and active-customer KPIs.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Create one governed dashboard with clear definitions and refresh-ready inputs.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make numbers consistent and decision-oriented.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01; curated KPI dataset generated on Days 1–4.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Build a Power BI-equivalent dashboard (Power BI or Plotly/Streamlit); include revenue, orders, AOV, repeat rate, country mix, top products, anomaly flag.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Power BI or Streamlit + SQL + Python</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Dashboard; KPI data dictionary; refresh script; screenshot pack.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Every card maps to a documented query; filters don't change denominators unexpectedly.</div>
+            <div class="skills"><strong>Skills:</strong> BI modeling, storytelling, semantic consistency</div>
+            <div class="failure"><strong>Common Failure:</strong> Overloading the page; hiding data quality caveats; inconsistent date grain.</div>
+            <div class="production"><strong>Production:</strong> Add row-level security and scheduled refresh.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(bi): publish governed sales dashboard</span>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-card" id="day6">
+            <div class="day-card-header">
+                <span class="day-number">DAY 6</span>
+                <span class="day-title">Automated Excel-to-Database Reconciliation</span>
+                <span class="day-role">Data Analyst / Analytics Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A finance team receives weekly Excel exports from multiple branches.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Automate reconciliation between spreadsheet totals and a canonical database.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Detect mismatches before finance sign-off.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic branch-sales workbook; 20–50k rows with intentional defects.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Ingest Excel, validate schema/types, load to SQLite/PostgreSQL, reconcile totals and row counts, produce exceptions workbook.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + openpyxl + pandas + SQLite + SQLAlchemy</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> ETL script; validation report; exception.xlsx; schema.sql; tests.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Schema failures explicit; reconciliation identifies defects; rerun idempotent; logs contain run ID and counts.</div>
+            <div class="skills"><strong>Skills:</strong> Data validation, ETL, Excel automation, idempotency</div>
+            <div class="failure"><strong>Common Failure:</strong> Trusting Excel types; silent coercion; non-idempotent inserts.</div>
+            <div class="production"><strong>Production:</strong> Add Great Expectations and scheduled execution.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(data): automate excel reconciliation pipeline</span>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day-card" id="day7">
+            <div class="day-card-header">
+                <span class="day-number">DAY 7</span>
+                <span class="day-title">A/B Test Analysis for Checkout Conversion</span>
+                <span class="day-role">Data Analyst</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Product changed checkout UI and wants a decision on rollout.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Estimate the experiment effect without contaminating groups.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Recommend ship/hold based on conversion and guardrails.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic A/B event dataset; 200k+ sessions with experiment_id, variant, conversion, revenue.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Sample-ratio-mismatch checks, primary conversion analysis, confidence interval, practical threshold, guardrail analysis for revenue/refunds.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + SciPy + statsmodels + Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Experiment report; analysis notebook; decision table.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Randomization health check; primary metric fixed; effect uncertainty shown; guardrails reviewed.</div>
+            <div class="skills"><strong>Skills:</strong> Experimentation, causal inference basics, KPI design</div>
+            <div class="failure"><strong>Common Failure:</strong> Peeking without correction; cherry-picked segments; ignoring SRM.</div>
+            <div class="production"><strong>Production:</strong> Feature assignment logs, exposure events, stable bucketing, audit trails.</div>
+            <div class="extension"><strong>Extension:</strong> Implement sequential-testing-safe monitoring design.</div>
+            <span class="git-commit">🔗 Git: feat(experiment): evaluate checkout ab test</span>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day-card" id="day8">
+            <div class="day-card-header">
+                <span class="day-number">DAY 8</span>
+                <span class="day-title">Forecasting Revenue with a Business Baseline</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Operations needs a six-week revenue forecast for staffing and purchasing.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build and benchmark a time-series forecast against a naive baseline.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Quantify whether the model improves business planning.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR04 — NYC TLC aggregated to daily demand proxy.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Daily series, rolling-origin backtest, compare naive/seasonal-naive/ETS, quantify MAE/WAPE, explain failure regions.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + statsmodels</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Forecast pipeline; backtest notebook; forecast CSV; decision memo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Time-aware split; naive baseline included; metrics justified; prediction interval; no leakage.</div>
+            <div class="skills"><strong>Skills:</strong> Forecasting, backtesting, uncertainty</div>
+            <div class="failure"><strong>Common Failure:</strong> Random train/test split; tuning on test; ignoring calendar effects.</div>
+            <div class="production"><strong>Production:</strong> Scheduled batch forecasts with versioned data snapshots and alerting.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(forecast): establish demand forecasting baseline</span>
+        </div>
+
+        <!-- Day 9 -->
+        <div class="day-card" id="day9">
+            <div class="day-card-header">
+                <span class="day-number">DAY 9</span>
+                <span class="day-title">Customer Churn Modeling Blueprint</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A SaaS company needs early-warning signals for at-risk customers.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Define churn operationally and create a leakage-safe modeling dataset.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Turn ambiguous business request into a precise ML problem.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic SaaS customer/event dataset; 50k customers, event history, account snapshots.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Design churn label window, observation window, feature cutoff, candidate features, data split strategy; no final model training yet.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + SQL + ERD</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Feature specification; SQL feature query; data dictionary; leakage checklist.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Label definition executable; every feature has availability timestamp; temporal split justified; leakage tests.</div>
+            <div class="skills"><strong>Skills:</strong> Problem framing, feature stores, leakage detection</div>
+            <div class="failure"><strong>Common Failure:</strong> Label leakage from cancellation timestamp; features after prediction time.</div>
+            <div class="production"><strong>Production:</strong> Promote features into offline/online feature store as needed.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): define leakage-safe churn dataset</span>
+        </div>
+
+        <!-- Day 10 -->
+        <div class="day-card" id="day10">
+            <div class="day-card-header">
+                <span class="day-number">DAY 10</span>
+                <span class="day-title">Phase 1 Analytics Capstone — Executive BI Pack</span>
+                <span class="day-role">BI Analyst / Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Leadership needs one coherent view from raw transactions to action.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Consolidate Days 1–9 into a lightweight analytics product.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Ship a reproducible business intelligence package.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01 plus Day 6 synthetic reconciliation data.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Integrate KPI definitions, cohort view, experiment readout, forecast baseline, customer diagnostics into one decision pack.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + SQL + Streamlit/Power BI + Excel</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> GitHub repo; dashboard; SQL; notebooks; tests; architecture diagram; executive memo; demo recording.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Rebuild from clean environment; checks pass; KPIs reconcile; README explains assumptions.</div>
+            <div class="skills"><strong>Skills:</strong> Analytics engineering, stakeholder communication, reproducibility</div>
+            <div class="failure"><strong>Common Failure:</strong> Copy-pasting notebook outputs; undocumented assumptions.</div>
+            <div class="production"><strong>Production:</strong> CI for data transformation tests; package dashboard for deployment.</div>
+            <div class="extension"><strong>Extension:</strong> Automated daily refresh and Slack/email alerting.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship executive analytics platform</span>
+        </div>
+
+        <!-- PHASE 2 -->
+        <h3 class="phase-title" id="phase2">📌 Phase 2 — Days 11–20: Advanced Analytics + Data Engineering</h3>
+
+        <!-- Day 11 -->
+        <div class="day-card" id="day11">
+            <div class="day-card-header">
+                <span class="day-number">DAY 11</span>
+                <span class="day-title">Incremental API-to-Database Pipeline</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A logistics platform exposes shipment updates through an API.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Ingest incremental API data without duplicates or missed updates.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Build a reliable ingestion job with checkpointing.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Public REST API or synthetic API service (labeled synthetic).</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Paginated ingestion, cursor/watermark, retries with backoff, raw landing storage, upsert into PostgreSQL.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + requests/httpx + PostgreSQL + SQLAlchemy</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Pipeline package; raw JSON samples; SQL schema; logs; tests.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Retries bounded; reruns don't duplicate; checkpoint resumes; schema validation rejects malformed records.</div>
+            <div class="skills"><strong>Skills:</strong> ETL/ELT, APIs, retries, idempotency</div>
+            <div class="failure"><strong>Common Failure:</strong> Page number as durable state; no timeout handling.</div>
+            <div class="production"><strong>Production:</strong> Secrets management, rate-limit handling, orchestration, dead-letter storage.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ingest): add idempotent shipment api pipeline</span>
+        </div>
+
+        <!-- Day 12 -->
+        <div class="day-card" id="day12">
+            <div class="day-card-header">
+                <span class="day-number">DAY 12</span>
+                <span class="day-title">Data Quality Contract and Validation Suite</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Finance data contains silently changing columns and bad categorical values.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Turn business expectations into executable data-quality contracts.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Fail fast on critical defects while allowing quarantined noncritical records.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 11 shipment data plus synthetic defect fixtures.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Schema, null, range, uniqueness, referential-integrity, freshness checks; hard failures vs quarantine cases.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + Pandera/Great Expectations + pytest</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Quality module; expectation suite; quarantine sample; CI test output.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Defects detected; quality report identifies rule, field, count, severity; CI blocks critical failures.</div>
+            <div class="skills"><strong>Skills:</strong> Data contracts, validation, testing, observability</div>
+            <div class="failure"><strong>Common Failure:</strong> Only checking nulls; validating after aggregates; not versioning rules.</div>
+            <div class="production"><strong>Production:</strong> Version data contracts alongside producers; use SLAs/SLOs.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: test(data): enforce shipment data contracts</span>
+        </div>
+
+        <!-- Day 13 -->
+        <div class="day-card" id="day13">
+            <div class="day-card-header">
+                <span class="day-number">DAY 13</span>
+                <span class="day-title">Star Schema for Supply-Chain Analytics</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A supply-chain team mixes shipment, vendor, product, and warehouse data.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Design an analytical warehouse model that supports stable business questions.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Create fact/dimension tables with clear grain.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic supply-chain dataset; 1–5M fact rows target.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Define fact shipment grain, dimensions, surrogate keys, SCD strategy, 10 KPI queries.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PostgreSQL + SQL + dbdiagram</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> ERD; DDL; seed data; KPI SQL; modeling decisions.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Fact grain documented; no many-to-many ambiguity for core KPIs.</div>
+            <div class="skills"><strong>Skills:</strong> Dimensional modeling, SQL design, grain discipline</div>
+            <div class="failure"><strong>Common Failure:</strong> Mixing order and line-item grain; storing attributes as dimensions.</div>
+            <div class="production"><strong>Production:</strong> Warehouse-specific partitioning and incremental materializations.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(dw): model supply chain star schema</span>
+        </div>
+
+        <!-- Day 14 -->
+        <div class="day-card" id="day14">
+            <div class="day-card-header">
+                <span class="day-number">DAY 14</span>
+                <span class="day-title">Incremental ELT with Late-Arriving Events</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Orders arrive late or are corrected after daily loads.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build an incremental transformation that handles late-arriving records.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Preserve correctness under reprocessing.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR14 synthetic e-commerce events; 1–5M events with event_time and ingestion_time.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Bronze → silver → gold layers; ingestion watermark plus event-time correction window.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + DuckDB/Polars + PostgreSQL</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> ELT scripts; test fixtures; KPI tables; runbook.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Late events within window update aggregates; reruns deterministic.</div>
+            <div class="skills"><strong>Skills:</strong> ELT, event-time semantics, batch processing</div>
+            <div class="failure"><strong>Common Failure:</strong> Using ingestion time as business time; duplicate corrections.</div>
+            <div class="production"><strong>Production:</strong> Orchestration, state storage, backfill mode, data lineage.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(elt): handle late arriving ecommerce events</span>
+        </div>
+
+        <!-- Day 15 -->
+        <div class="day-card" id="day15">
+            <div class="day-card-header">
+                <span class="day-number">DAY 15</span>
+                <span class="day-title">Pipeline Observability and SLA Monitoring</span>
+                <span class="day-role">Data Engineer / MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A morning KPI dashboard is late and nobody knows why.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Add operational telemetry to the pipeline.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make pipeline health measurable.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Days 11–14 pipelines; synthetic failure injections.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Emit run duration, record counts, freshness, failure reason, retry counts, DQ status; build health dashboard.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + structured logging + Prometheus + Streamlit/Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Metrics endpoint/file; dashboard; runbook; alert rules.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Correlation ID per run; metrics distinguish data vs infra failure; 3+ actionable alerts.</div>
+            <div class="skills"><strong>Skills:</strong> Observability, SLIs/SLOs, incident response</div>
+            <div class="failure"><strong>Common Failure:</strong> Logging huge raw payloads; no correlation IDs; alerts without action.</div>
+            <div class="production"><strong>Production:</strong> Route metrics to real monitoring stack; define on-call severity.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(obs): instrument data pipeline health metrics</span>
+        </div>
+
+        <!-- Day 16 -->
+        <div class="day-card" id="day16">
+            <div class="day-card-header">
+                <span class="day-number">DAY 16</span>
+                <span class="day-title">Batch Backfill and Recovery Drill</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A source outage caused three days of missing data.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Recover historical partitions without double-counting KPIs.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Prove a safe backfill workflow.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR14 synthetic event stream with intentionally removed partitions.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Partition-aware backfill, checkpointing, reconciliation, recovery runbook.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + DuckDB/PostgreSQL + Bash</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Backfill script; recovery report; runbook; tests.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Backfill restores counts; downstream aggregates correct; rerun safe.</div>
+            <div class="skills"><strong>Skills:</strong> Recovery engineering, idempotency, operational thinking</div>
+            <div class="failure"><strong>Common Failure:</strong> Manual CSV replacement; deleting all history unnecessarily.</div>
+            <div class="production"><strong>Production:</strong> Automate replay with Airflow/Prefect/Dagster.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(data): implement partition backfill and recovery</span>
+        </div>
+
+        <!-- Day 17 -->
+        <div class="day-card" id="day17">
+            <div class="day-card-header">
+                <span class="day-number">DAY 17</span>
+                <span class="day-title">PostgreSQL Query Optimization Investigation</span>
+                <span class="day-role">Database Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A dashboard query went from seconds to minutes.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Diagnose root cause and improve query performance.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Use evidence from execution plans, not guesswork.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic PostgreSQL schema from Day 13; 1–5M rows.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Profile with EXPLAIN ANALYZE, test indexes, rewrite joins/CTEs, document before/after.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PostgreSQL + SQL + Python benchmark script</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> before.sql; after.sql; EXPLAIN plans; benchmark report.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Bottleneck identified from evidence; latency improves; correctness preserved.</div>
+            <div class="skills"><strong>Skills:</strong> Query optimization, indexing, benchmarking</div>
+            <div class="failure"><strong>Common Failure:</strong> Random indexes; optimizing without measurements; changing semantics.</div>
+            <div class="production"><strong>Production:</strong> Workload-aware indexing, statistics maintenance, read replicas.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: perf(sql): optimize supply chain dashboard query</span>
+        </div>
+
+        <!-- Day 18 -->
+        <div class="day-card" id="day18">
+            <div class="day-card-header">
+                <span class="day-number">DAY 18</span>
+                <span class="day-title">Data Versioning with DVC</span>
+                <span class="day-role">Data Engineer / ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">An ML team cannot reproduce the dataset used for last month's model.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Version large data artifacts and tie them to code commits.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make dataset lineage reproducible.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Small/medium synthetic tabular dataset plus Day 9 churn features.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Initialize DVC, reproducible data stages, remote-storage strategy, checkout older dataset version.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Git + DVC + Python</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> DVC config; pipeline stages; data manifest; reproducibility demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Clean checkout reconstructs dataset from tagged commit; no secrets committed.</div>
+            <div class="skills"><strong>Skills:</strong> Data versioning, lineage, reproducibility</div>
+            <div class="failure"><strong>Common Failure:</strong> Tracking data binaries in Git; mutable file paths; no manifest.</div>
+            <div class="production"><strong>Production:</strong> Object storage with access controls and retention policies.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: chore(mlops): version training data with dvc</span>
+        </div>
+
+        <!-- Day 19 -->
+        <div class="day-card" id="day19">
+            <div class="day-card-header">
+                <span class="day-number">DAY 19</span>
+                <span class="day-title">Automated KPI Report Generator</span>
+                <span class="day-role">Analytics Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Management wants the weekly performance pack automatically emailed.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Create deterministic report generation from curated data.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Turn analytics into a repeatable service.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 5 KPI dataset plus synthetic current-period updates.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Generate HTML/PDF report or static dashboard with deterministic commentary rules.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + Jinja2 + Plotly + scheduled task</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Report generator; sample report; scheduler config; test fixtures.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Same input produces same report; missing data flagged; noninteractive completion.</div>
+            <div class="skills"><strong>Skills:</strong> Automation, reporting, templating</div>
+            <div class="failure"><strong>Common Failure:</strong> Hard-coded date ranges; silent failures; manually edited charts.</div>
+            <div class="production"><strong>Production:</strong> Artifact storage, signed reports, distribution controls.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(reporting): automate weekly performance pack</span>
+        </div>
+
+        <!-- Day 20 -->
+        <div class="day-card" id="day20">
+            <div class="day-card-header">
+                <span class="day-number">DAY 20</span>
+                <span class="day-title">Phase 2 Capstone — Reliable Analytics Data Platform</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The organization wants a trusted, refreshable analytics foundation.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Combine ingestion, quality, modeling, monitoring, and reporting into one system.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Ship an end-to-end analytics platform with operational controls.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR14 synthetic e-commerce stream + public source metadata.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Raw→clean→mart pipeline, quality gates, incremental processing, observability, report generation, recovery.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + PostgreSQL + DuckDB + DVC + GitHub Actions</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Repo; pipeline; schemas; tests; monitoring dashboard; runbook; architecture diagram; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Cold-start setup documented; pipeline idempotent; quality checks pass; backfill works; CI green.</div>
+            <div class="skills"><strong>Skills:</strong> Data engineering, reliability, DevOps</div>
+            <div class="failure"><strong>Common Failure:</strong> One giant script; no retry strategy; no data contract.</div>
+            <div class="production"><strong>Production:</strong> Deploy scheduled jobs on free/local infra; map to AWS/Azure/GCP later.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship reliable analytics data platform</span>
+        </div>
+
+        <!-- PHASE 3 -->
+        <h3 class="phase-title" id="phase3">📌 Phase 3 — Days 21–35: Machine Learning</h3>
+
+        <!-- Day 21 -->
+        <div class="day-card" id="day21">
+            <div class="day-card-header">
+                <span class="day-number">DAY 21</span>
+                <span class="day-title">Regression for Revenue Planning</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A retailer needs expected basket revenue before fulfillment.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a leakage-safe regression model and quantify business impact.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Predict order value with interpretable baselines first.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic order-level dataset, 50k rows (explicitly generated).</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Compare linear, regularized, tree-based; cross-validation; error segmentation by order size.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + scikit-learn + XGBoost</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Training script; validation report; model card; error analysis.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Temporal/grouped split; MAE/RMSE and business loss shown; leakage checks.</div>
+            <div class="skills"><strong>Skills:</strong> Regression, baselines, evaluation, error analysis</div>
+            <div class="failure"><strong>Common Failure:</strong> Scaling leakage; random split across same customer.</div>
+            <div class="production"><strong>Production:</strong> Package preprocessing and model as single pipeline.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): build revenue regression baseline</span>
+        </div>
+
+        <!-- Day 22 -->
+        <div class="day-card" id="day22">
+            <div class="day-card-header">
+                <span class="day-number">DAY 22</span>
+                <span class="day-title">Classification with Threshold Economics</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A bank wants to prioritize customers for a retention campaign.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Predict binary outcome and optimize decision threshold by business cost.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Move beyond default 0.5 classification.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR02 — UCI Bank Marketing; 45,211 rows; target y.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Logistic regression + tree ensemble; ROC-AUC/PR-AUC; calibration; threshold from campaign economics.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + scikit-learn + calibration tools</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Model package; threshold report; confusion-cost table.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No target leakage; calibration assessed; threshold justified from costs.</div>
+            <div class="skills"><strong>Skills:</strong> Classification, calibration, decision theory</div>
+            <div class="failure"><strong>Common Failure:</strong> Accuracy on imbalanced data; post-outcome features.</div>
+            <div class="production"><strong>Production:</strong> Threshold as versioned config; monitor drift of score/outcome rates.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): optimize bank campaign decision threshold</span>
+        </div>
+
+        <!-- Day 23 -->
+        <div class="day-card" id="day23">
+            <div class="day-card-header">
+                <span class="day-number">DAY 23</span>
+                <span class="day-title">Leakage Audit on an Educational Predictor</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A university wants to predict student dropout at enrollment time.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a classifier using only features available at the decision point.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Detect and remove temporal leakage.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR07 — UCI Student Dropout; 4,424 rows; multiclass target.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Availability matrix; audit suspicious fields; compare leaked vs leakage-safe models; document difference.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + scikit-learn</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Leakage audit; two pipelines; comparison report.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Every retained feature has timestamp rationale; leaked benchmark labeled invalid.</div>
+            <div class="skills"><strong>Skills:</strong> Leakage detection, temporal reasoning, model governance</div>
+            <div class="failure"><strong>Common Failure:</strong> Keeping semester-outcome features because they boost F1.</div>
+            <div class="production"><strong>Production:</strong> Feature contracts enforce allowed-time fields.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): harden dropout model against leakage</span>
+        </div>
+
+        <!-- Day 24 -->
+        <div class="day-card" id="day24">
+            <div class="day-card-header">
+                <span class="day-number">DAY 24</span>
+                <span class="day-title">Model Comparison: XGBoost vs LightGBM vs CatBoost</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A tabular classification service must balance performance, training time, and categorical handling.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Benchmark three gradient-boosting families under common evaluation protocol.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Produce a fair benchmark rather than leaderboard chase.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR02 bank marketing; stratified temporal-aware evaluation.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Standardize preprocessing, modest tuning, record training/inference cost, compare calibration and PR-AUC.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + XGBoost + LightGBM + CatBoost</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Benchmark table; experiment configs; plots; model selection memo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Same split/metric across models; seeds logged; timing measured; multi-factor rationale.</div>
+            <div class="skills"><strong>Skills:</strong> Benchmarking, experiment hygiene, model selection</div>
+            <div class="failure"><strong>Common Failure:</strong> Changing validation per model; over-tuning one; ignoring latency.</div>
+            <div class="production"><strong>Production:</strong> Reproducible benchmark runner with MLflow.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(bench): compare gradient boosting libraries</span>
+        </div>
+
+        <!-- Day 25 -->
+        <div class="day-card" id="day25">
+            <div class="day-card-header">
+                <span class="day-number">DAY 25</span>
+                <span class="day-title">Imbalanced Classification with Cost-Sensitive Learning</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Fraud operations has few positives and expensive false negatives.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Improve minority-class detection while controlling false-positive workload.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Optimize for operational constraints.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic fraud transaction dataset, 200k rows, <2% fraud.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Class weights, undersampling, threshold optimization, balanced ensemble; PR-AUC, recall at precision target, alert volume.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + imbalanced-learn</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Benchmark; threshold policy; confusion-cost analysis; test set.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Test set untouched until final; alert-volume constraint respected; stability across folds.</div>
+            <div class="skills"><strong>Skills:</strong> Imbalance, thresholding, operational metrics</div>
+            <div class="failure"><strong>Common Failure:</strong> SMOTE before split; accuracy obsession; recall-only optimization.</div>
+            <div class="production"><strong>Production:</strong> Delayed-label monitoring; investigator feedback loop.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(fraud): build cost-sensitive classification pipeline</span>
+        </div>
+
+        <!-- Day 26 -->
+        <div class="day-card" id="day26">
+            <div class="day-card-header">
+                <span class="day-number">DAY 26</span>
+                <span class="day-title">Research Day — Reproduce a Tabular ML Paper</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">You need to learn whether a published tabular-ML claim holds under clean reproduction.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Reproduce one reported result from a paper using an available public dataset.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Practice scientific reproducibility, not citation theater.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR02 or DR03 plus a real paper; verify source before coding.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Research question → background → related work → dataset → baseline → reproduction → metrics → results → error analysis → limitations.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + MLflow-lite logging</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Reproduction report; exact citation; code; environment lock; result table; deviation log.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Paper/dataset/protocol cited; no fabricated numbers; deviations explicit.</div>
+            <div class="skills"><strong>Skills:</strong> Literature review, reproducibility, experiment design</div>
+            <div class="failure"><strong>Common Failure:</strong> Copying reported metrics as if reproduced; untracked preprocessing.</div>
+            <div class="production"><strong>Production:</strong> Pin dependencies; use dataset hashes/configs.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: reproduce tabular ml baseline</span>
+        </div>
+
+        <!-- Day 27 -->
+        <div class="day-card" id="day27">
+            <div class="day-card-header">
+                <span class="day-number">DAY 27</span>
+                <span class="day-title">Feature Engineering Under a Compute Budget</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A model is accurate but feature generation is too expensive for daily scoring.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Redesign features to preserve signal under latency and memory constraints.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Optimize the whole feature pipeline, not only the model.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic churn event dataset from Day 9; 1M+ events.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Profile feature generation; replace expensive joins with aggregates/materialized tables; benchmark CPU/memory.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas/Polars + PostgreSQL + scikit-learn</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Profiling report; optimized feature job; benchmark; model comparison.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Build time/memory improve without unacceptable degradation.</div>
+            <div class="skills"><strong>Skills:</strong> Feature engineering, profiling, systems thinking</div>
+            <div class="failure"><strong>Common Failure:</strong> Premature optimization; caching stale features without timestamps.</div>
+            <div class="production"><strong>Production:</strong> Feature-store concepts with point-in-time correctness.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: perf(features): optimize churn feature generation</span>
+        </div>
+
+        <!-- Day 28 -->
+        <div class="day-card" id="day28">
+            <div class="day-card-header">
+                <span class="day-number">DAY 28</span>
+                <span class="day-title">Unsupervised Customer Segmentation</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Marketing wants segments but has no trustworthy labels.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Create actionable segments from customer behavior.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Build stable clusters and interpret them for business use.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR01 Online Retail; customer-level RFM features.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">K-Means, hierarchical, DBSCAN; assess stability and interpretability; name segments by behavior.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + scikit-learn + scipy + Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Cluster notebook; stability analysis; segment table; recommendations.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Features scaled; cluster count justified; stability tested; outliers investigated.</div>
+            <div class="skills"><strong>Skills:</strong> Clustering, dimensionality reduction, interpretation</div>
+            <div class="failure"><strong>Common Failure:</strong> Choosing k from elbow only; scaling forgotten; treating clusters as truth.</div>
+            <div class="production"><strong>Production:</strong> Monitor segment drift; re-segmentation cadence.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): create behavior-based customer segments</span>
+        </div>
+
+        <!-- Day 29 -->
+        <div class="day-card" id="day29">
+            <div class="day-card-header">
+                <span class="day-number">DAY 29</span>
+                <span class="day-title">DBSCAN for Operational Anomaly Discovery</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Logistics has unusual delivery records not captured by business labels.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Use density-based methods to flag unusual behavior without fixed cluster count.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Assess anomaly utility rather than novelty alone.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic delivery telemetry, 100k records.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Time/distance/cost features; DBSCAN/Isolation Forest; review top anomalies against business rules.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Anomaly dataset; top-anomaly report; comparison chart.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Parameters documented; anomaly review includes false-positive analysis.</div>
+            <div class="skills"><strong>Skills:</strong> Anomaly detection, operational review</div>
+            <div class="failure"><strong>Common Failure:</strong> Euclidean on unscaled features; rare=fraudulent.</div>
+            <div class="production"><strong>Production:</strong> Human feedback loop; monitor anomaly-rate drift.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(anomaly): add density based delivery anomaly detection</span>
+        </div>
+
+        <!-- Day 30 -->
+        <div class="day-card" id="day30">
+            <div class="day-card-header">
+                <span class="day-number">DAY 30</span>
+                <span class="day-title">PCA and Feature Compression for Serving</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Inference payloads have dozens of correlated numeric signals; bandwidth constrained.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Test dimensionality reduction while preserving model utility.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Measure compression-accuracy trade-off.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR03 Wine Quality or synthetic high-dimensional version.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Raw features vs PCA-whitened across linear/tree models; explained variance; downstream metrics.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Experiment report; PCA pipeline; latency/size benchmark.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> PCA fit only on training folds; component count justified; metric delta quantified.</div>
+            <div class="skills"><strong>Skills:</strong> Representation learning, leakage prevention, compression</div>
+            <div class="failure"><strong>Common Failure:</strong> Fitting PCA on all data; explained variance = predictive usefulness.</div>
+            <div class="production"><strong>Production:</strong> Version PCA transform with model; validate schema at inference.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): benchmark pca feature compression</span>
+        </div>
+
+        <!-- Day 31 -->
+        <div class="day-card" id="day31">
+            <div class="day-card-header">
+                <span class="day-number">DAY 31</span>
+                <span class="day-title">Hyperparameter Optimization with Optuna</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The baseline model plateaus and manual tuning is inconsistent.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Set up reproducible hyperparameter search with explicit optimization target.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Optimize performance without overfitting validation design.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR02 or synthetic fraud dataset from Day 25.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Optuna study, pruning, search-space rationale, fixed validation, final untouched test evaluation.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + Optuna + scikit-learn/XGBoost</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Study database; best config; optimization history; final evaluation.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Budget fixed; objective defined once; test set touched once; study reproducible.</div>
+            <div class="skills"><strong>Skills:</strong> HPO, experiment tracking, evaluation rigor</div>
+            <div class="failure"><strong>Common Failure:</strong> Optimizing on test data; giant budget; unstable seeds.</div>
+            <div class="production"><strong>Production:</strong> Persist studies and model artifacts; integrate with MLflow.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(hpo): add optuna model optimization</span>
+        </div>
+
+        <!-- Day 32 -->
+        <div class="day-card" id="day32">
+            <div class="day-card-header">
+                <span class="day-number">DAY 32</span>
+                <span class="day-title">SHAP-Based Model Explanation for Operations</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Risk analysts need reasons for model scores.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Provide global and local explanations aligned with model behavior.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Build an explanation layer with caveats.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR02 bank marketing or Day 25 fraud model.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">SHAP global importance, dependence views, case-level explanations; compare permutation importance.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + SHAP + scikit-learn/XGBoost</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Explainability report; example cases; limitations note.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Explanations reproduce outputs; no causal claims; sensitive-feature handling documented.</div>
+            <div class="skills"><strong>Skills:</strong> Interpretability, model governance</div>
+            <div class="failure"><strong>Common Failure:</strong> Calling importance causal; unstable local explanations as facts.</div>
+            <div class="production"><strong>Production:</strong> Log explanation versions; access-control sensitive details.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(explain): add shap model explanations</span>
+        </div>
+
+        <!-- Day 33 -->
+        <div class="day-card" id="day33">
+            <div class="day-card-header">
+                <span class="day-number">DAY 33</span>
+                <span class="day-title">Research Day — Ablation Study on Feature Groups</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A model uses many engineered signals; stakeholders want to know which groups matter.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Run a controlled ablation study over feature families.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Quantify contribution and interaction under fixed evaluation protocol.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 27 churn or Day 25 fraud; groups: demographics, behavioral, monetary, recency.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Baseline → remove one group → fixed folds → metrics and CIs → error analysis.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + MLflow + statsmodels</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Ablation matrix; plots; research report; configs.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Only one factor changes; folds/seed fixed; uncertainty reported.</div>
+            <div class="skills"><strong>Skills:</strong> Ablation design, scientific reasoning, reproducibility</div>
+            <div class="failure"><strong>Common Failure:</strong> Changing model with feature groups; over-interpreting small deltas.</div>
+            <div class="production"><strong>Production:</strong> Automate experiment matrices; archive configs/artifacts.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: quantify feature group ablations</span>
+        </div>
+
+        <!-- Day 34 -->
+        <div class="day-card" id="day34">
+            <div class="day-card-header">
+                <span class="day-number">DAY 34</span>
+                <span class="day-title">Model Error Analysis Lab</span>
+                <span class="day-role">Data Scientist</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A production model misses specific segments despite good aggregate metrics.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build an error taxonomy and prioritize fixes.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Turn false positives/negatives into engineering hypotheses.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 22 or 25 held-out predictions.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Slice errors by customer tenure, region, score band, missingness, class; identify top failure modes.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + Plotly + scikit-learn</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Error-analysis notebook; slice report; prioritized remediation plan.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Every slice has support count; no p-hacking; top errors manually inspected.</div>
+            <div class="skills"><strong>Skills:</strong> Error analysis, robustness, fairness-aware diagnostics</div>
+            <div class="failure"><strong>Common Failure:</strong> Tiny slices as conclusions; ignoring selection bias.</div>
+            <div class="production"><strong>Production:</strong> Instrument production predictions for continuous taxonomy.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(ml): add structured model error analysis</span>
+        </div>
+
+        <!-- Day 35 -->
+        <div class="day-card" id="day35">
+            <div class="day-card-header">
+                <span class="day-number">DAY 35</span>
+                <span class="day-title">Phase 3 Capstone — Customer Risk Decision Engine</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A SaaS business needs a model-driven customer retention queue.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Ship a complete supervised ML solution from data to decision.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Demonstrate framing, training, thresholding, explanation, and packaging.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic churn events + Day 9 feature design.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Point-in-time features, baseline + tuned model, calibration, threshold policy, SHAP, error analysis, batch scoring CLI.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + Optuna + SHAP + SQL</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Package; batch scorer; model card; tests; report; sample scores.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Reproducible training; leakage tests; threshold documented; tests; artifact version stored.</div>
+            <div class="skills"><strong>Skills:</strong> End-to-end ML, software engineering, governance</div>
+            <div class="failure"><strong>Common Failure:</strong> Notebook-only; hidden preprocessing; no deterministic run command.</div>
+            <div class="production"><strong>Production:</strong> Prepare service boundary for FastAPI and MLflow in Phase 4.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship customer risk decision engine</span>
+        </div>
+
+        <!-- PHASE 4 -->
+        <h3 class="phase-title" id="phase4">📌 Phase 4 — Days 36–50: Advanced ML + End-to-End ML Systems</h3>
+
+        <!-- Day 36 -->
+        <div class="day-card" id="day36">
+            <div class="day-card-header">
+                <span class="day-number">DAY 36</span>
+                <span class="day-title">Refactor Notebook into Production Package</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A promising notebook has been approved for a pilot.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Convert exploratory code into a maintainable Python package.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Separate data, features, model, configuration, and CLI concerns.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 35 capstone codebase.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Refactor into src/ layout with type hints, configuration, logging, tests, train/evaluate/predict CLI.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pyproject.toml + pytest + pydantic</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Package; CLI; unit tests; README; migration notes.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Clean install works; CLI trains/evaluates/predicts; core functions typed/tested.</div>
+            <div class="skills"><strong>Skills:</strong> Software engineering, packaging, testing</div>
+            <div class="failure"><strong>Common Failure:</strong> Global state; hidden file paths; duplicated transformation logic.</div>
+            <div class="production"><strong>Production:</strong> Semantic versioning; build/publish workflow.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: refactor(ml): convert notebook pipeline to package</span>
+        </div>
+
+        <!-- Day 37 -->
+        <div class="day-card" id="day37">
+            <div class="day-card-header">
+                <span class="day-number">DAY 37</span>
+                <span class="day-title">FastAPI Model Serving Service</span>
+                <span class="day-role">ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The retention engine must provide real-time risk scores to a web application.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Expose validated model inference through a REST API.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Build a small but production-shaped service.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 36 package and model artifact.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Create /health, /predict, /metadata endpoints; input schema; version model; return probability and decision.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">FastAPI + Pydantic + Uvicorn + Python</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> API source; OpenAPI docs; tests; example curl; model artifact strategy.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Invalid payloads 4xx; health independent of model; stable response schema; integration tests pass.</div>
+            <div class="skills"><strong>Skills:</strong> API engineering, validation, service design</div>
+            <div class="failure"><strong>Common Failure:</strong> Loading model per request; unbounded payloads; no version metadata.</div>
+            <div class="production"><strong>Production:</strong> Auth, rate limiting, logs, metrics, graceful shutdown.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(api): serve risk model with fastapi</span>
+        </div>
+
+        <!-- Day 38 -->
+        <div class="day-card" id="day38">
+            <div class="day-card-header">
+                <span class="day-number">DAY 38</span>
+                <span class="day-title">MLflow Experiment Tracking and Registry</span>
+                <span class="day-role">MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Multiple candidate models exist with unclear lineage.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Track experiments, register a champion, and record artifacts.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make model selection auditable.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 35/36 model runs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Log params, metrics, dataset version, code commit, model artifacts, tags; registry and promotion process.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">MLflow + Python + Git + DVC</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> MLflow screenshots/export; registry policy; promotion script; README.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Runs traceable to code/data; model version carries metadata; promotion explicit.</div>
+            <div class="skills"><strong>Skills:</strong> Experiment tracking, registry, lineage</div>
+            <div class="failure"><strong>Common Failure:</strong> Manual metric logging; no dataset/version linkage.</div>
+            <div class="production"><strong>Production:</strong> Managed tracking server; protect registry access.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(mlops): add mlflow tracking and registry</span>
+        </div>
+
+        <!-- Day 39 -->
+        <div class="day-card" id="day39">
+            <div class="day-card-header">
+                <span class="day-number">DAY 39</span>
+                <span class="day-title">Production Debugging — Accuracy Collapse</span>
+                <span class="day-role">MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A deployed churn model's F1 drops sharply after a new customer onboarding campaign.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Diagnose whether the issue is drift, label delay, pipeline breakage, or model behavior.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Find root cause using evidence, not guesswork.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic incident package with historical predictions, current features, schema versions, hidden fault.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Inspect feature distributions, null rates, label timing, score distributions, pipeline versions; identify root cause.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + MLflow + Plotly + logs</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Incident report; root-cause evidence; patch; regression test.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Root cause supported by 3+ independent signals; fix prevents recurrence.</div>
+            <div class="skills"><strong>Skills:</strong> Production diagnosis, observability, incident response</div>
+            <div class="failure"><strong>Common Failure:</strong> Immediate retraining; threshold change without diagnosis.</div>
+            <div class="production"><strong>Production:</strong> Runbook, alert thresholds, model health SLOs.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(mlops): resolve production accuracy incident</span>
+        </div>
+
+        <!-- Day 40 -->
+        <div class="day-card" id="day40">
+            <div class="day-card-header">
+                <span class="day-number">DAY 40</span>
+                <span class="day-title">Dockerize the ML Service</span>
+                <span class="day-role">DevOps / ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The API works locally but needs repeatable deployment.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Containerize service and model dependencies.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Achieve reproducible runtime behavior.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 37 FastAPI service.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Non-root image, health check, .dockerignore, deterministic install, local run command.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Docker + FastAPI + Python</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Dockerfile; compose config; build notes; health test.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Container builds cleanly; health check passes; secrets not baked in.</div>
+            <div class="skills"><strong>Skills:</strong> Containers, dependency management, security basics</div>
+            <div class="failure"><strong>Common Failure:</strong> Running as root; copying .env; huge base image.</div>
+            <div class="production"><strong>Production:</strong> Multi-stage builds, SBOM/scanning, resource limits, image promotion.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: chore(devops): containerize ml inference api</span>
+        </div>
+
+        <!-- Day 41 -->
+        <div class="day-card" id="day41">
+            <div class="day-card-header">
+                <span class="day-number">DAY 41</span>
+                <span class="day-title">CI Pipeline for Tests, Linting, and Build</span>
+                <span class="day-role">DevOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Pull requests routinely break the inference API.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Create GitHub Actions CI gates.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Prevent regressions before merge.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 40 repo.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Formatting/lint/type checks, unit/integration tests, Docker build, artifact checks on PRs.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">GitHub Actions + pytest + ruff + mypy + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Workflow YAML; badge; branch protection recommendation; test report.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> CI fails on broken tests/type/lint/build; runs on PR and main; no secrets exposed.</div>
+            <div class="skills"><strong>Skills:</strong> CI/CD, quality gates, Git practices</div>
+            <div class="failure"><strong>Common Failure:</strong> Only testing on main; flaky tests; secrets in logs.</div>
+            <div class="production"><strong>Production:</strong> Caching, dependency audit, coverage trend, release workflow.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: ci: add ml service quality gates</span>
+        </div>
+
+        <!-- Day 42 -->
+        <div class="day-card" id="day42">
+            <div class="day-card-header">
+                <span class="day-number">DAY 42</span>
+                <span class="day-title">Environment Configuration and Secret Hygiene</span>
+                <span class="day-role">DevOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The app needs different settings across local, CI, and production.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Separate configuration from code and eliminate secret leakage paths.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make deployment configuration explicit and safe.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 40 service.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Typed env config, .env.example, CI secrets mapping, pre-commit secret scanning.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + Pydantic Settings + GitHub Actions</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Config module; .env.example; scanner config; docs.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No credentials in Git history; missing required envs fail clearly.</div>
+            <div class="skills"><strong>Skills:</strong> Configuration management, secrets handling</div>
+            <div class="failure"><strong>Common Failure:</strong> Production secrets as placeholders; logging secret values.</div>
+            <div class="production"><strong>Production:</strong> Cloud secret managers or platform secrets.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: chore(security): harden application configuration</span>
+        </div>
+
+        <!-- Day 43 -->
+        <div class="day-card" id="day43">
+            <div class="day-card-header">
+                <span class="day-number">DAY 43</span>
+                <span class="day-title">Real-Time Inference Load Test</span>
+                <span class="day-role">Performance Engineer / ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The scoring endpoint becomes slow during campaign spikes.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Measure throughput, latency, and resource usage under concurrency.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Set evidence-based performance targets.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 40 containerized service + representative synthetic payloads.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Controlled load test; p50/p95/p99 latency, throughput, CPU/memory, error rate; identify bottleneck.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + Locust/k6 + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Load-test script; benchmark report; bottleneck analysis.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Test repeatable; p95 and error rate reported; workload assumptions explicit.</div>
+            <div class="skills"><strong>Skills:</strong> Performance engineering, benchmarking</div>
+            <div class="failure"><strong>Common Failure:</strong> One request only; warm-up ignored; incorrect client time.</div>
+            <div class="production"><strong>Production:</strong> Autoscaling policy; model caching/batching.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: perf(api): benchmark real time inference latency</span>
+        </div>
+
+        <!-- Day 44 -->
+        <div class="day-card" id="day44">
+            <div class="day-card-header">
+                <span class="day-number">DAY 44</span>
+                <span class="day-title">Research Day — Model Calibration Benchmark</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Risk scores are used as probabilities but calibration is unknown.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Benchmark calibration methods under fixed evaluation protocol.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Determine whether probability estimates support expected-cost decisions.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR02 or Day 25 fraud dataset.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Uncalibrated, Platt, isotonic; Brier score, reliability curves, decision-cost sensitivity.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + scikit-learn + matplotlib/Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Research report; calibration plots; comparison; reproducibility config.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Calibration on train/validation only; test once; imbalance accounted.</div>
+            <div class="skills"><strong>Skills:</strong> Probabilistic modeling, calibration, experimental design</div>
+            <div class="failure"><strong>Common Failure:</strong> Calibrating on test; judging by ROC-AUC only.</div>
+            <div class="production"><strong>Production:</strong> Monitor calibration drift; recalibrate safely.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: benchmark probability calibration methods</span>
+        </div>
+
+        <!-- Day 45 -->
+        <div class="day-card" id="day45">
+            <div class="day-card-header">
+                <span class="day-number">DAY 45</span>
+                <span class="day-title">Model Versioned Batch Inference Job</span>
+                <span class="day-role">MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Operations needs a nightly file of risk scores.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a batch scoring job with versioned inputs/outputs.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make batch inference restartable and auditable.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 35 model + synthetic nightly customer snapshot.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Load registered model version; validate input schema; score in chunks; write output with metadata; reconcile counts.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + MLflow + pandas/Polars + PostgreSQL</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> CLI job; sample output; reconciliation report; runbook.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Exactly-once output partition; scores tied to version; invalid rows quarantined.</div>
+            <div class="skills"><strong>Skills:</strong> Batch inference, lineage, auditability</div>
+            <div class="failure"><strong>Common Failure:</strong> Overwriting outputs without versioning; loading all data in memory.</div>
+            <div class="production"><strong>Production:</strong> Schedule via cron/Airflow/Prefect; metrics to monitoring.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(batch): add versioned nightly inference job</span>
+        </div>
+
+        <!-- Day 46 -->
+        <div class="day-card" id="day46">
+            <div class="day-card-header">
+                <span class="day-number">DAY 46</span>
+                <span class="day-title">Production Debugging — SQL Regression</span>
+                <span class="day-role">Data Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A feature query goes from 2s to 45s after a new index migration.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Identify the cause and roll out a safe correction.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Practice database incident response.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 17 schema + synthetic migration regression.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Compare plans before/after; inspect index statistics/join cardinality; revert/alter index; regression test.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PostgreSQL + EXPLAIN + Python benchmark</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Incident report; migration fix; regression benchmark; rollback notes.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Measured improvement; no correctness regression; rollback documented.</div>
+            <div class="skills"><strong>Skills:</strong> Database operations, change management</div>
+            <div class="failure"><strong>Common Failure:</strong> More indexes blindly; skipping rollback plan.</div>
+            <div class="production"><strong>Production:</strong> Migrations in CI with explain-plan checks.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(db): resolve feature query performance regression</span>
+        </div>
+
+        <!-- Day 47 -->
+        <div class="day-card" id="day47">
+            <div class="day-card-header">
+                <span class="day-number">DAY 47</span>
+                <span class="day-title">Data Drift and Concept Drift Monitor</span>
+                <span class="day-role">MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Customer behavior changes after a pricing update.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Detect distribution shifts and separate from outcome-performance degradation.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Create a monitoring design with actionable thresholds.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Historical vs current synthetic churn/fraud features.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">PSI/KS drift, prediction drift, delayed-label performance monitoring; threshold rationale.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + scipy + Plotly</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Drift module; dashboard; alert rules; baseline files.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Drift metrics reproducible; baseline versioned; alerts include affected features.</div>
+            <div class="skills"><strong>Skills:</strong> Drift, monitoring, statistical process control</div>
+            <div class="failure"><strong>Common Failure:</strong> Alerting on every small shift; confusing drift with failure.</div>
+            <div class="production"><strong>Production:</strong> Investigation/retraining through policy, not automatic blind retraining.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(monitoring): add data and concept drift checks</span>
+        </div>
+
+        <!-- Day 48 -->
+        <div class="day-card" id="day48">
+            <div class="day-card-header">
+                <span class="day-number">DAY 48</span>
+                <span class="day-title">Automated Retraining Gate</span>
+                <span class="day-role">MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A model should retrain only when data quality and business performance justify it.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement a gated retraining workflow.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div
