@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-  scale=1.0">
-    <title>100 Days of Professional Data Scientist + AI/ML Engineer</title>  
-    <style>d  
-        :root { --md: #0bf17
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Days of Professional Data Scientist + AI/ML Engineer</title>
+    <style>
+        :root {
             --bg: #0b0f17;
             --surface: #111827;
             --surface2: #1a2234;
@@ -1649,4 +1649,1176 @@
             </div>
             <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A model should retrain only when data quality and business performance justify it.</div></div>
             <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement a gated retraining workflow.</div></div>
-            <div class="field"><div class="field-label">Objective</div><div
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Connect monitoring to lifecycle control without unsafe automation.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 47 monitoring package + versioned training data.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Eligibility checks: freshness/quality, min label volume, drift, performance, reproducibility, approval gate.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + MLflow + GitHub Actions</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Retraining workflow; policy YAML; candidate model artifact; audit log.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No automatic promotion; all gate results stored; candidate rejectable.</div>
+            <div class="skills"><strong>Skills:</strong> MLOps lifecycle, governance, automation</div>
+            <div class="failure"><strong>Common Failure:</strong> Auto-deploying on every drift; ignoring data quality.</div>
+            <div class="production"><strong>Production:</strong> Human approval; canary/shadow evaluation before promotion.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(mlops): add gated retraining workflow</span>
+        </div>
+
+        <!-- Day 49 -->
+        <div class="day-card" id="day49">
+            <div class="day-card-header">
+                <span class="day-number">DAY 49</span>
+                <span class="day-title">Canary and Rollback Simulation</span>
+                <span class="day-role">MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A new model is ready but its effect on live traffic is uncertain.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Design and simulate a safe canary release.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Protect production with objective rollback signals.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Two versioned models plus replayable prediction traffic.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Replay traffic, compare quality/latency/error rate/segment health; define rollback conditions.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + MLflow + FastAPI + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Canary script; metrics table; release policy; rollback demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Rollback triggers measurable/tested; challenger never silently becomes champion.</div>
+            <div class="skills"><strong>Skills:</strong> Deployment strategy, model governance</div>
+            <div class="failure"><strong>Common Failure:</strong> Rollback only on aggregate; no segment checks.</div>
+            <div class="production"><strong>Production:</strong> Shadow traffic or small-percentage routing before full rollout.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(deploy): simulate model canary and rollback</span>
+        </div>
+
+        <!-- Day 50 -->
+        <div class="day-card" id="day50">
+            <div class="day-card-header">
+                <span class="day-number">DAY 50</span>
+                <span class="day-title">Phase 4 Capstone — Full ML Lifecycle</span>
+                <span class="day-role">MLOps Engineer / ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The retention system must operate continuously, not just score once.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Integrate DATA → TRAIN → VALIDATE → REGISTER → DEPLOY → MONITOR → RETRAIN.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Demonstrate a complete operational ML lifecycle.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 35–49 artifacts + synthetic production events.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Wire pipeline stages, DVC, MLflow, FastAPI deployment, monitoring, gated retraining, canary, rollback.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + DVC + MLflow + FastAPI + Docker + GitHub Actions</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Repo; architecture; CI/CD; registry evidence; dashboard; lifecycle runbook; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Fresh environment reproduces training; model serves; monitoring works; rollback demonstrated.</div>
+            <div class="skills"><strong>Skills:</strong> End-to-end MLOps, software engineering, DevOps</div>
+            <div class="failure"><strong>Common Failure:</strong> Point solution with no lifecycle handoff; manual deployment.</div>
+            <div class="production"><strong>Production:</strong> Map to AWS/Azure/GCP equivalents.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship production ml lifecycle</span>
+        </div>
+
+        <!-- PHASE 5 -->
+        <h3 class="phase-title" id="phase5">📌 Phase 5 — Days 51–65: Deep Learning</h3>
+
+        <!-- Day 51 -->
+        <div class="day-card" id="day51">
+            <div class="day-card-header">
+                <span class="day-number">DAY 51</span>
+                <span class="day-title">PyTorch MLP Training System</span>
+                <span class="day-role">Deep Learning Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A classification workload requires a neural baseline and reproducible training loop.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a clean PyTorch training system with checkpoints.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Establish neural-network engineering foundations.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR03 Wine Quality or synthetic tabular classification.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Dataset/DataLoader, model, training loop, validation, checkpoint save/resume, early stopping, metrics.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + Python + NumPy</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Training package; config; checkpoints; learning curves; tests.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Resume from checkpoint; metrics logged per epoch; seed documented.</div>
+            <div class="skills"><strong>Skills:</strong> PyTorch, training loops, checkpointing</div>
+            <div class="failure"><strong>Common Failure:</strong> No validation mode; saving only final weights; shape bugs.</div>
+            <div class="production"><strong>Production:</strong> AMP, experiment tracking, artifact storage.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(dl): build reproducible pytorch training loop</span>
+        </div>
+
+        <!-- Day 52 -->
+        <div class="day-card" id="day52">
+            <div class="day-card-header">
+                <span class="day-number">DAY 52</span>
+                <span class="day-title">CNN Image Classification on MNIST</span>
+                <span class="day-role">Computer Vision Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">An OCR workflow needs an image classifier baseline.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Train and evaluate a CNN with robust validation and error inspection.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Go beyond a tutorial by instrumenting failures.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR11 MNIST; 60k train/10k test; 28×28 grayscale.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">CNN, augmentation baseline, checkpointing, confusion analysis, misclassified-image report.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + torchvision + matplotlib</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Model code; test metrics; confusion matrix; misclassification gallery; README.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Train/test separation; no augmentation leakage; errors inspected.</div>
+            <div class="skills"><strong>Skills:</strong> CNN, image pipelines, error analysis</div>
+            <div class="failure"><strong>Common Failure:</strong> Test set for tuning; overcomplicated architecture.</div>
+            <div class="production"><strong>Production:</strong> Package preprocessing and inference transform together.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(cv): train and analyze cnn digit classifier</span>
+        </div>
+
+        <!-- Day 53 -->
+        <div class="day-card" id="day53">
+            <div class="day-card-header">
+                <span class="day-number">DAY 53</span>
+                <span class="day-title">Transfer Learning for Business Image Classification</span>
+                <span class="day-role">Computer Vision Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A retailer wants product-category recognition with limited labeled images.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Use transfer learning efficiently instead of training from scratch.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Compare frozen-backbone and partial fine-tuning.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Public small image dataset or clearly synthetic/curated.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Dataloader, augmentations, frozen backbone, fine-tune layers, compare compute/performance.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + torchvision + PIL</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Training configs; benchmark; model checkpoint; inference demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Train/val/test separation; augmentation on train only; best checkpoint on validation.</div>
+            <div class="skills"><strong>Skills:</strong> Transfer learning, CV, training efficiency</div>
+            <div class="failure"><strong>Common Failure:</strong> Fine-tuning entire network with tiny data; ignoring class imbalance.</div>
+            <div class="production"><strong>Production:</strong> Mixed precision; model artifact versioning.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(cv): add transfer learning classifier</span>
+        </div>
+
+        <!-- Day 54 -->
+        <div class="day-card" id="day54">
+            <div class="day-card-header">
+                <span class="day-number">DAY 54</span>
+                <span class="day-title">Object Detection Systems Thinking</span>
+                <span class="day-role">Computer Vision Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Warehouse cameras need package-detection capability.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Understand and prototype an object-detection workflow.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Design data, annotation, evaluation, and inference pipeline.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">COCO-format public data or tiny synthetic detection dataset.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Bounding-box schema, train/evaluate small detector or pretrained inference, IoU/mAP, false positives.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + torchvision/Ultralytics + OpenCV</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Dataset config; detector demo; evaluation notes; architecture diagram.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Coordinates validated; confidence threshold documented; evaluation clear.</div>
+            <div class="skills"><strong>Skills:</strong> Object detection, annotation, CV metrics</div>
+            <div class="failure"><strong>Common Failure:</strong> Accuracy as mAP; ignoring NMS and class imbalance.</div>
+            <div class="production"><strong>Production:</strong> Camera drift, annotation workflow, latency, safety.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(cv): prototype warehouse object detection pipeline</span>
+        </div>
+
+        <!-- Day 55 -->
+        <div class="day-card" id="day55">
+            <div class="day-card-header">
+                <span class="day-number">DAY 55</span>
+                <span class="day-title">GPU Training and Mixed Precision Benchmark</span>
+                <span class="day-role">Deep Learning Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Training is too slow on available hardware.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Measure the effect of batching, AMP, workers, and memory settings.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Optimize scientifically, not by trial-and-error.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 53 image dataset or MNIST CNN benchmark.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">FP32 vs AMP, batch sizes, num_workers, gradient accumulation; throughput, peak memory, validation stability.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + CUDA + AMP + profiling tools</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Benchmark table; profiler output; chosen config.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Each benchmark repeatable; throughput and memory measured; accuracy impact noted.</div>
+            <div class="skills"><strong>Skills:</strong> GPU optimization, profiling, mixed precision</div>
+            <div class="failure"><strong>Common Failure:</strong> Changing multiple factors; warm-up ignored.</div>
+            <div class="production"><strong>Production:</strong> Hardware selection based on cost/latency.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: perf(dl): benchmark mixed precision training</span>
+        </div>
+
+        <!-- Day 56 -->
+        <div class="day-card" id="day56">
+            <div class="day-card-header">
+                <span class="day-number">DAY 56</span>
+                <span class="day-title">Sequence Classification with GRU</span>
+                <span class="day-role">NLP Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Customer messages arrive as short sequences and sentiment must be estimated.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a recurrent baseline and inspect sequence-length effects.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Understand sequence modeling before Transformers.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR10 GLUE/SST-2; sentiment classification.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Tokenizer/vocabulary, GRU classifier, padding/masking, error analysis by length.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + Hugging Face Datasets</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Model; preprocessing; evaluation; error report.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Padding mask correct; validation protocol fixed; OOV strategy documented.</div>
+            <div class="skills"><strong>Skills:</strong> Sequence models, masking, text preprocessing</div>
+            <div class="failure"><strong>Common Failure:</strong> Tokenizing before split with leakage; ignoring long sequences.</div>
+            <div class="production"><strong>Production:</strong> Benchmark GRU against Transformer later.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(nlp): add gru sentiment baseline</span>
+        </div>
+
+        <!-- Day 57 -->
+        <div class="day-card" id="day57">
+            <div class="day-card-header">
+                <span class="day-number">DAY 57</span>
+                <span class="day-title">LSTM vs GRU Comparative Experiment</span>
+                <span class="day-role">Research Engineer / NLP Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The team wants evidence for a sequence-model choice on constrained environment.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Benchmark LSTM and GRU under equal budgets.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make a model-choice recommendation tied to evidence.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR10 SST-2 or similarly licensed public sentiment dataset.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Matched parameter budgets, same split/budget, quality, speed, memory.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + MLflow + pandas</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Experiment report; metrics; resource benchmark.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Controlled comparison; no unfair tuning advantage; uncertainty discussed.</div>
+            <div class="skills"><strong>Skills:</strong> Experimental control, sequence models, benchmarking</div>
+            <div class="failure"><strong>Common Failure:</strong> Different preprocessing; one run only.</div>
+            <div class="production"><strong>Production:</strong> Multi-seed evaluation for final decisions.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: compare lstm and gru under budget</span>
+        </div>
+
+        <!-- Day 58 -->
+        <div class="day-card" id="day58">
+            <div class="day-card-header">
+                <span class="day-number">DAY 58</span>
+                <span class="day-title">Research Day — Reproduce a Vision Training Recipe</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A paper reports strong accuracy from a training recipe and augmentation strategy.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Reproduce a constrained subset and document deviations.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Distinguish architecture effects from training recipe effects.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR11 MNIST or a verified public image dataset.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Research question → cited paper → baseline → recipe → reproduction → error analysis → limitations.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + MLflow + paper source</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Reproduction script; report; configs; environment lock.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Exact paper/dataset identified; no fabricated claims; deviations recorded.</div>
+            <div class="skills"><strong>Skills:</strong> Research methodology, reproduction, DL training</div>
+            <div class="failure"><strong>Common Failure:</strong> Claiming exact reproduction on different hardware.</div>
+            <div class="production"><strong>Production:</strong> Publish code and config for independent rerun.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: reproduce vision training recipe</span>
+        </div>
+
+        <!-- Day 59 -->
+        <div class="day-card" id="day59">
+            <div class="day-card-header">
+                <span class="day-number">DAY 59</span>
+                <span class="day-title">Transformer Encoder for Text Classification</span>
+                <span class="day-role">NLP Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Support messages require more context-aware classification than RNNs provide.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a Transformer-based classifier and understand attention behavior.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Establish a practical Transformer baseline.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR10 SST-2 or DR08 Banking77.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Fine-tune pretrained encoder; macro-F1/accuracy, latency, truncation effects, error analysis.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + Hugging Face Transformers + Datasets</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Fine-tuning script; model card; metrics; error analysis.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No test-set tuning; max length justified; checkpoint reproducible.</div>
+            <div class="skills"><strong>Skills:</strong> Transformers, fine-tuning, evaluation</div>
+            <div class="failure"><strong>Common Failure:</strong> Full sequence lengths without profiling; accuracy only.</div>
+            <div class="production"><strong>Production:</strong> Optimize batch inference and serialization later.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(nlp): fine tune transformer classifier</span>
+        </div>
+
+        <!-- Day 60 -->
+        <div class="day-card" id="day60">
+            <div class="day-card-header">
+                <span class="day-number">DAY 60</span>
+                <span class="day-title">Transformer Embeddings for Semantic Similarity</span>
+                <span class="day-role">NLP Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Customer support wants to find semantically similar tickets.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Generate sentence embeddings and build a similarity search baseline.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Connect representation learning to retrieval use case.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR08 Banking77 or licensed support corpus.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Embed tickets, normalize, evaluate similarity with labeled intent, inspect false neighbors, benchmark storage.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">sentence-transformers + FAISS + Python</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Embedding job; FAISS index; retrieval demo; evaluation table.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Index reproducible; embedding model version stored; retrieval metric defined.</div>
+            <div class="skills"><strong>Skills:</strong> Embeddings, vector search, semantic similarity</div>
+            <div class="failure"><strong>Common Failure:</strong> Raw cosine only without labels; stale index.</div>
+            <div class="production"><strong>Production:</strong> Incremental indexing and metadata filters.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(search): build support ticket embedding index</span>
+        </div>
+
+        <!-- Day 61 -->
+        <div class="day-card" id="day61">
+            <div class="day-card-header">
+                <span class="day-number">DAY 61</span>
+                <span class="day-title">Named Entity Recognition Pipeline</span>
+                <span class="day-role">NLP Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">An enterprise parser needs organizations, people, and locations extracted from text.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build and evaluate an NER workflow.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Handle token-label alignment correctly.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR09 CoNLL-2003; train 14,041 / val 3,250 / test 3,453.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Tokenize with Transformer tokenizer, align BIO labels, fine-tune token classifier, entity-level precision/recall/F1.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Hugging Face Transformers + Datasets + seqeval/evaluate</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Training pipeline; evaluation report; error examples.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Label alignment unit-tested; entity-level metric; padding ignored.</div>
+            <div class="skills"><strong>Skills:</strong> NER, tokenization, sequence labeling</div>
+            <div class="failure"><strong>Common Failure:</strong> Character-level assumptions; misaligned wordpieces; token accuracy.</div>
+            <div class="production"><strong>Production:</strong> Domain-specific post-processing as measured component.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(nlp): fine tune transformer ner model</span>
+        </div>
+
+        <!-- Day 62 -->
+        <div class="day-card" id="day62">
+            <div class="day-card-header">
+                <span class="day-number">DAY 62</span>
+                <span class="day-title">Research Day — Benchmark Embedding Models for Retrieval</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The search team must choose an embedding model for multilingual support tickets.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Benchmark candidate embedding models fairly.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Select based on retrieval quality and resource constraints.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR08 Banking77 or multilingual support corpus.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Query-document pairs; compare 2–4 models; Recall@k/MRR, latency, memory, failures.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">sentence-transformers + FAISS/Qdrant + Python</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Benchmark harness; results CSV; report; model decision record.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Same queries/corpus; no leakage; metrics defined; versions pinned.</div>
+            <div class="skills"><strong>Skills:</strong> IR evaluation, embeddings, experimental design</div>
+            <div class="failure"><strong>Common Failure:</strong> Semantic similarity as retrieval eval; cherry-picked queries.</div>
+            <div class="production"><strong>Production:</strong> Immutable eval set for regressions.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: benchmark embedding models for retrieval</span>
+        </div>
+
+        <!-- Day 63 -->
+        <div class="day-card" id="day63">
+            <div class="day-card-header">
+                <span class="day-number">DAY 63</span>
+                <span class="day-title">Time-Series Forecasting with LSTM</span>
+                <span class="day-role">Deep Learning Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Energy demand planners want a nonlinear forecasting baseline.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Train a sequence model for multivariate time series; compare with classical baseline.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Learn when deep forecasting is justified.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR16 synthetic IoT/energy-like stream; 10M+ obs, prototype on rolling window.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Windowed dataset, LSTM forecaster, naive/ETS baseline, time-aware split, horizon error analysis.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + pandas/NumPy + statsmodels</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Training script; forecast plots; benchmark; checkpoint.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No leakage through scaling/windows; baseline included; horizon metrics.</div>
+            <div class="skills"><strong>Skills:</strong> Deep forecasting, sequence windows, evaluation</div>
+            <div class="failure"><strong>Common Failure:</strong> Random split; future values in normalization.</div>
+            <div class="production"><strong>Production:</strong> Rolling retraining; resource-aware batch inference.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(forecast): add lstm demand forecasting baseline</span>
+        </div>
+
+        <!-- Day 64 -->
+        <div class="day-card" id="day64">
+            <div class="day-card-header">
+                <span class="day-number">DAY 64</span>
+                <span class="day-title">Production Debugging — GPU/Memory Failure</span>
+                <span class="day-role">Deep Learning / MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A training job crashes mid-epoch with OOM after a data refresh.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Identify the change causing memory growth and implement a robust fix.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Practice profiling and resource-aware debugging.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 63 code + synthetic config with increased sequence length/batch size.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Profile memory per batch, inspect loader/pinning/caching, reduce peak via accumulation/AMP/chunking, validate.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + profiler + Python + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Incident report; profiler evidence; fix; regression benchmark.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Peak memory decreases; training stable; root cause isolated.</div>
+            <div class="skills"><strong>Skills:</strong> GPU debugging, profiling, training stability</div>
+            <div class="failure"><strong>Common Failure:</strong> Blindly decreasing batch size; ignoring throughput trade-off.</div>
+            <div class="production"><strong>Production:</strong> Resource limits, observability, smoke tests.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(dl): resolve training memory regression</span>
+        </div>
+
+        <!-- Day 65 -->
+        <div class="day-card" id="day65">
+            <div class="day-card-header">
+                <span class="day-number">DAY 65</span>
+                <span class="day-title">Phase 5 Capstone — Intelligent Document Classifier</span>
+                <span class="day-role">DL/NLP Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A document-processing workflow needs image/text classification with confidence scoring.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Combine transfer learning or Transformer classification, inference, and error analysis into one application.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Ship a practical deep-learning service component.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR10/DR09 for NLP or verified public image dataset.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Training pipeline, checkpointing, evaluation, confidence analysis, inference CLI/API, model card.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + Transformers/torchvision + FastAPI + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Repo; model; inference API; tests; model card; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Reproducible training/inference; performance baseline; calibration note; container runs.</div>
+            <div class="skills"><strong>Skills:</strong> Deep learning, API, packaging, evaluation</div>
+            <div class="failure"><strong>Common Failure:</strong> Notebook-only; no error analysis; no reproducible checkpoint.</div>
+            <div class="production"><strong>Production:</strong> Async/batch inference; model observability.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship document intelligence classifier</span>
+        </div>
+
+        <!-- PHASE 6 -->
+        <h3 class="phase-title" id="phase6">📌 Phase 6 — Days 66–80: Generative AI + LLM Engineering</h3>
+
+        <!-- Day 66 -->
+        <div class="day-card" id="day66">
+            <div class="day-card-header">
+                <span class="day-number">DAY 66</span>
+                <span class="day-title">LLM Application Architecture and Model Selection</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A company wants an internal assistant but has uncertain model, cost, and latency constraints.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Design a provider-independent LLM architecture and selection matrix.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Choose models from requirements, not hype.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15 synthetic support tickets + curated prompt/eval set.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Task taxonomy, quality rubric, latency/cost assumptions, model interface abstraction, fallback, evaluation dataset.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + provider SDK abstraction + Pydantic</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Architecture diagram; model adapter interface; eval dataset; decision matrix.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Two interchangeable adapters; structured I/O; no provider lock-in.</div>
+            <div class="skills"><strong>Skills:</strong> LLM architecture, model selection, evaluation framing</div>
+            <div class="failure"><strong>Common Failure:</strong> Direct API calls throughout; no eval set.</div>
+            <div class="production"><strong>Production:</strong> Policy/routing layer; per-model cost telemetry.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(genai): add provider independent llm interface</span>
+        </div>
+
+        <!-- Day 67 -->
+        <div class="day-card" id="day67">
+            <div class="day-card-header">
+                <span class="day-number">DAY 67</span>
+                <span class="day-title">Structured Prompting with JSON Schemas</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Support operations needs machine-readable ticket triage outputs.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Generate validated structured data from free text.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make LLM output safe for downstream automation.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15 synthetic support tickets.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Pydantic schema, system prompt, few-shot examples, parse/validate/retry, adversarial tests.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + LLM API + Pydantic</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Prompt spec; schema; parser; tests; sample outputs.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Invalid JSON rejected/retried; required fields guaranteed; adversarial tested.</div>
+            <div class="skills"><strong>Skills:</strong> Prompt engineering, structured outputs, validation</div>
+            <div class="failure"><strong>Common Failure:</strong> Trusting free-form output; prompt injection.</div>
+            <div class="production"><strong>Production:</strong> API-native structured output; still validate server-side.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(genai): add schema validated ticket triage</span>
+        </div>
+
+        <!-- Day 68 -->
+        <div class="day-card" id="day68">
+            <div class="day-card-header">
+                <span class="day-number">DAY 68</span>
+                <span class="day-title">Tool Calling for Order Support</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">An assistant must look up order status rather than invent it.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a tool-using workflow with strict tool schemas.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Ground actions in real data.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic order database; SQLite/PostgreSQL.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">get_order_status, search_customer_orders, create_support_case; auth context; audit log.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + FastAPI/Flask + LLM tool calling + SQLAlchemy</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Tool registry; schemas; mock DB; audit log; tests.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No undefined tools; args validated; unauthorized access blocked.</div>
+            <div class="skills"><strong>Skills:</strong> Tool calling, backend integration, auth context</div>
+            <div class="failure"><strong>Common Failure:</strong> Model chooses raw SQL; missing tenant checks.</div>
+            <div class="production"><strong>Production:</strong> Production APIs behind allowlisted tool layer.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(agent): add tool calling for order support</span>
+        </div>
+
+        <!-- Day 69 -->
+        <div class="day-card" id="day69">
+            <div class="day-card-header">
+                <span class="day-number">DAY 69</span>
+                <span class="day-title">Hallucination Reduction with Grounding and Abstention</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A customer-facing assistant invents policies when documents are missing.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement answer-with-evidence plus abstention behavior.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Reduce unsupported claims without pretending hallucinations are solved.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic support-policy corpus; 200–500 short policy docs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Prompt policy, retrieval-grounded answering, confidence/evidence checks, 'cannot verify' responses.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + LLM API + embeddings + FAISS/Chroma</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Grounded QA app; evaluation set; hallucination error log.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Unsupported-answer rate measured; citations required; abstention documented.</div>
+            <div class="skills"><strong>Skills:</strong> Grounding, evaluation, prompt design</div>
+            <div class="failure"><strong>Common Failure:</strong> Model confidence as truth; citations without evidence.</div>
+            <div class="production"><strong>Production:</strong> Automated faithfulness checks; human review for high-impact.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(genai): add grounded answer and abstention policy</span>
+        </div>
+
+        <!-- Day 70 -->
+        <div class="day-card" id="day70">
+            <div class="day-card-header">
+                <span class="day-number">DAY 70</span>
+                <span class="day-title">Research Day — LLM Prompt Evaluation Harness</span>
+                <span class="day-role">Research Engineer / AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Prompt changes are judged subjectively by developers.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Create a repeatable evaluation harness for prompt variants.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Turn prompt engineering into measurable experimentation.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15; 100–500 fixed evaluation cases.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Criteria: correctness, schema validity, refusal, grounding, verbosity, cost; compare 3 prompt variants.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + LLM API + pandas + eval framework</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Eval dataset; harness; scorecard; prompt decision record.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Same cases across prompts; rubric versioned; failures stored; costs measured.</div>
+            <div class="skills"><strong>Skills:</strong> LLM evals, experimentation, cost analysis</div>
+            <div class="failure"><strong>Common Failure:</strong> Changing eval cases per prompt; LLM judge only.</div>
+            <div class="production"><strong>Production:</strong> Human calibration set; regression tests in CI.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: build llm prompt evaluation harness</span>
+        </div>
+
+        <!-- Day 71 -->
+        <div class="day-card" id="day71">
+            <div class="day-card-header">
+                <span class="day-number">DAY 71</span>
+                <span class="day-title">Streaming LLM Response API</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A chat UI feels slow because users wait for full completion.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement token-streaming over HTTP while preserving error handling.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Improve perceived latency without sacrificing safety.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15 support prompts; no new dataset.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Streaming endpoint, cancellation, timeout policy, request IDs, partial-output logging.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">FastAPI + SSE/WebSocket + provider SDK</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Streaming API; frontend demo; load test; logs.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> First-token latency measured; cancellation works; malformed events handled.</div>
+            <div class="skills"><strong>Skills:</strong> Streaming APIs, async Python, observability</div>
+            <div class="failure"><strong>Common Failure:</strong> Blocking sync call; buffering entire answer.</div>
+            <div class="production"><strong>Production:</strong> Backpressure, connection limits, moderation hooks.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(api): stream llm responses over sse</span>
+        </div>
+
+        <!-- Day 72 -->
+        <div class="day-card" id="day72">
+            <div class="day-card-header">
+                <span class="day-number">DAY 72</span>
+                <span class="day-title">Multimodal Document Extraction</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Operations receives invoices as scans and needs structured fields.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a multimodal extraction workflow with validation.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Combine image/document understanding with structured output.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Public sample invoices or synthetic invoice images.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Extract vendor/date/total/line-items; validate totals; preserve source; route low-confidence to review.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + multimodal LLM API + OpenCV/PIL + Pydantic</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Document pipeline; sample JSON; validation rules; review queue demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Schema validated; arithmetic checks; low-confidence routed to review.</div>
+            <div class="skills"><strong>Skills:</strong> Multimodal AI, document intelligence, validation</div>
+            <div class="failure"><strong>Common Failure:</strong> Trusting OCR/LLM blindly; no provenance.</div>
+            <div class="production"><strong>Production:</strong> Encrypted storage, PII controls, retention, human approval.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(multimodal): build invoice extraction workflow</span>
+        </div>
+
+        <!-- Day 73 -->
+        <div class="day-card" id="day73">
+            <div class="day-card-header">
+                <span class="day-number">DAY 73</span>
+                <span class="day-title">Production Debugging — LLM Cost Spike</span>
+                <span class="day-role">AI Platform Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A prompt update doubles token usage and monthly spend.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Diagnose token-growth and latency regressions and mitigate.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Treat cost as an engineering metric.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic request log with prompt/version/token/latency metadata.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Token distribution; identify prompt bloat/history growth; context trimming/summarization/caching.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + LLM API logs</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Cost analysis; patched policy; benchmark.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Token/cost reconcile; p95 latency not regressed; quality passes.</div>
+            <div class="skills"><strong>Skills:</strong> Cost optimization, observability, context management</div>
+            <div class="failure"><strong>Common Failure:</strong> Compressing prompts without eval; hiding cost.</div>
+            <div class="production"><strong>Production:</strong> Per-user quotas, budget alerts, routing, cache metrics.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(ai): resolve llm token and cost regression</span>
+        </div>
+
+        <!-- Day 74 -->
+        <div class="day-card" id="day74">
+            <div class="day-card-header">
+                <span class="day-number">DAY 74</span>
+                <span class="day-title">AI Agent with Bounded Toolset</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Customer operations wants a semi-autonomous assistant for support workflows.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build an agent that can reason over a small set of safe tools.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Constrain autonomy through explicit policies.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic support/order DB + DR15 tickets.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">plan→tool→observe loop with max steps, allowlisted tools, validation, timeout, audit log, human handoff.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + tool-calling LLM + SQLAlchemy + FastAPI</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Agent service; tool schemas; policy config; test suite; traces.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Stops after max steps; unsafe actions require approval; calls logged; access blocked.</div>
+            <div class="skills"><strong>Skills:</strong> Agents, orchestration, safety, observability</div>
+            <div class="failure"><strong>Common Failure:</strong> Infinite loops; model-generated SQL; hidden state.</div>
+            <div class="production"><strong>Production:</strong> Policy engine, tool scopes, replayable traces.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(agent): build bounded support operations agent</span>
+        </div>
+
+        <!-- Day 75 -->
+        <div class="day-card" id="day75">
+            <div class="day-card-header">
+                <span class="day-number">DAY 75</span>
+                <span class="day-title">Function-Calling Evaluation and Regression Suite</span>
+                <span class="day-role">AI Engineer / QA Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The agent works, but a prompt/model upgrade breaks tool selection.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build a regression suite for tool-call correctness.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Test behavioral contracts, not only text similarity.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic support/order scenarios; 200+ test cases.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Tool selection accuracy, argument validity, auth, grounding, failure behavior across versions.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pytest + LLM API + structured logs</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Regression dataset; pytest suite; score report; CI job.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Success/error/ambiguous/unauthorized covered; failures store traces; thresholds defined.</div>
+            <div class="skills"><strong>Skills:</strong> AI QA, behavioral testing, agents</div>
+            <div class="failure"><strong>Common Failure:</strong> Only snapshot-testing prose; no negative tests.</div>
+            <div class="production"><strong>Production:</strong> Small suite on PR; larger suite nightly.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: test(agent): add tool calling regression suite</span>
+        </div>
+
+        <!-- Day 76 -->
+        <div class="day-card" id="day76">
+            <div class="day-card-header">
+                <span class="day-number">DAY 76</span>
+                <span class="day-title">Research Day — LLM Model Benchmark Under Cost Constraint</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Product needs a model recommendation under fixed monthly budget.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Benchmark multiple models against quality, latency, and cost.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Evidence-based and repeatable model selection.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15 fixed eval set; current provider/model docs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Same prompts/tools across 2–4 models; task success, schema validity, safety, latency, cost.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + provider SDKs + pandas</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Benchmark harness; results; model selection report; limitations.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Models/pricing sourced on run date; no fabricated costs/results; test cases fixed.</div>
+            <div class="skills"><strong>Skills:</strong> Benchmarking, model routing, cost engineering</div>
+            <div class="failure"><strong>Common Failure:</strong> Different prompt variants; stale pricing.</div>
+            <div class="production"><strong>Production:</strong> Routing rules based on task complexity and confidence.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: benchmark llm models for support tasks</span>
+        </div>
+
+        <!-- Day 77 -->
+        <div class="day-card" id="day77">
+            <div class="day-card-header">
+                <span class="day-number">DAY 77</span>
+                <span class="day-title">Context Management and Conversation Memory</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Long-running chats become expensive and drift from user intent.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Design bounded conversational memory.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Keep useful context while limiting token growth.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic support conversations; multi-turn sessions.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Short-term window, summarized memory, user/profile boundaries, retrieval of past turns; token/quality comparison.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + LLM API + vector store optional</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Memory module; benchmark; policy doc; tests.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No cross-user leakage; token budget bounded; stale-memory tests.</div>
+            <div class="skills"><strong>Skills:</strong> Context management, privacy, cost optimization</div>
+            <div class="failure"><strong>Common Failure:</strong> Sending entire chat forever; sensitive data indefinitely.</div>
+            <div class="production"><strong>Production:</strong> Retention TTL, encryption, tenant isolation, delete workflows.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(agent): add bounded conversational memory</span>
+        </div>
+
+        <!-- Day 78 -->
+        <div class="day-card" id="day78">
+            <div class="day-card-header">
+                <span class="day-number">DAY 78</span>
+                <span class="day-title">AI API Reliability: Retries, Timeouts, Fallbacks</span>
+                <span class="day-role">AI Platform Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A provider experiences intermittent 429/5xx errors.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build resilient provider integration.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Fail gracefully and avoid retry storms.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic fault-injection wrapper around provider client.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Timeout, exponential backoff + jitter, bounded retries, circuit-breaker, fallback, request IDs.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + httpx + FastAPI</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Provider client; fault tests; metrics; runbook.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Retries bounded; 429 backoff respected; no duplicate side effects for non-idempotent tools.</div>
+            <div class="skills"><strong>Skills:</strong> Reliability engineering, distributed systems</div>
+            <div class="failure"><strong>Common Failure:</strong> Infinite retries; retrying unsafe writes.</div>
+            <div class="production"><strong>Production:</strong> Provider routing based on health/cost; graceful degradation.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(reliability): harden llm provider client</span>
+        </div>
+
+        <!-- Day 79 -->
+        <div class="day-card" id="day79">
+            <div class="day-card-header">
+                <span class="day-number">DAY 79</span>
+                <span class="day-title">Enterprise AI Access Control</span>
+                <span class="day-role">AI Security Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Different employees can access different documents and tools.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement tenant-aware authorization in an AI application.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Prevent data leakage through retrieval and tools.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic multi-tenant documents/orders.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">RBAC/ABAC policy, tenant IDs, document ACLs, tool permissions, cross-tenant attack tests.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">FastAPI + PostgreSQL + SQLAlchemy + Pydantic</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Auth middleware; policy tables; security tests; threat model.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Cross-tenant reads blocked; unauthorized tools rejected; audit log records principal/action.</div>
+            <div class="skills"><strong>Skills:</strong> Authorization, tenant isolation, secure AI design</div>
+            <div class="failure"><strong>Common Failure:</strong> Filtering only in prompt; trusting model to respect ACLs.</div>
+            <div class="production"><strong>Production:</strong> Enforce at data/tool layer; test continuously.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(security): enforce tenant aware ai authorization</span>
+        </div>
+
+        <!-- Day 80 -->
+        <div class="day-card" id="day80">
+            <div class="day-card-header">
+                <span class="day-number">DAY 80</span>
+                <span class="day-title">Phase 6 Capstone — Production Generative AI Assistant</span>
+                <span class="day-role">AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Customer-support organization wants a reliable assistant for triage, order lookup, and draft responses.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Integrate prompting, structured outputs, tools, streaming, reliability, safety, memory, and evaluation.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Deliver a production-shaped GenAI application.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15 + synthetic order DB + policy docs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Web/API service with tool calling, schemas, streaming, bounded memory, retries, access control, eval suite, cost telemetry, human handoff.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + FastAPI + PostgreSQL/SQLite + LLM APIs + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Full repo; architecture; tests; eval report; security test report; Docker; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Regression suite passes; cross-tenant attacks blocked; latency/cost documented; fallback works.</div>
+            <div class="skills"><strong>Skills:</strong> GenAI engineering, agents, security, reliability</div>
+            <div class="failure"><strong>Common Failure:</strong> Chatbot-only; no eval; no tool permissions.</div>
+            <div class="production"><strong>Production:</strong> Prepare RAG integration next; wire monitoring/CI.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship production generative ai assistant</span>
+        </div>
+
+        <!-- PHASE 7 -->
+        <h3 class="phase-title" id="phase7">📌 Phase 7 — Days 81–90: RAG + Agentic AI</h3>
+
+        <!-- Day 81 -->
+        <div class="day-card" id="day81">
+            <div class="day-card-header">
+                <span class="day-number">DAY 81</span>
+                <span class="day-title">RAG Ingestion Pipeline for Enterprise PDFs</span>
+                <span class="day-role">RAG Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Employees need answers from policies and procedures stored as PDFs.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build reliable document ingestion with metadata and version tracking.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Create the foundation for retrieval, not just a chatbot.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic policy PDFs or small public collection with verified rights.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Extract text, normalize, chunk with metadata, assign document/version IDs, index manifest.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + PyMuPDF/pypdf + sentence-transformers + FAISS/Chroma</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Ingestion package; chunks parquet/JSONL; manifest; sample index.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Document/version IDs retained; chunk boundaries reproducible; failed docs quarantined.</div>
+            <div class="skills"><strong>Skills:</strong> PDF processing, chunking, metadata, indexing</div>
+            <div class="failure"><strong>Common Failure:</strong> Overlapping chunks without measuring; dropping source references.</div>
+            <div class="production"><strong>Production:</strong> Object storage; incremental re-indexing on changed docs.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(rag): build versioned pdf ingestion pipeline</span>
+        </div>
+
+        <!-- Day 82 -->
+        <div class="day-card" id="day82">
+            <div class="day-card-header">
+                <span class="day-number">DAY 82</span>
+                <span class="day-title">Semantic Retrieval Baseline with Vector Search</span>
+                <span class="day-role">RAG Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Users ask natural-language questions over the policy corpus.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement top-k semantic retrieval.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Measure retrieval quality before adding LLM generation.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 81 chunked corpus + 100–300 synthetic queries with expected IDs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Embed chunks, build vector index, retrieve top-k, measure Recall@k/Precision@k.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + sentence-transformers + FAISS/Chroma</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Retriever; eval dataset; metrics report; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Queries fixed; embedding/index version logged; metrics at multiple k.</div>
+            <div class="skills"><strong>Skills:</strong> IR evaluation, embeddings, vector search</div>
+            <div class="failure"><strong>Common Failure:</strong> Evaluating answer quality before retrieval; index leakage.</div>
+            <div class="production"><strong>Production:</strong> Incremental updates; metadata filtering.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(rag): add semantic policy retriever</span>
+        </div>
+
+        <!-- Day 83 -->
+        <div class="day-card" id="day83">
+            <div class="day-card-header">
+                <span class="day-number">DAY 83</span>
+                <span class="day-title">Hybrid Retrieval with BM25 + Vector Search</span>
+                <span class="day-role">RAG Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Exact policy codes and semantic paraphrases must both retrieve correctly.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Combine lexical and semantic retrieval.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Improve robustness to exact-match and conceptual queries.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 81 corpus + fixed evaluation set.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">BM25, dense retrieval, rank fusion; compare against dense-only baseline.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + BM25 + FAISS/Chroma + pandas</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Hybrid retriever; benchmark; fusion config.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Hybrid improves or selectively helps query categories; fusion documented.</div>
+            <div class="skills"><strong>Skills:</strong> Hybrid search, ranking, evaluation</div>
+            <div class="failure"><strong>Common Failure:</strong> Dense embeddings for exact IDs; uncalibrated score fusion.</div>
+            <div class="production"><strong>Production:</strong> Learned/normalized fusion; query-type routing.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(rag): add hybrid lexical semantic retrieval</span>
+        </div>
+
+        <!-- Day 84 -->
+        <div class="day-card" id="day84">
+            <div class="day-card-header">
+                <span class="day-number">DAY 84</span>
+                <span class="day-title">Research Day — Reranking Experiment</span>
+                <span class="day-role">Research Engineer / RAG Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Top-k retrieval contains relevant passages but ranking is weak.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Test a reranker on a fixed candidate set.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Measure whether reranking adds useful signal relative to cost.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 83 corpus + fixed relevance-labeled query set.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">No reranking vs cross-encoder reranking; nDCG@k/MRR/Recall, latency.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + sentence-transformers/HF reranker + FAISS</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Research report; latency-quality curve; configs.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Candidate set identical; query set fixed; model/version captured.</div>
+            <div class="skills"><strong>Skills:</strong> Reranking, IR research, latency trade-offs</div>
+            <div class="failure"><strong>Common Failure:</strong> Changing candidate count and reranker simultaneously.</div>
+            <div class="production"><strong>Production:</strong> Reranking only when lift justifies p95 cost.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: evaluate reranking for enterprise search</span>
+        </div>
+
+        <!-- Day 85 -->
+        <div class="day-card" id="day85">
+            <div class="day-card-header">
+                <span class="day-number">DAY 85</span>
+                <span class="day-title">RAG Generation with Citations</span>
+                <span class="day-role">AI Engineer / RAG Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Policy answers must point users to source sections.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Generate grounded answers with citations to retrieved chunks.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make provenance part of the output contract.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 81–84 policy corpus and fixed query set.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Retrieval→prompt→generation pipeline with citation IDs, source snippets, abstention, evidence validation.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + LLM API + vector search + Pydantic</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> RAG API; citation renderer; eval script; sample answers.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Every non-abstained answer cites source; chunk supports claim.</div>
+            <div class="skills"><strong>Skills:</strong> Grounded generation, citations, prompt design</div>
+            <div class="failure"><strong>Common Failure:</strong> Citation fabrication; wrong source IDs.</div>
+            <div class="production"><strong>Production:</strong> Source hashes and doc versions in answers.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(rag): add grounded answers with citations</span>
+        </div>
+
+        <!-- Day 86 -->
+        <div class="day-card" id="day86">
+            <div class="day-card-header">
+                <span class="day-number">DAY 86</span>
+                <span class="day-title">Query Rewriting and Multi-Query Retrieval</span>
+                <span class="day-role">RAG Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Users ask vague follow-up questions and retrieval misses documents.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Improve recall using query rewriting and multiple retrieval queries.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Measure lift and control extra latency.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 85 evaluation set with conversational queries.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Standalone-question rewrite, 2–4 alternate queries, retrieve/merge/deduplicate, rerank; compare baseline.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + LLM API + FAISS/Chroma + reranker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Retrieval workflow; eval; latency analysis.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Recall improves on targeted cases without uncontrolled token growth; queries logged.</div>
+            <div class="skills"><strong>Skills:</strong> Query expansion, retrieval orchestration, latency control</div>
+            <div class="failure"><strong>Common Failure:</strong> Too many queries; losing original intent.</div>
+            <div class="production"><strong>Production:</strong> Adaptive rewriting when first-pass confidence is low.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(rag): add adaptive multi query retrieval</span>
+        </div>
+
+        <!-- Day 87 -->
+        <div class="day-card" id="day87">
+            <div class="day-card-header">
+                <span class="day-number">DAY 87</span>
+                <span class="day-title">Production Debugging — RAG Retrieval Drift</span>
+                <span class="day-role">RAG Engineer / MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">New documents added; assistant retrieves obsolete policy versions.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Diagnose stale indexes, metadata bugs, or embedding drift.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Recover correct document-version behavior.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic versioned policy corpus with stale-index defect.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Inspect index manifest, version metadata, changed-file detection, retrieval samples; rebuild affected records.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + vector DB + SQL metadata + logs</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Incident report; index repair; regression tests; monitoring metric.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Obsolete versions excluded; unaffected docs remain; repair idempotent.</div>
+            <div class="skills"><strong>Skills:</strong> Index lifecycle, debugging, metadata correctness</div>
+            <div class="failure"><strong>Common Failure:</strong> Full reindex without root-cause; relying on timestamps only.</div>
+            <div class="production"><strong>Production:</strong> Freshness checks; document-level reindex queues.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(rag): repair stale policy retrieval index</span>
+        </div>
+
+        <!-- Day 88 -->
+        <div class="day-card" id="day88">
+            <div class="day-card-header">
+                <span class="day-number">DAY 88</span>
+                <span class="day-title">Conversational RAG with Access Control</span>
+                <span class="day-role">RAG Engineer / Security Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Employees ask follow-up questions over documents they are authorized to see.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Combine conversation state with document-level ACL filtering.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Prevent memory and retrieval from crossing user permissions.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic multi-tenant policy corpus; tenant/user/role metadata.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Conversation-aware retrieval, query rewrite, ACL filter at retrieval, grounded answer, cross-tenant attack tests.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">FastAPI + PostgreSQL + Qdrant/Chroma + LLM API</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Service; ACL middleware; retrieval tests; threat model.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Unauthorized docs never enter context; prompts don't authorize.</div>
+            <div class="skills"><strong>Skills:</strong> Secure RAG, conversational state, authorization</div>
+            <div class="failure"><strong>Common Failure:</strong> Filtering after retrieval; tenant ID omitted.</div>
+            <div class="production"><strong>Production:</strong> Audit every retrieval; permission-change reindex semantics.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(security): secure conversational rag retrieval</span>
+        </div>
+
+        <!-- Day 89 -->
+        <div class="day-card" id="day89">
+            <div class="day-card-header">
+                <span class="day-number">DAY 89</span>
+                <span class="day-title">Research Day — RAG Evaluation and Hallucination Measurement</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Leadership wants evidence that the RAG system is improving answer reliability.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Build an evaluation protocol separating retrieval failures from generation failures.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Measure retrieval recall, groundedness, answer correctness, abstention.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Fixed RAG eval set with ground-truth answers and chunk IDs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Retrieval ablation vs generation; categorize hallucinations, unsupported claims, retrieval misses; CIs.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pandas + eval framework + LLM API</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> RAG research report; error taxonomy; score dashboard; regression dataset.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Retrieval/generation metrics separated; rubric versioned; manual calibration sample.</div>
+            <div class="skills"><strong>Skills:</strong> RAG evaluation, scientific analysis, hallucination measurement</div>
+            <div class="failure"><strong>Common Failure:</strong> Single scalar RAG score; judge bias ignored.</div>
+            <div class="production"><strong>Production:</strong> Suite as release gate; monitor by query type.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: build rag reliability evaluation suite</span>
+        </div>
+
+        <!-- Day 90 -->
+        <div class="day-card" id="day90">
+            <div class="day-card-header">
+                <span class="day-number">DAY 90</span>
+                <span class="day-title">Phase 7 Capstone — Production Enterprise RAG</span>
+                <span class="day-role">RAG Engineer / AI Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A company needs a secure internal knowledge assistant for versioned policies.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Integrate ingestion, retrieval, hybrid search, reranking, citations, conversation, ACLs, updates, and evaluation.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Deliver a portfolio-quality RAG system with operational controls.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic enterprise policy corpus + optional public docs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Full ingestion/index/update pipeline, hybrid retrieval, reranking, grounded generation, conversational RAG, ACL, eval, monitoring, versioning.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + FastAPI + PostgreSQL/pgvector/Qdrant + LLM API + Docker</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Full repo; architecture; ingestion CLI; API; tests; eval report; security report; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Fresh build reproduces index; updates affect only changed docs; ACL tests pass; Docker runs.</div>
+            <div class="skills"><strong>Skills:</strong> RAG architecture, security, evaluation, operations</div>
+            <div class="failure"><strong>Common Failure:</strong> LLM-first with weak retrieval; stale docs; no ACL enforcement.</div>
+            <div class="production"><strong>Production:</strong> Tracing, autoscaling, disaster recovery, provider-independent adapters.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship secure enterprise rag platform</span>
+        </div>
+
+        <!-- PHASE 8 -->
+        <h3 class="phase-title" id="phase8">📌 Phase 8 — Days 91–100: Production AI + Research + MLOps</h3>
+
+        <!-- Day 91 -->
+        <div class="day-card" id="day91">
+            <div class="day-card-header">
+                <span class="day-number">DAY 91</span>
+                <span class="day-title">Cloud Deployment Architecture Mapping</span>
+                <span class="day-role">Cloud / MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The team wants a cloud-ready architecture but no paid commitment yet.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Map the local system to AWS, Azure, and Google Cloud primitives.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Demonstrate cloud literacy without requiring expensive infrastructure.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 90 system architecture.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Three mapping diagrams: object storage, managed Postgres/vector DB, container hosting, secrets, observability, CI/CD, scheduled jobs.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Docker + GitHub Actions + AWS/Azure/GCP concepts</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Architecture diagrams; cost-control notes; deployment matrix.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Every component has local alternative and cloud mapping; no mandatory paid service.</div>
+            <div class="skills"><strong>Skills:</strong> Cloud architecture, cost awareness, deployment design</div>
+            <div class="failure"><strong>Common Failure:</strong> Picking services without workload reasoning; ignoring egress costs.</div>
+            <div class="production"><strong>Production:</strong> IaC for small demonstrator; budget guardrails.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: docs(cloud): map ai platform to aws azure gcp</span>
+        </div>
+
+        <!-- Day 92 -->
+        <div class="day-card" id="day92">
+            <div class="day-card-header">
+                <span class="day-number">DAY 92</span>
+                <span class="day-title">Research Day — Retrieval vs Fine-Tuning Decision Study</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Product team asks whether to fine-tune an LLM or improve retrieval/prompting.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Run a controlled study comparing retrieval/prompt vs lightweight fine-tuning.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make a defensible architecture choice.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">DR15 support corpus + fixed eval set.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Baseline, improved retrieval, prompt optimization, fine-tuning/adapter; quality, cost, latency, data needs, maintenance.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + Transformers/PEFT or provider fine-tuning + RAG stack</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Decision report; experiment matrix; cost/latency table; limitations.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> No cherry-picking; eval fixed; data separated; costs sourced/dated.</div>
+            <div class="skills"><strong>Skills:</strong> Research design, LLM adaptation, architecture decisions</div>
+            <div class="failure"><strong>Common Failure:</strong> Fine-tuning without data; general superiority claims.</div>
+            <div class="production"><strong>Production:</strong> Architecture based on observed bottleneck and maintenance burden.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: compare retrieval and adaptation strategies</span>
+        </div>
+
+        <!-- Day 93 -->
+        <div class="day-card" id="day93">
+            <div class="day-card-header">
+                <span class="day-number">DAY 93</span>
+                <span class="day-title">Production Debugging — CI/CD Failure Drill</span>
+                <span class="day-role">DevOps / MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A release pipeline suddenly fails after a dependency update.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Diagnose the failure and restore the pipeline safely.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Practice root-cause analysis for delivery systems.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Repo fixture with intentionally broken dependency/workflow.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Inspect logs, dependency graph, lockfile, Python/runtime matrix, Docker build; smallest safe patch; regression guard.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">GitHub Actions + Python + Docker + dependency tools</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Incident report; fix; workflow test; rollback notes.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Cause identified from logs; fix reproducible; pipeline green; dependencies pinned.</div>
+            <div class="skills"><strong>Skills:</strong> CI/CD debugging, dependency management</div>
+            <div class="failure"><strong>Common Failure:</strong> Rerunning until pass; unpinned rollback.</div>
+            <div class="production"><strong>Production:</strong> Dependabot/Renovate, staged upgrades, artifact provenance.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: fix(ci): resolve release pipeline dependency failure</span>
+        </div>
+
+        <!-- Day 94 -->
+        <div class="day-card" id="day94">
+            <div class="day-card-header">
+                <span class="day-number">DAY 94</span>
+                <span class="day-title">AI Security Threat Model and Red-Team Test Suite</span>
+                <span class="day-role">AI Security Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The enterprise AI platform may face prompt injection and malicious documents.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Develop defensive security tests and mitigations.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Turn known threats into executable controls.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 90 RAG + agent system; synthetic malicious docs/prompts.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Threat model: prompt injection, data exfiltration, tool abuse, insecure RAG, PII leak, auth bypass, rate abuse; safe tests and mitigations.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + pytest + FastAPI + RAG/agent stack</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Threat model; security test suite; mitigation report; severity matrix.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Tests block/contain cases; no exploit instructions required; controls enforced outside model.</div>
+            <div class="skills"><strong>Skills:</strong> AI security, threat modeling, auth, I/O validation</div>
+            <div class="failure"><strong>Common Failure:</strong> System prompts as security boundary; no rate limits.</div>
+            <div class="production"><strong>Production:</strong> Continuous red-team suite, secret/dependency scanning, least privilege.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: test(security): add ai threat and abuse regression suite</span>
+        </div>
+
+        <!-- Day 95 -->
+        <div class="day-card" id="day95">
+            <div class="day-card-header">
+                <span class="day-number">DAY 95</span>
+                <span class="day-title">Observability: Logs, Traces, Metrics for AI</span>
+                <span class="day-role">AI Platform / MLOps Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">Incidents require tracing a user request through retrieval, tools, model calls, and response.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Implement end-to-end observability without logging sensitive content indiscriminately.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make system behavior diagnosable.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 90 platform plus synthetic traces.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Request ID, stage timing, retrieval top-k IDs, tool calls, model latency/token metrics, errors, privacy-aware sampling.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + OpenTelemetry + JSON logs + Prometheus</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Telemetry module; dashboard; example trace; privacy logging policy.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Correlation ID per request; p95 stage timing available; secrets/PII not logged.</div>
+            <div class="skills"><strong>Skills:</strong> Observability, tracing, privacy</div>
+            <div class="failure"><strong>Common Failure:</strong> Logging entire prompts/responses; no correlation IDs.</div>
+            <div class="production"><strong>Production:</strong> Distributed tracing backend; retention controls.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(obs): instrument end to end ai request traces</span>
+        </div>
+
+        <!-- Day 96 -->
+        <div class="day-card" id="day96">
+            <div class="day-card-header">
+                <span class="day-number">DAY 96</span>
+                <span class="day-title">Research Day — Inference Optimization and Compression</span>
+                <span class="day-role">Research Engineer / ML Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">A deployed model is accurate but too expensive at target latency.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Evaluate optimization techniques under fixed quality constraints.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Quantify quality–latency–memory trade-offs.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 59/65 model or small open-source model.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Baseline vs quantization/distillation/ONNX/TorchScript/batching; quality delta, latency, throughput, memory.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">PyTorch + ONNX Runtime/bitsandbytes + benchmark scripts</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Research report; benchmark table; optimized artifact; decision memo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Workload fixed; p95 latency and quality; hardware documented; no fabricated speedups.</div>
+            <div class="skills"><strong>Skills:</strong> Inference optimization, benchmarking, research</div>
+            <div class="failure"><strong>Common Failure:</strong> Single-request latency; synthetic inputs only.</div>
+            <div class="production"><strong>Production:</strong> Production traces; rollback-ready artifacts.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: optimize ai inference under latency budget</span>
+        </div>
+
+        <!-- Day 97 -->
+        <div class="day-card" id="day97">
+            <div class="day-card-header">
+                <span class="day-number">DAY 97</span>
+                <span class="day-title">Enterprise AI Data Lifecycle and Governance</span>
+                <span class="day-role">Data/AI Governance Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The platform now processes customer data, documents, and model outputs.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Define lifecycle controls for data, embeddings, prompts, logs, and model artifacts.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Make governance implementable, not only policy prose.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Synthetic enterprise data and Day 90 platform.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Data classification, retention, deletion, access-control matrix, lineage map, version policy, incident response checklist.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + PostgreSQL + GitHub + docs tooling</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Governance docs; lineage diagram; retention config; access matrix.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Every sensitive artifact has owner, purpose, retention, access policy; deletion explicit.</div>
+            <div class="skills"><strong>Skills:</strong> Governance, privacy, lifecycle management</div>
+            <div class="failure"><strong>Common Failure:</strong> Model outputs unclassified; retaining everything forever.</div>
+            <div class="production"><strong>Production:</strong> Automated policy checks; deletion workflows.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: docs(governance): establish enterprise ai data lifecycle</span>
+        </div>
+
+        <!-- Day 98 -->
+        <div class="day-card" id="day98">
+            <div class="day-card-header">
+                <span class="day-number">DAY 98</span>
+                <span class="day-title">Production Debugging — RAG Latency Regression</span>
+                <span class="day-role">AI/RAG Platform Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">RAG p95 latency exceeds SLO after adding reranking and multi-query retrieval.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Find the latency budget breach and rebalance the pipeline.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Optimize without destroying retrieval quality.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 90 service with synthetic trace logs.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Break down latency by rewrite/retrieval/rerank/LLM; test candidate-k, reranker, caching, routing, parallelism.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + FastAPI + vector DB + benchmark tooling</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Incident report; latency profile; patch; quality regression report.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> P95 meets target or justified update; quality delta quantified.</div>
+            <div class="skills"><strong>Skills:</strong> Performance engineering, RAG optimization, incident response</div>
+            <div class="failure"><strong>Common Failure:</strong> Making LLM smaller immediately; removing citations for speed.</div>
+            <div class="production"><strong>Production:</strong> Adaptive retrieval depth; stage-level timeouts.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: perf(rag): restore rag latency within slo</span>
+        </div>
+
+        <!-- Day 99 -->
+        <div class="day-card" id="day99">
+            <div class="day-card-header">
+                <span class="day-number">DAY 99</span>
+                <span class="day-title">Research Day — End-to-End AI System Benchmark</span>
+                <span class="day-role">Research Engineer</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The enterprise platform has multiple moving parts; leadership wants measurable proof of improvement.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Benchmark the whole system across data, ML, RAG, and deployment changes.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Produce a defensible final technical evaluation.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Day 90 platform + fixed e2e eval set + synthetic load.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Baseline → improved component → ablation → throughput/latency → quality/security/error analysis → limitations.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + MLflow + RAG eval + load testing + pandas</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Final benchmark report; experiment artifacts; dashboard; architecture comparison.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Results traceable; no fabricated claims; bottlenecks explicit.</div>
+            <div class="skills"><strong>Skills:</strong> Systems research, benchmarking, scientific communication</div>
+            <div class="failure"><strong>Common Failure:</strong> Multiple variables without attribution; happy-path only.</div>
+            <div class="production"><strong>Production:</strong> Versioned benchmark suite for future releases.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: research: benchmark end to end enterprise ai platform</span>
+        </div>
+
+        <!-- Day 100 -->
+        <div class="day-card" id="day100">
+            <div class="day-card-header">
+                <span class="day-number">DAY 100</span>
+                <span class="day-title">Final Capstone — Enterprise AI Platform</span>
+                <span class="day-role">Staff AI Engineer / MLOps Lead</span>
+            </div>
+            <div class="field"><div class="field-label">Business Scenario</div><div class="field-value">The organization needs one production-shaped platform demonstrating the full professional stack.</div></div>
+            <div class="field"><div class="field-label">Problem</div><div class="field-value">Integrate data ingestion, processing, database, ML/AI, RAG, API, auth, Docker, CI/CD, monitoring, evaluation, documentation.</div></div>
+            <div class="field"><div class="field-label">Objective</div><div class="field-value">Prove end-to-end engineering competence and production judgment.</div></div>
+            <div class="field"><div class="field-label">Dataset</div><div class="field-value mono">Verified public datasets (DR02/DR04/DR08/DR09/DR11/DR12/DR13) + synthetic private-style data.</div></div>
+            <div class="field"><div class="field-label">Task</div><div class="field-value">Build: ingestion→processing→DB→ML/AI→RAG→API→auth→Docker→CI/CD→monitoring→evaluation→documentation; runbook, security model, demo.</div></div>
+            <div class="field"><div class="field-label">Technologies</div><div class="field-value mono">Python + PostgreSQL + FastAPI + PyTorch/Transformers + RAG stack + MLflow + DVC + Docker + GitHub Actions</div></div>
+            <div class="deliverables"><strong>Deliverables:</strong> Complete repo; architecture; deployment files; tests; CI; registry evidence; RAG eval; security tests; dashboard; runbooks; final report; demo.</div>
+            <div class="acceptance"><strong>Acceptance:</strong> Clean clone setup works; critical tests green; eval meets thresholds; security passes; container health; monitoring emits; rollback demonstrated.</div>
+            <div class="skills"><strong>Skills:</strong> Systems architecture, DS, ML Engineering, AI Engineering, RAG, MLOps, DevOps, research, security</div>
+            <div class="failure"><strong>Common Failure:</strong> Scope explosion; undocumented glue; no operational owner; unsupported claims.</div>
+            <div class="production"><strong>Production:</strong> Backups, secrets, access control, observability, incident response, cost limits, versioning, controlled releases.</div>
+            <div class="extension"><strong>Extension:</strong> Add an advanced enhancement for reliability or scale.</div>
+            <span class="git-commit">🔗 Git: feat(capstone): ship enterprise ai platform</span>
+        </div>
+
+        <a href="#" class="back-to-top">↑ Back to top</a>
+    </main>
+</body>
+</html>
