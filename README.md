@@ -1,10 +1,11 @@
-# [Project Name]
 
+
+
+
+# 100 Days of Professional Data Scientist + AI/ML Engineer
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
-
-# 100 Days of Professional Data Scientist + AI/ML Engineer
 
 ## Program design
 
