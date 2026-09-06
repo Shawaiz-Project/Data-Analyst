@@ -2,32 +2,32 @@
 
 ## Program design  
  
-This is a 100‑day professional‑work simulation. Each day is exactly one coherent assignment designed for approximately 2–5 hours, with capstones allowed to run longer. The progression follows the requested phases: professional analytics → data engineering → ML → production ML/MLOps → deep learning → GenAI → RAG → enterprise AI/research. The objective is to produce artifacts, diagnose failures, defend engineering decisions, and build a portfolio rather than complete tutorial exercises.
+This is a 100âday professionalâwork simulation. Each day is exactly one coherent assignment designed for approximately 2â5 hours, with capstones allowed to run longer. The progression follows the requested phases: professional analytics â data engineering â ML â production ML/MLOps â deep learning â GenAI â RAG â enterprise AI/research. The objective is to produce artifacts, diagnose failures, defend engineering decisions, and build a portfolio rather than complete tutorial exercises.
 
-## Operating rules
+## Operating rules 
 
 - Use a feature branch for each meaningful task and open a pull request at milestones.
 - Keep data, code, experiments, and reports versioned; never commit credentials.
 - For research days, record exact paper/dataset/model versions, baseline, experiment, results, error analysis, limitations, and reproducibility details.
 - Never fabricate dataset links, papers, results, or performance. Synthetic datasets must be labeled as synthetic.
-- Suggested work cadence: Day task → artifact → tests → README update → commit → short reflection.
+- Suggested work cadence: Day task â artifact â tests â README update â commit â short reflection.
 
 ## Skill Map
 
 | Skill | Days | Difficulty |
 |-------|------|------------|
-| Data Analytics | 1–20 | Advanced → Professional |
-| SQL / Databases | 3,11–20,46,50,90–100 | Advanced → Expert |
-| Data Engineering | 6,11–20,45,50,91,97,100 | Advanced → Production |
-| Machine Learning | 9,21–50,92,96,100 | Advanced → Production |
-| Deep Learning | 51–65,96,100 | Advanced → Systems |
-| NLP | 56–62,66–80,100 | Advanced → Production |
-| Generative AI | 66–80,90–100 | Advanced → Production |
-| RAG | 69,81–90,92,98–100 | Advanced → Enterprise |
-| MLOps | 15,18,38–50,78,90–100 | Advanced → Production |
-| DevOps / Cloud | 40–50,78,91,93–95,100 | Intermediate → Production |
-| Research | 26,33,44,57,58,62,70,76,84,89,92,96,99 | Advanced → Research |
-| Security / Reliability | 42,67–80,88,94–95,97,100 | Advanced → Enterprise |
+| Data Analytics | 1â20 | Advanced â Professional |
+| SQL / Databases | 3,11â20,46,50,90â100 | Advanced â Expert |
+| Data Engineering | 6,11â20,45,50,91,97,100 | Advanced â Production |
+| Machine Learning | 9,21â50,92,96,100 | Advanced â Production |
+| Deep Learning | 51â65,96,100 | Advanced â Systems |
+| NLP | 56â62,66â80,100 | Advanced â Production |
+| Generative AI | 66â80,90â100 | Advanced â Production |
+| RAG | 69,81â90,92,98â100 | Advanced â Enterprise |
+| MLOps | 15,18,38â50,78,90â100 | Advanced â Production |
+| DevOps / Cloud | 40â50,78,91,93â95,100 | Intermediate â Production |
+| Research | 26,33,44,57,58,62,70,76,84,89,92,96,99 | Advanced â Research |
+| Security / Reliability | 42,67â80,88,94â95,97,100 | Advanced â Enterprise |
 
 ## Verified Dataset Registry
 
@@ -45,27 +45,27 @@ Use the registry ID in daily assignments. The registry centralizes the required 
 | DR08 | Hugging Face Banking77 | https://huggingface.co/datasets/mteb/banking77 | 13,083 utterances; 77 intents | intent classification/embeddings | label | fine-grained intent confusion |
 | DR09 | Hugging Face CoNLL-2003 | https://huggingface.co/datasets/tner/conll2003 | 14,041 train / 3,250 validation / 3,453 test | named entity recognition | BIO entity tags | token alignment, domain shift |
 | DR10 | Hugging Face GLUE/SST-2 | https://huggingface.co/datasets/nyu-mll/glue | sentiment classification benchmark | NLP classification | label | short text, sentiment ambiguity |
-| DR11 | MNIST | https://yann.lecun.org/exdb/mnist/index.html | 60,000 train / 10,000 test 28×28 images | computer vision classification | digit | simple benchmark; avoid overfitting to benchmark habits |
+| DR11 | MNIST | https://yann.lecun.org/exdb/mnist/index.html | 60,000 train / 10,000 test 28Ã28 images | computer vision classification | digit | simple benchmark; avoid overfitting to benchmark habits |
 | DR12 | MIMIC-IV Clinical Database Demo v2.2 | https://physionet.org/content/mimic-iv-demo/2.2/ | 15.5 MB demo release | clinical analytics | task-dependent | access/ethics, de-identification, clinical leakage |
 | DR13 | MS MARCO | https://microsoft.github.io/msmarco/ | large-scale search/QA collection | retrieval/reranking/QA research | relevance | licensing, scale, retrieval evaluation |
-| DR14 | Synthetic E-commerce Events | synthetic | generated locally; target 1–5M events | analytics/ETL/load testing | event_type / revenue | schema evolution, duplicates, late events |
-| DR15 | Synthetic Support Tickets | synthetic | generated locally; target 100k–500k tickets | NLP/RAG/agent evaluation | intent/severity | PII simulation, adversarial prompts, ambiguous tickets |
+| DR14 | Synthetic E-commerce Events | synthetic | generated locally; target 1â5M events | analytics/ETL/load testing | event_type / revenue | schema evolution, duplicates, late events |
+| DR15 | Synthetic Support Tickets | synthetic | generated locally; target 100kâ500k tickets | NLP/RAG/agent evaluation | intent/severity | PII simulation, adversarial prompts, ambiguous tickets |
 | DR16 | Synthetic IoT Sensor Stream | synthetic | generated locally; target 10M+ observations | time-series/anomaly/MLOps | fault | drift, missing telemetry, sensor noise |
 
 ## Phase Map
 
-- **Phase 1** — Days 1–10: Professional Data Analytics Foundations  
-- **Phase 2** — Days 11–20: Advanced Analytics + Data Engineering  
-- **Phase 3** — Days 21–35: Machine Learning  
-- **Phase 4** — Days 36–50: Advanced ML + End-to-End ML Systems  
-- **Phase 5** — Days 51–65: Deep Learning  
-- **Phase 6** — Days 66–80: Generative AI + LLM Engineering  
-- **Phase 7** — Days 81–90: RAG + Agentic AI  
-- **Phase 8** — Days 91–100: Production AI + Research + MLOps  
+- **Phase 1** â Days 1â10: Professional Data Analytics Foundations  
+- **Phase 2** â Days 11â20: Advanced Analytics + Data Engineering  
+- **Phase 3** â Days 21â35: Machine Learning  
+- **Phase 4** â Days 36â50: Advanced ML + End-to-End ML Systems  
+- **Phase 5** â Days 51â65: Deep Learning  
+- **Phase 6** â Days 66â80: Generative AI + LLM Engineering  
+- **Phase 7** â Days 81â90: RAG + Agentic AI  
+- **Phase 8** â Days 91â100: Production AI + Research + MLOps  
 
 ## Daily Program
 
-### Day 1 — Executive Sales Performance Diagnostic
+### Day 1 â Executive Sales Performance Diagnostic
 
 **Role**  
 Data Analyst
@@ -80,7 +80,7 @@ Find the operational drivers behind revenue, cancellations, and customer-value c
 Deliver a decision-ready diagnostic, not a generic EDA.
 
 **Dataset / Data Source**  
-DR01 — UCI Online Retail; ~541,909 transactions; Excel/Python import; key fields: InvoiceNo, StockCode, Quantity, InvoiceDate, UnitPrice, CustomerID, Country.
+DR01 â UCI Online Retail; ~541,909 transactions; Excel/Python import; key fields: InvoiceNo, StockCode, Quantity, InvoiceDate, UnitPrice, CustomerID, Country.
 
 **Task**  
 Build a revenue-quality diagnostic: clean transactions, define business rules for cancellations, calculate revenue/AOV/repeat-rate proxies, segment by country/product/customer, and write 5 evidence-backed actions.
@@ -110,7 +110,7 @@ Add cohort-based repeat-purchase analysis by acquisition month.
 
 ---
 
-### Day 2 — Cohort Retention and Customer Value Analysis
+### Day 2 â Cohort Retention and Customer Value Analysis
 
 **Role**  
 Data Analyst
@@ -125,7 +125,7 @@ Construct acquisition cohorts and quantify retention, repeat purchase behavior, 
 Produce cohort tables and an executive interpretation.
 
 **Dataset / Data Source**  
-DR01 — UCI Online Retail; transaction dates and CustomerID are the core fields.
+DR01 â UCI Online Retail; transaction dates and CustomerID are the core fields.
 
 **Task**  
 Design cohort month, retention matrix, repeat-rate curve, RFM summary, and segment-level revenue concentration. Explain cohort leakage risks.
@@ -159,7 +159,7 @@ Demonstrates customer analytics beyond dashboards.
 
 ---
 
-### Day 3 — SQL Revenue Mart with Window Functions
+### Day 3 â SQL Revenue Mart with Window Functions
 
 **Role**  
 Data Analyst
@@ -208,7 +208,7 @@ A reusable analytics-engineering artifact for GitHub.
 
 ---
 
-### Day 4 — Statistical Quality Review of Sales Drivers
+### Day 4 â Statistical Quality Review of Sales Drivers
 
 **Role**  
 Data Scientist
@@ -257,7 +257,7 @@ Shows mature statistical interpretation instead of plot-only EDA.
 
 ---
 
-### Day 5 — Management Dashboard with KPI Governance
+### Day 5 â Management Dashboard with KPI Governance
 
 **Role**  
 BI Analyst
@@ -272,7 +272,7 @@ Create one governed dashboard with clear definitions and refresh-ready inputs.
 Make numbers consistent and decision-oriented.
 
 **Dataset / Data Source**  
-DR01; curated KPI dataset generated on Day 1–4.
+DR01; curated KPI dataset generated on Day 1â4.
 
 **Task**  
 Build a Power BI-equivalent dashboard in Power BI if available, otherwise Plotly/Streamlit; include revenue, orders, AOV, repeat rate, country mix, top products, anomaly flag.
@@ -306,7 +306,7 @@ Portfolio-ready dashboard with data dictionary and architecture image.
 
 ---
 
-### Day 6 — Automated Excel-to-Database Reconciliation
+### Day 6 â Automated Excel-to-Database Reconciliation
 
 **Role**  
 Data Analyst / Analytics Engineer
@@ -321,7 +321,7 @@ Automate reconciliation between spreadsheet totals and a canonical database.
 Detect mismatches before finance sign-off.
 
 **Dataset / Data Source**  
-Synthetic branch-sales workbook generated locally; labeled synthetic; 20–50k rows with intentional duplicate/missing-value cases.
+Synthetic branch-sales workbook generated locally; labeled synthetic; 20â50k rows with intentional duplicate/missing-value cases.
 
 **Task**  
 Ingest Excel, validate schema/types, load to SQLite/PostgreSQL, reconcile totals and row counts, and produce an exceptions workbook.
@@ -355,7 +355,7 @@ Useful operations automation project with immediate business relevance.
 
 ---
 
-### Day 7 — A/B Test Analysis for Checkout Conversion
+### Day 7 â A/B Test Analysis for Checkout Conversion
 
 **Role**  
 Data Analyst
@@ -404,7 +404,7 @@ Strong evidence of product analytics maturity.
 
 ---
 
-### Day 8 — Forecasting Revenue with a Business Baseline
+### Day 8 â Forecasting Revenue with a Business Baseline
 
 **Role**  
 Data Scientist
@@ -419,7 +419,7 @@ Build and benchmark a time-series forecast against a naive baseline.
 Quantify whether the model actually improves business planning.
 
 **Dataset / Data Source**  
-DR04 — NYC TLC monthly trip records aggregated to daily demand proxy; official TLC source.
+DR04 â NYC TLC monthly trip records aggregated to daily demand proxy; official TLC source.
 
 **Task**  
 Create a daily series, backtest with rolling-origin evaluation, compare naive/seasonal-naive/ETS or equivalent, quantify MAE/WAPE, and explain forecast failure regions.
@@ -453,7 +453,7 @@ Demonstrates business forecasting discipline.
 
 ---
 
-### Day 9 — Customer Churn Modeling Blueprint
+### Day 9 â Customer Churn Modeling Blueprint
 
 **Role**  
 Data Scientist
@@ -502,7 +502,7 @@ Excellent demonstration of ML problem framing.
 
 ---
 
-### Day 10 — Phase 1 Analytics Capstone — Executive BI Pack
+### Day 10 â Phase 1 Analytics Capstone â Executive BI Pack
 
 **Role**  
 BI Analyst / Data Scientist
@@ -511,7 +511,7 @@ BI Analyst / Data Scientist
 Leadership needs one coherent view from raw transactions to action.
 
 **Problem Statement**  
-Consolidate Days 1–9 into a lightweight analytics product.
+Consolidate Days 1â9 into a lightweight analytics product.
 
 **Objective**  
 Ship a reproducible business intelligence package.
@@ -551,7 +551,7 @@ Capstone 1: Business Intelligence / Data Analytics Platform.
 
 ---
 
-### Day 11 — Incremental API-to-Database Pipeline
+### Day 11 â Incremental API-to-Database Pipeline
 
 **Role**  
 Data Engineer
@@ -600,7 +600,7 @@ Production-style data engineering artifact.
 
 ---
 
-### Day 12 — Data Quality Contract and Validation Suite
+### Day 12 â Data Quality Contract and Validation Suite
 
 **Role**  
 Data Engineer
@@ -649,7 +649,7 @@ Strong data reliability signal.
 
 ---
 
-### Day 13 — Star Schema for Supply-Chain Analytics
+### Day 13 â Star Schema for Supply-Chain Analytics
 
 **Role**  
 Data Engineer
@@ -664,7 +664,7 @@ Design an analytical warehouse model that supports stable business questions.
 Create fact/dimension tables with clear grain.
 
 **Dataset / Data Source**  
-Synthetic supply-chain dataset; explicitly synthetic; 1–5M fact rows target.
+Synthetic supply-chain dataset; explicitly synthetic; 1â5M fact rows target.
 
 **Task**  
 Define fact shipment grain, dimensions, surrogate keys, slowly changing dimension strategy, and 10 KPI queries.
@@ -698,7 +698,7 @@ Portfolio-ready warehouse design artifact.
 
 ---
 
-### Day 14 — Incremental ELT with Late-Arriving Events
+### Day 14 â Incremental ELT with Late-Arriving Events
 
 **Role**  
 Data Engineer
@@ -713,7 +713,7 @@ Build an incremental transformation that handles late-arriving records.
 Preserve correctness under reprocessing.
 
 **Dataset / Data Source**  
-DR14 synthetic e-commerce events; 1–5M events with event_time and ingestion_time.
+DR14 synthetic e-commerce events; 1â5M events with event_time and ingestion_time.
 
 **Task**  
 Create raw bronze, cleaned silver, and KPI gold layers; use ingestion watermark plus event-time correction window.
@@ -747,7 +747,7 @@ Shows practical incremental-pipeline reasoning.
 
 ---
 
-### Day 15 — Pipeline Observability and SLA Monitoring
+### Day 15 â Pipeline Observability and SLA Monitoring
 
 **Role**  
 Data Engineer / MLOps Engineer
@@ -762,7 +762,7 @@ Add operational telemetry to the pipeline.
 Make pipeline health measurable.
 
 **Dataset / Data Source**  
-Days 11–14 pipelines; synthetic failure injections.
+Days 11â14 pipelines; synthetic failure injections.
 
 **Task**  
 Emit run duration, record counts, freshness, failure reason, retry counts, and data-quality status; build a small health dashboard.
@@ -796,7 +796,7 @@ MLOps/data-platform portfolio differentiator.
 
 ---
 
-### Day 16 — Batch Backfill and Recovery Drill
+### Day 16 â Batch Backfill and Recovery Drill
 
 **Role**  
 Data Engineer
@@ -845,7 +845,7 @@ Demonstrates incident-ready engineering.
 
 ---
 
-### Day 17 — PostgreSQL Query Optimization Investigation
+### Day 17 â PostgreSQL Query Optimization Investigation
 
 **Role**  
 Database Engineer
@@ -860,7 +860,7 @@ Diagnose the root cause and improve query performance.
 Use evidence from execution plans, not guesswork.
 
 **Dataset / Data Source**  
-Synthetic PostgreSQL schema from Day 13; 1–5M rows.
+Synthetic PostgreSQL schema from Day 13; 1â5M rows.
 
 **Task**  
 Profile slow query with EXPLAIN ANALYZE, test indexes, rewrite joins/CTEs where justified, and document before/after performance.
@@ -894,7 +894,7 @@ Excellent database-engineering evidence.
 
 ---
 
-### Day 18 — Data Versioning with DVC
+### Day 18 â Data Versioning with DVC
 
 **Role**  
 Data Engineer / ML Engineer
@@ -943,7 +943,7 @@ Professional MLOps foundation artifact.
 
 ---
 
-### Day 19 — Automated KPI Report Generator
+### Day 19 â Automated KPI Report Generator
 
 **Role**  
 Analytics Engineer
@@ -992,7 +992,7 @@ Strong business-automation portfolio item.
 
 ---
 
-### Day 20 — Phase 2 Capstone — Reliable Analytics Data Platform
+### Day 20 â Phase 2 Capstone â Reliable Analytics Data Platform
 
 **Role**  
 Data Engineer
@@ -1010,7 +1010,7 @@ Ship an end-to-end analytics platform with operational controls.
 DR14 synthetic e-commerce stream + public source metadata where appropriate.
 
 **Task**  
-Build raw→clean→mart pipeline, quality gates, incremental processing, observability, report generation, and recovery procedure.
+Build rawâcleanâmart pipeline, quality gates, incremental processing, observability, report generation, and recovery procedure.
 
 **Technologies**  
 Python + PostgreSQL + DuckDB + DVC + GitHub Actions
@@ -1041,7 +1041,7 @@ Capstone 1 extension / enterprise-grade analytics engineering centerpiece.
 
 ---
 
-### Day 21 — Regression for Revenue Planning
+### Day 21 â Regression for Revenue Planning
 
 **Role**  
 Data Scientist
@@ -1090,7 +1090,7 @@ Demonstrates model selection for a business objective.
 
 ---
 
-### Day 22 — Classification with Threshold Economics
+### Day 22 â Classification with Threshold Economics
 
 **Role**  
 Data Scientist
@@ -1105,7 +1105,7 @@ Predict a binary outcome and optimize decision threshold by business cost.
 Move beyond default 0.5 classification.
 
 **Dataset / Data Source**  
-DR02 — UCI Bank Marketing; 45,211 rows; target y; 16 input features in classic version.
+DR02 â UCI Bank Marketing; 45,211 rows; target y; 16 input features in classic version.
 
 **Task**  
 Train logistic regression and tree ensemble; evaluate ROC-AUC/PR-AUC; calibrate probabilities; choose threshold from explicit campaign economics.
@@ -1139,7 +1139,7 @@ Strong real dataset classification artifact.
 
 ---
 
-### Day 23 — Leakage Audit on an Educational Predictor
+### Day 23 â Leakage Audit on an Educational Predictor
 
 **Role**  
 Data Scientist
@@ -1154,7 +1154,7 @@ Build a classifier using only features available at the decision point.
 Detect and remove temporal leakage.
 
 **Dataset / Data Source**  
-DR07 — UCI Predict Students' Dropout and Academic Success; 4,424 rows; multiclass target.
+DR07 â UCI Predict Students' Dropout and Academic Success; 4,424 rows; multiclass target.
 
 **Task**  
 Create an availability matrix, audit suspicious fields, compare leaked vs leakage-safe models, and document the difference.
@@ -1188,7 +1188,7 @@ Excellent senior-level modeling judgment.
 
 ---
 
-### Day 24 — Model Comparison: XGBoost vs LightGBM vs CatBoost
+### Day 24 â Model Comparison: XGBoost vs LightGBM vs CatBoost
 
 **Role**  
 ML Engineer
@@ -1237,7 +1237,7 @@ High-signal ML engineering artifact.
 
 ---
 
-### Day 25 — Imbalanced Classification with Cost-Sensitive Learning
+### Day 25 â Imbalanced Classification with Cost-Sensitive Learning
 
 **Role**  
 ML Engineer
@@ -1286,7 +1286,7 @@ Realistic fintech ML case.
 
 ---
 
-### Day 26 — Research Day — Reproduce a Tabular ML Paper
+### Day 26 â Research Day â Reproduce a Tabular ML Paper
 
 **Role**  
 Research Engineer
@@ -1304,7 +1304,7 @@ Practice scientific reproducibility, not citation theater.
 Use DR02 or DR03 plus a real paper selected from the dataset documentation/related-work chain; verify paper source before coding.
 
 **Task**  
-Research question → background → related work → dataset → baseline → reproduction experiment → metrics → results → error analysis → limitations → future work.
+Research question â background â related work â dataset â baseline â reproduction experiment â metrics â results â error analysis â limitations â future work.
 
 **Technologies**  
 Python + scikit-learn + paper implementation + MLflow-lite logging
@@ -1335,7 +1335,7 @@ Research portfolio artifact with transparent methodology.
 
 ---
 
-### Day 27 — Feature Engineering Under a Compute Budget
+### Day 27 â Feature Engineering Under a Compute Budget
 
 **Role**  
 ML Engineer
@@ -1384,7 +1384,7 @@ Shows production constraints awareness.
 
 ---
 
-### Day 28 — Unsupervised Customer Segmentation
+### Day 28 â Unsupervised Customer Segmentation
 
 **Role**  
 Data Scientist
@@ -1433,7 +1433,7 @@ Good unsupervised analytics story.
 
 ---
 
-### Day 29 — DBSCAN for Operational Anomaly Discovery
+### Day 29 â DBSCAN for Operational Anomaly Discovery
 
 **Role**  
 Data Scientist
@@ -1482,7 +1482,7 @@ Shows practical unsupervised ML.
 
 ---
 
-### Day 30 — PCA and Feature Compression for Serving
+### Day 30 â PCA and Feature Compression for Serving
 
 **Role**  
 ML Engineer
@@ -1531,7 +1531,7 @@ Useful for understanding serving constraints.
 
 ---
 
-### Day 31 — Hyperparameter Optimization with Optuna
+### Day 31 â Hyperparameter Optimization with Optuna
 
 **Role**  
 ML Engineer
@@ -1580,7 +1580,7 @@ Core production ML workflow.
 
 ---
 
-### Day 32 — SHAP-Based Model Explanation for Operations
+### Day 32 â SHAP-Based Model Explanation for Operations
 
 **Role**  
 ML Engineer
@@ -1629,7 +1629,7 @@ Portfolio artifact showing responsible model interpretation.
 
 ---
 
-### Day 33 — Research Day — Ablation Study on Feature Groups
+### Day 33 â Research Day â Ablation Study on Feature Groups
 
 **Role**  
 Research Engineer
@@ -1647,7 +1647,7 @@ Quantify contribution and interaction under a fixed evaluation protocol.
 Day 27 churn or Day 25 fraud dataset; groups: demographics, behavioral aggregates, monetary, recency.
 
 **Task**  
-Research protocol: baseline → remove one group at a time → repeat over fixed folds → compare metrics and confidence intervals → analyze errors.
+Research protocol: baseline â remove one group at a time â repeat over fixed folds â compare metrics and confidence intervals â analyze errors.
 
 **Technologies**  
 Python + scikit-learn + MLflow + statsmodels
@@ -1678,7 +1678,7 @@ Strong research-engineering evidence.
 
 ---
 
-### Day 34 — Model Error Analysis Lab
+### Day 34 â Model Error Analysis Lab
 
 **Role**  
 Data Scientist
@@ -1727,7 +1727,7 @@ Very interview-relevant professional practice.
 
 ---
 
-### Day 35 — Phase 3 Capstone — Customer Risk Decision Engine
+### Day 35 â Phase 3 Capstone â Customer Risk Decision Engine
 
 **Role**  
 ML Engineer
@@ -1776,7 +1776,7 @@ Capstone 2: End-to-End Machine Learning System.
 
 ---
 
-### Day 36 — Refactor Notebook into Production Package
+### Day 36 â Refactor Notebook into Production Package
 
 **Role**  
 ML Engineer
@@ -1825,7 +1825,7 @@ Major professional engineering milestone.
 
 ---
 
-### Day 37 — FastAPI Model Serving Service
+### Day 37 â FastAPI Model Serving Service
 
 **Role**  
 ML Engineer
@@ -1874,7 +1874,7 @@ Portfolio-ready ML API.
 
 ---
 
-### Day 38 — MLflow Experiment Tracking and Registry
+### Day 38 â MLflow Experiment Tracking and Registry
 
 **Role**  
 MLOps Engineer
@@ -1923,7 +1923,7 @@ Core MLOps portfolio piece.
 
 ---
 
-### Day 39 — Production Debugging — Accuracy Collapse
+### Day 39 â Production Debugging â Accuracy Collapse
 
 **Role**  
 MLOps Engineer
@@ -1972,7 +1972,7 @@ Shows operational ML maturity.
 
 ---
 
-### Day 40 — Dockerize the ML Service
+### Day 40 â Dockerize the ML Service
 
 **Role**  
 DevOps / ML Engineer
@@ -2021,7 +2021,7 @@ Foundational deployment artifact.
 
 ---
 
-### Day 41 — CI Pipeline for Tests, Linting, and Build
+### Day 41 â CI Pipeline for Tests, Linting, and Build
 
 **Role**  
 DevOps Engineer
@@ -2070,7 +2070,7 @@ Professional GitHub practice.
 
 ---
 
-### Day 42 — Environment Configuration and Secret Hygiene
+### Day 42 â Environment Configuration and Secret Hygiene
 
 **Role**  
 DevOps Engineer
@@ -2119,7 +2119,7 @@ Security-aware engineering artifact.
 
 ---
 
-### Day 43 — Real-Time Inference Load Test
+### Day 43 â Real-Time Inference Load Test
 
 **Role**  
 Performance Engineer / ML Engineer
@@ -2168,7 +2168,7 @@ Excellent production-readiness signal.
 
 ---
 
-### Day 44 — Research Day — Model Calibration Benchmark
+### Day 44 â Research Day â Model Calibration Benchmark
 
 **Role**  
 Research Engineer
@@ -2217,7 +2217,7 @@ Research-quality applied ML artifact.
 
 ---
 
-### Day 45 — Model Versioned Batch Inference Job
+### Day 45 â Model Versioned Batch Inference Job
 
 **Role**  
 MLOps Engineer
@@ -2266,7 +2266,7 @@ Complete lifecycle component.
 
 ---
 
-### Day 46 — Production Debugging — SQL Regression
+### Day 46 â Production Debugging â SQL Regression
 
 **Role**  
 Data Engineer
@@ -2315,7 +2315,7 @@ Very realistic production-debugging artifact.
 
 ---
 
-### Day 47 — Data Drift and Concept Drift Monitor
+### Day 47 â Data Drift and Concept Drift Monitor
 
 **Role**  
 MLOps Engineer
@@ -2364,7 +2364,7 @@ Core MLOps competency.
 
 ---
 
-### Day 48 — Automated Retraining Gate
+### Day 48 â Automated Retraining Gate
 
 **Role**  
 MLOps Engineer
@@ -2413,7 +2413,7 @@ Strong end-to-end lifecycle evidence.
 
 ---
 
-### Day 49 — Canary and Rollback Simulation
+### Day 49 â Canary and Rollback Simulation
 
 **Role**  
 MLOps Engineer
@@ -2462,7 +2462,7 @@ High-value MLOps showcase.
 
 ---
 
-### Day 50 — Phase 4 Capstone — Full ML Lifecycle
+### Day 50 â Phase 4 Capstone â Full ML Lifecycle
 
 **Role**  
 MLOps Engineer / ML Engineer
@@ -2471,13 +2471,13 @@ MLOps Engineer / ML Engineer
 The retention system must operate continuously, not just score once.
 
 **Problem Statement**  
-Integrate DATA → TRAIN → VALIDATE → REGISTER → DEPLOY → MONITOR → RETRAIN.
+Integrate DATA â TRAIN â VALIDATE â REGISTER â DEPLOY â MONITOR â RETRAIN.
 
 **Objective**  
 Demonstrate a complete operational ML lifecycle.
 
 **Dataset / Data Source**  
-Day 35–49 artifacts + synthetic production events.
+Day 35â49 artifacts + synthetic production events.
 
 **Task**  
 Wire pipeline stages, data versioning, MLflow registry, FastAPI deployment, monitoring, gated retraining, canary simulation, and rollback.
@@ -2511,7 +2511,7 @@ Capstone 2 complete and interview-ready.
 
 ---
 
-### Day 51 — PyTorch MLP Training System
+### Day 51 â PyTorch MLP Training System
 
 **Role**  
 Deep Learning Engineer
@@ -2560,7 +2560,7 @@ Demonstrates framework-level understanding.
 
 ---
 
-### Day 52 — CNN Image Classification on MNIST
+### Day 52 â CNN Image Classification on MNIST
 
 **Role**  
 Computer Vision Engineer
@@ -2575,7 +2575,7 @@ Train and evaluate a CNN with robust validation and error inspection.
 Go beyond a tutorial by instrumenting failures.
 
 **Dataset / Data Source**  
-DR11 MNIST; 60k train/10k test; 28×28 grayscale images.
+DR11 MNIST; 60k train/10k test; 28Ã28 grayscale images.
 
 **Task**  
 Build CNN, augmentation baseline, checkpointing, confusion analysis, and misclassified-image report.
@@ -2609,7 +2609,7 @@ Computer-vision portfolio artifact.
 
 ---
 
-### Day 53 — Transfer Learning for Business Image Classification
+### Day 53 â Transfer Learning for Business Image Classification
 
 **Role**  
 Computer Vision Engineer
@@ -2658,7 +2658,7 @@ Professional applied CV example.
 
 ---
 
-### Day 54 — Object Detection Systems Thinking
+### Day 54 â Object Detection Systems Thinking
 
 **Role**  
 Computer Vision Engineer
@@ -2707,7 +2707,7 @@ Shows beyond-classification CV knowledge.
 
 ---
 
-### Day 55 — GPU Training and Mixed Precision Benchmark
+### Day 55 â GPU Training and Mixed Precision Benchmark
 
 **Role**  
 Deep Learning Engineer
@@ -2756,7 +2756,7 @@ Strong systems-level DL evidence.
 
 ---
 
-### Day 56 — Sequence Classification with GRU
+### Day 56 â Sequence Classification with GRU
 
 **Role**  
 NLP Engineer
@@ -2805,7 +2805,7 @@ Clear NLP progression artifact.
 
 ---
 
-### Day 57 — LSTM vs GRU Comparative Experiment
+### Day 57 â LSTM vs GRU Comparative Experiment
 
 **Role**  
 Research Engineer / NLP Engineer
@@ -2854,7 +2854,7 @@ Research-oriented DL artifact.
 
 ---
 
-### Day 58 — Research Day — Reproduce a Vision Training Recipe
+### Day 58 â Research Day â Reproduce a Vision Training Recipe
 
 **Role**  
 Research Engineer
@@ -2872,7 +2872,7 @@ Learn to distinguish architecture effects from training recipe effects.
 DR11 MNIST or a verified public image dataset.
 
 **Task**  
-Research question → cited paper → baseline → recipe implementation → controlled reproduction → error analysis → limitations.
+Research question â cited paper â baseline â recipe implementation â controlled reproduction â error analysis â limitations.
 
 **Technologies**  
 PyTorch + MLflow + paper source
@@ -2903,7 +2903,7 @@ Strong research credibility.
 
 ---
 
-### Day 59 — Transformer Encoder for Text Classification
+### Day 59 â Transformer Encoder for Text Classification
 
 **Role**  
 NLP Engineer
@@ -2952,7 +2952,7 @@ Modern NLP engineering artifact.
 
 ---
 
-### Day 60 — Transformer Embeddings for Semantic Similarity
+### Day 60 â Transformer Embeddings for Semantic Similarity
 
 **Role**  
 NLP Engineer
@@ -3001,7 +3001,7 @@ Direct bridge to RAG.
 
 ---
 
-### Day 61 — Named Entity Recognition Pipeline
+### Day 61 â Named Entity Recognition Pipeline
 
 **Role**  
 NLP Engineer
@@ -3050,7 +3050,7 @@ Strong enterprise NLP artifact.
 
 ---
 
-### Day 62 — Research Day — Benchmark Embedding Models for Retrieval
+### Day 62 â Research Day â Benchmark Embedding Models for Retrieval
 
 **Role**  
 Research Engineer
@@ -3068,7 +3068,7 @@ Select based on retrieval quality and resource constraints.
 DR08 Banking77 or a verified multilingual support corpus; use exact dataset/model revisions.
 
 **Task**  
-Construct query-document pairs, compare 2–4 embedding models, report Recall@k/MRR, latency, memory, and failure examples.
+Construct query-document pairs, compare 2â4 embedding models, report Recall@k/MRR, latency, memory, and failure examples.
 
 **Technologies**  
 sentence-transformers + FAISS/Qdrant + Python
@@ -3099,7 +3099,7 @@ High-value RAG preparation.
 
 ---
 
-### Day 63 — Time-Series Forecasting with LSTM
+### Day 63 â Time-Series Forecasting with LSTM
 
 **Role**  
 Deep Learning Engineer
@@ -3148,7 +3148,7 @@ Required deep time-series project.
 
 ---
 
-### Day 64 — Production Debugging — GPU/Memory Failure
+### Day 64 â Production Debugging â GPU/Memory Failure
 
 **Role**  
 Deep Learning / MLOps Engineer
@@ -3197,7 +3197,7 @@ Production-grade deep-learning troubleshooting.
 
 ---
 
-### Day 65 — Phase 5 Capstone — Intelligent Document Classifier
+### Day 65 â Phase 5 Capstone â Intelligent Document Classifier
 
 **Role**  
 DL/NLP Engineer
@@ -3246,7 +3246,7 @@ Capstone 3: Deep Learning Application.
 
 ---
 
-### Day 66 — LLM Application Architecture and Model Selection
+### Day 66 â LLM Application Architecture and Model Selection
 
 **Role**  
 AI Engineer
@@ -3295,7 +3295,7 @@ Strong GenAI systems-design artifact.
 
 ---
 
-### Day 67 — Structured Prompting with JSON Schemas
+### Day 67 â Structured Prompting with JSON Schemas
 
 **Role**  
 AI Engineer
@@ -3344,7 +3344,7 @@ Practical enterprise GenAI artifact.
 
 ---
 
-### Day 68 — Tool Calling for Order Support
+### Day 68 â Tool Calling for Order Support
 
 **Role**  
 AI Engineer
@@ -3393,7 +3393,7 @@ Shows agent-system thinking.
 
 ---
 
-### Day 69 — Hallucination Reduction with Grounding and Abstention
+### Day 69 â Hallucination Reduction with Grounding and Abstention
 
 **Role**  
 AI Engineer
@@ -3408,7 +3408,7 @@ Implement answer-with-evidence plus abstention behavior.
 Reduce unsupported claims without pretending hallucinations are solved.
 
 **Dataset / Data Source**  
-Synthetic support-policy corpus; explicitly synthetic; 200–500 short policy documents.
+Synthetic support-policy corpus; explicitly synthetic; 200â500 short policy documents.
 
 **Task**  
 Build prompt policy, retrieval-grounded answering, confidence/evidence checks, and 'cannot verify' responses for unsupported questions.
@@ -3442,7 +3442,7 @@ Good reliability-focused GenAI artifact.
 
 ---
 
-### Day 70 — Research Day — LLM Prompt Evaluation Harness
+### Day 70 â Research Day â LLM Prompt Evaluation Harness
 
 **Role**  
 Research Engineer / AI Engineer
@@ -3457,7 +3457,7 @@ Create a repeatable evaluation harness for prompt variants.
 Turn prompt engineering into measurable experimentation.
 
 **Dataset / Data Source**  
-DR15 synthetic support tickets; 100–500 fixed evaluation cases.
+DR15 synthetic support tickets; 100â500 fixed evaluation cases.
 
 **Task**  
 Define criteria: correctness, schema validity, refusal behavior, grounding, verbosity, and cost; compare 3 prompt variants with paired evaluation.
@@ -3491,7 +3491,7 @@ High-value GenAI research artifact.
 
 ---
 
-### Day 71 — Streaming LLM Response API
+### Day 71 â Streaming LLM Response API
 
 **Role**  
 AI Engineer
@@ -3540,7 +3540,7 @@ Production-style AI API artifact.
 
 ---
 
-### Day 72 — Multimodal Document Extraction
+### Day 72 â Multimodal Document Extraction
 
 **Role**  
 AI Engineer
@@ -3589,7 +3589,7 @@ Strong enterprise AI use case.
 
 ---
 
-### Day 73 — Production Debugging — LLM Cost Spike
+### Day 73 â Production Debugging â LLM Cost Spike
 
 **Role**  
 AI Platform Engineer
@@ -3638,7 +3638,7 @@ Rare and valuable production AI skill.
 
 ---
 
-### Day 74 — AI Agent with Bounded Toolset
+### Day 74 â AI Agent with Bounded Toolset
 
 **Role**  
 AI Engineer
@@ -3656,7 +3656,7 @@ Constrain autonomy through explicit policies.
 Synthetic support/order DB + DR15 tickets.
 
 **Task**  
-Implement plan→tool→observe loop with max steps, allowlisted tools, validation, timeout, audit log, and human handoff.
+Implement planâtoolâobserve loop with max steps, allowlisted tools, validation, timeout, audit log, and human handoff.
 
 **Technologies**  
 Python + tool-calling LLM + SQLAlchemy + FastAPI
@@ -3687,7 +3687,7 @@ Demonstrates agent engineering rather than chatbot prompting.
 
 ---
 
-### Day 75 — Function-Calling Evaluation and Regression Suite
+### Day 75 â Function-Calling Evaluation and Regression Suite
 
 **Role**  
 AI Engineer / QA Engineer
@@ -3736,7 +3736,7 @@ High-value AI quality engineering artifact.
 
 ---
 
-### Day 76 — Research Day — LLM Model Benchmark Under Cost Constraint
+### Day 76 â Research Day â LLM Model Benchmark Under Cost Constraint
 
 **Role**  
 Research Engineer
@@ -3754,7 +3754,7 @@ Make model selection evidence-based and repeatable.
 DR15 fixed evaluation set; use current provider/model documentation at implementation time.
 
 **Task**  
-Run same prompts and tools across 2–4 model options; compare task success, schema validity, safety failures, p95 latency, and estimated cost.
+Run same prompts and tools across 2â4 model options; compare task success, schema validity, safety failures, p95 latency, and estimated cost.
 
 **Technologies**  
 Python + provider SDKs + pandas
@@ -3785,7 +3785,7 @@ Excellent GenAI decision artifact.
 
 ---
 
-### Day 77 — Context Management and Conversation Memory
+### Day 77 â Context Management and Conversation Memory
 
 **Role**  
 AI Engineer
@@ -3834,7 +3834,7 @@ Important production-agent competency.
 
 ---
 
-### Day 78 — AI API Reliability: Retries, Timeouts, Fallbacks
+### Day 78 â AI API Reliability: Retries, Timeouts, Fallbacks
 
 **Role**  
 AI Platform Engineer
@@ -3883,7 +3883,7 @@ Strong AI platform engineering artifact.
 
 ---
 
-### Day 79 — Enterprise AI Access Control
+### Day 79 â Enterprise AI Access Control
 
 **Role**  
 AI Security Engineer
@@ -3932,7 +3932,7 @@ High-signal enterprise security artifact.
 
 ---
 
-### Day 80 — Phase 6 Capstone — Production Generative AI Assistant
+### Day 80 â Phase 6 Capstone â Production Generative AI Assistant
 
 **Role**  
 AI Engineer
@@ -3981,7 +3981,7 @@ Capstone 4: Generative AI Application.
 
 ---
 
-### Day 81 — RAG Ingestion Pipeline for Enterprise PDFs
+### Day 81 â RAG Ingestion Pipeline for Enterprise PDFs
 
 **Role**  
 RAG Engineer
@@ -4030,7 +4030,7 @@ Core RAG engineering foundation.
 
 ---
 
-### Day 82 — Semantic Retrieval Baseline with Vector Search
+### Day 82 â Semantic Retrieval Baseline with Vector Search
 
 **Role**  
 RAG Engineer
@@ -4045,7 +4045,7 @@ Implement top-k semantic retrieval.
 Measure retrieval quality before adding LLM generation.
 
 **Dataset / Data Source**  
-Day 81 chunked policy corpus + 100–300 synthetic queries with expected source IDs.
+Day 81 chunked policy corpus + 100â300 synthetic queries with expected source IDs.
 
 **Task**  
 Embed chunks, build vector index, retrieve top-k, and measure Recall@k/Precision@k against labeled relevance.
@@ -4079,7 +4079,7 @@ Important retrieval-specific artifact.
 
 ---
 
-### Day 83 — Hybrid Retrieval with BM25 + Vector Search
+### Day 83 â Hybrid Retrieval with BM25 + Vector Search
 
 **Role**  
 RAG Engineer
@@ -4128,7 +4128,7 @@ Strong practical RAG skill.
 
 ---
 
-### Day 84 — Research Day — Reranking Experiment
+### Day 84 â Research Day â Reranking Experiment
 
 **Role**  
 Research Engineer / RAG Engineer
@@ -4177,7 +4177,7 @@ Research + production trade-off artifact.
 
 ---
 
-### Day 85 — RAG Generation with Citations
+### Day 85 â RAG Generation with Citations
 
 **Role**  
 AI Engineer / RAG Engineer
@@ -4192,10 +4192,10 @@ Generate grounded answers with citations to retrieved chunks.
 Make provenance part of the output contract.
 
 **Dataset / Data Source**  
-Day 81–84 policy corpus and fixed query set.
+Day 81â84 policy corpus and fixed query set.
 
 **Task**  
-Create retrieval→prompt→generation pipeline with citation IDs, source snippets, abstention, and evidence validation.
+Create retrievalâpromptâgeneration pipeline with citation IDs, source snippets, abstention, and evidence validation.
 
 **Technologies**  
 Python + LLM API + vector search + Pydantic
@@ -4226,7 +4226,7 @@ Direct portfolio-ready RAG feature.
 
 ---
 
-### Day 86 — Query Rewriting and Multi-Query Retrieval
+### Day 86 â Query Rewriting and Multi-Query Retrieval
 
 **Role**  
 RAG Engineer
@@ -4244,7 +4244,7 @@ Measure lift and control extra latency.
 Day 85 evaluation set with conversational queries.
 
 **Task**  
-Implement standalone-question rewrite, 2–4 alternate queries, retrieve/merge/deduplicate, then rerank; compare to single-query baseline.
+Implement standalone-question rewrite, 2â4 alternate queries, retrieve/merge/deduplicate, then rerank; compare to single-query baseline.
 
 **Technologies**  
 Python + LLM API + FAISS/Chroma + reranker
@@ -4275,7 +4275,7 @@ Advanced retrieval engineering.
 
 ---
 
-### Day 87 — Production Debugging — RAG Retrieval Drift
+### Day 87 â Production Debugging â RAG Retrieval Drift
 
 **Role**  
 RAG Engineer / MLOps Engineer
@@ -4324,7 +4324,7 @@ Strong production RAG troubleshooting.
 
 ---
 
-### Day 88 — Conversational RAG with Access Control
+### Day 88 â Conversational RAG with Access Control
 
 **Role**  
 RAG Engineer / Security Engineer
@@ -4373,7 +4373,7 @@ Advanced enterprise RAG portfolio item.
 
 ---
 
-### Day 89 — Research Day — RAG Evaluation and Hallucination Measurement
+### Day 89 â Research Day â RAG Evaluation and Hallucination Measurement
 
 **Role**  
 Research Engineer
@@ -4391,7 +4391,7 @@ Measure retrieval recall, groundedness, answer correctness, and abstention behav
 Fixed RAG evaluation set with source-of-truth answers and relevant chunk IDs; synthetic policy corpus.
 
 **Task**  
-Create baseline→retrieval ablation→generation comparison; categorize hallucinations, unsupported claims, and retrieval misses; report confidence intervals where appropriate.
+Create baselineâretrieval ablationâgeneration comparison; categorize hallucinations, unsupported claims, and retrieval misses; report confidence intervals where appropriate.
 
 **Technologies**  
 Python + pandas + evaluation framework + LLM API
@@ -4422,7 +4422,7 @@ High-value RAG research artifact.
 
 ---
 
-### Day 90 — Phase 7 Capstone — Production Enterprise RAG
+### Day 90 â Phase 7 Capstone â Production Enterprise RAG
 
 **Role**  
 RAG Engineer / AI Engineer
@@ -4471,7 +4471,7 @@ Capstone 5: Production RAG System.
 
 ---
 
-### Day 91 — Cloud Deployment Architecture Mapping
+### Day 91 â Cloud Deployment Architecture Mapping
 
 **Role**  
 Cloud / MLOps Engineer
@@ -4520,7 +4520,7 @@ Cloud-readiness portfolio artifact.
 
 ---
 
-### Day 92 — Research Day — Retrieval vs Fine-Tuning Decision Study
+### Day 92 â Research Day â Retrieval vs Fine-Tuning Decision Study
 
 **Role**  
 Research Engineer
@@ -4569,7 +4569,7 @@ Excellent senior-level GenAI decision artifact.
 
 ---
 
-### Day 93 — Production Debugging — CI/CD Failure Drill
+### Day 93 â Production Debugging â CI/CD Failure Drill
 
 **Role**  
 DevOps / MLOps Engineer
@@ -4618,7 +4618,7 @@ Practical DevOps evidence.
 
 ---
 
-### Day 94 — AI Security Threat Model and Red-Team Test Suite
+### Day 94 â AI Security Threat Model and Red-Team Test Suite
 
 **Role**  
 AI Security Engineer
@@ -4667,7 +4667,7 @@ High-value enterprise security signal.
 
 ---
 
-### Day 95 — Observability: Logs, Traces, Metrics for AI
+### Day 95 â Observability: Logs, Traces, Metrics for AI
 
 **Role**  
 AI Platform / MLOps Engineer
@@ -4716,7 +4716,7 @@ Shows production AI operations maturity.
 
 ---
 
-### Day 96 — Research Day — Inference Optimization and Compression
+### Day 96 â Research Day â Inference Optimization and Compression
 
 **Role**  
 Research Engineer / ML Engineer
@@ -4728,7 +4728,7 @@ A deployed model is accurate but too expensive at target latency.
 Evaluate one or more optimization techniques under fixed quality constraints.
 
 **Objective**  
-Quantify quality–latency–memory trade-offs.
+Quantify qualityâlatencyâmemory trade-offs.
 
 **Dataset / Data Source**  
 Use Day 59/65 model or a small open-source model available locally; document exact model revision.
@@ -4765,7 +4765,7 @@ Strong ML-systems research project.
 
 ---
 
-### Day 97 — Enterprise AI Data Lifecycle and Governance
+### Day 97 â Enterprise AI Data Lifecycle and Governance
 
 **Role**  
 Data/AI Governance Engineer
@@ -4814,7 +4814,7 @@ Professional enterprise-readiness artifact.
 
 ---
 
-### Day 98 — Production Debugging — RAG Latency Regression
+### Day 98 â Production Debugging â RAG Latency Regression
 
 **Role**  
 AI/RAG Platform Engineer
@@ -4863,7 +4863,7 @@ Excellent production RAG troubleshooting evidence.
 
 ---
 
-### Day 99 — Research Day — End-to-End AI System Benchmark
+### Day 99 â Research Day â End-to-End AI System Benchmark
 
 **Role**  
 Research Engineer
@@ -4881,7 +4881,7 @@ Produce a defensible final technical evaluation.
 Day 90 platform plus fixed end-to-end evaluation set and representative synthetic load.
 
 **Task**  
-Baseline → improved retrieval/agent/ML component → ablation → throughput/latency → quality/security/error analysis → limitations → future work.
+Baseline â improved retrieval/agent/ML component â ablation â throughput/latency â quality/security/error analysis â limitations â future work.
 
 **Technologies**  
 Python + MLflow + RAG eval + load testing + pandas
@@ -4912,7 +4912,7 @@ Capstone-level research evidence.
 
 ---
 
-### Day 100 — Final Capstone — Enterprise AI Platform
+### Day 100 â Final Capstone â Enterprise AI Platform
 
 **Role**  
 Staff AI Engineer / MLOps Lead
@@ -4930,7 +4930,7 @@ Prove end-to-end engineering competence and production judgment.
 Combine verified public datasets where appropriate (DR02/DR04/DR08/DR09/DR11/DR12/DR13) plus clearly synthetic private-style operational data.
 
 **Task**  
-Build an enterprise platform with: ingestion→processing→DB→ML/AI→RAG→API→auth→Docker→CI/CD→monitoring→evaluation→documentation; provide architecture, operational runbook, security model, and demo.
+Build an enterprise platform with: ingestionâprocessingâDBâML/AIâRAGâAPIâauthâDockerâCI/CDâmonitoringâevaluationâdocumentation; provide architecture, operational runbook, security model, and demo.
 
 **Technologies**  
 Python + PostgreSQL + FastAPI + PyTorch/Transformers + RAG stack + MLflow + DVC + Docker + GitHub Actions
@@ -4957,7 +4957,7 @@ Add one advanced enhancement that increases reliability, scale, or evaluation ri
 `feat(capstone): ship enterprise ai platform`
 
 **Portfolio Value**  
-Final portfolio centerpiece covering Data Analyst → Data Scientist → ML Engineer → AI Engineer → MLOps → RAG → Research Engineer.
+Final portfolio centerpiece covering Data Analyst â Data Scientist â ML Engineer â AI Engineer â MLOps â RAG â Research Engineer.
 
 ---
 
