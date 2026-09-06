@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Days Portfolio Tracker</title>
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --surface: #111827;
+            --surface2: #1a2234;
+            --border: #2d3a52;
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --accent: #60a5fa;
+            --accent2: #a78bfa;
+            --accent3: #34d399;
+            --orange: #fb923c;
+            --red: #f87171;
+            --yellow: #fbbf24;
+            --pink: #f472b6;
+            --teal: #2dd4bf;
+            --indigo: #818cf8;
+            --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            color: var(--text2);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .btn {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.15s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn:hover { border-color: var(--accent); color: var(--accent); }
+        .btn.primary { background: var(--accent); color: #000; border-color: var(--accent); }
+        .btn.primary:hover { background: #3b82f6; }
+        .status {
+            font-size: 0.8rem;
+            color: var(--accent3);
+            margin-left: 10px;
+            min-height: 1.2em;
+        }
+        .phase-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent2);
+            margin: 24px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: -0.3px;
+        }
+        .day-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 10px 16px;
+            transition: border-color 0.2s;
+        }
+        .day-card summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .day-card summary::-webkit-details-marker { display: none; }
+        .day-card summary .day-num {
+            background: var(--accent);
+            color: #000;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            white-space: nowrap;
+        }
+        .day-card summary .day-title {
+            flex: 1;
+            color: var(--text);
+        }
+        .day-card summary .saved-indicator {
+            font-size: 0.6rem;
+            color: var(--accent3);
+        }
+        .day-card[open] summary .saved-indicator { display: none; }
+        .day-card-content {
+            margin-top: 14px;
+            display: grid;
+            gap: 10px;
+        }
+        .field {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 8px;
+            align-items: start;
+        }
+        .field label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-top: 4px;
+        }
+        .field input, .field textarea {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            color: var(--text);
+            font-size: 0.8rem;
+            font-family: var(--font-sans);
+            width: 100%;
+        }
+        .field textarea { min-height: 60px; resize: vertical; }
+        .field .hint { font-size: 0.6rem; color: var(--text2); grid-column: 2; margin-top: -4px; }
+        .save-btn-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .save-btn {
+            background: var(--accent3);
+            color: #000;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        .save-btn:hover { background: #2dd4bf; }
+        .export-import {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        input[type="file"] { display: none; }
+        @media (max-width: 700px) {
+            .field { grid-template-columns: 1fr; }
+            .field .hint { grid-column: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📌 100-Day Portfolio Tracker</h1>
+    <p class="subtitle">Add repository links, file links, document links, and titles for each day. Data is saved automatically in your browser (localStorage). Export/Import for backup.</p>
+
+    <div class="controls">
+        <button class="btn primary" id="exportBtn">📤 Export JSON</button>
+        <button class="btn" id="importBtn">📥 Import JSON</button>
+        <input type="file" id="importFile" accept=".json">
+        <span class="status" id="statusMsg"></span>
+    </div>
+
+    <div id="daysContainer"></div>
+
+    <script>
+        (function() {
+            // Day titles from the program (as default placeholders)
+            const dayTitles = [
+                "Executive Sales Performance Diagnostic",
+                "Cohort Retention and Customer Value Analysis",
+                "SQL Revenue Mart with Window Functions",
+                "Statistical Quality Review of Sales Drivers",
+                "Management Dashboard with KPI Governance",
+                "Automated Excel-to-Database Reconciliation",
+                "A/B Test Analysis for Checkout Conversion",
+                "Forecasting Revenue with a Business Baseline",
+                "Customer Churn Modeling Blueprint",
+                "Phase 1 Analytics Capstone — Executive BI Pack",
+                "Incremental API-to-Database Pipeline",
+                "Data Quality Contract and Validation Suite",
+                "Star Schema for Supply-Chain Analytics",
+                "Incremental ELT with Late-Arriving Events",
+                "Pipeline Observability and SLA Monitoring",
+                "Batch Backfill and Recovery Drill",
+                "PostgreSQL Query Optimization Investigation",
+                "Data Versioning with DVC",
+                "Automated KPI Report Generator",
+                "Phase 2 Capstone — Reliable Analytics Data Platform",
+                "Regression for Revenue Planning",
+                "Classification with Threshold Economics",
+                "Leakage Audit on an Educational Predictor",
+                "Model Comparison: XGBoost vs LightGBM vs CatBoost",
+                "Imbalanced Classification with Cost-Sensitive Learning",
+                "Research Day — Reproduce a Tabular ML Paper",
+                "Feature Engineering Under a Compute Budget",
+                "Unsupervised Customer Segmentation",
+                "DBSCAN for Operational Anomaly Discovery",
+                "PCA and Feature Compression for Serving",
+                "Hyperparameter Optimization with Optuna",
+                "SHAP-Based Model Explanation for Operations",
+                "Research Day — Ablation Study on Feature Groups",
+                "Model Error Analysis Lab",
+                "Phase 3 Capstone — Customer Risk Decision Engine",
+                "Refactor Notebook into Production Package",
+                "FastAPI Model Serving Service",
+                "MLflow Experiment Tracking and Registry",
+                "Production Debugging — Accuracy Collapse",
+                "Dockerize the ML Service",
+                "CI Pipeline for Tests, Linting, and Build",
+                "Environment Configuration and Secret Hygiene",
+                "Real-Time Inference Load Test",
+                "Research Day — Model Calibration Benchmark",
+                "Model Versioned Batch Inference Job",
+                "Production Debugging — SQL Regression",
+                "Data Drift and Concept Drift Monitor",
+                "Automated Retraining Gate",
+                "Canary and Rollback Simulation",
+                "Phase 4 Capstone — Full ML Lifecycle",
+                "PyTorch MLP Training System",
+                "CNN Image Classification on MNIST",
+                "Transfer Learning for Business Image Classification",
+                "Object Detection Systems Thinking",
+                "GPU Training and Mixed Precision Benchmark",
+                "Sequence Classification with GRU",
+                "LSTM vs GRU Comparative Experiment",
+                "Research Day — Reproduce a Vision Training Recipe",
+                "Transformer Encoder for Text Classification",
+                "Transformer Embeddings for Semantic Similarity",
+                "Named Entity Recognition Pipeline",
+                "Research Day — Benchmark Embedding Models for Retrieval",
+                "Time-Series Forecasting with LSTM",
+                "Production Debugging — GPU/Memory Failure",
+                "Phase 5 Capstone — Intelligent Document Classifier",
+                "LLM Application Architecture and Model Selection",
+                "Structured Prompting with JSON Schemas",
+                "Tool Calling for Order Support",
+                "Hallucination Reduction with Grounding and Abstention",
+                "Research Day — LLM Prompt Evaluation Harness",
+                "Streaming LLM Response API",
+                "Multimodal Document Extraction",
+                "Production Debugging — LLM Cost Spike",
+                "AI Agent with Bounded Toolset",
+                "Function-Calling Evaluation and Regression Suite",
+                "Research Day — LLM Model Benchmark Under Cost Constraint",
+                "Context Management and Conversation Memory",
+                "AI API Reliability: Retries, Timeouts, Fallbacks",
+                "Enterprise AI Access Control",
+                "Phase 6 Capstone — Production Generative AI Assistant",
+                "RAG Ingestion Pipeline for Enterprise PDFs",
+                "Semantic Retrieval Baseline with Vector Search",
+                "Hybrid Retrieval with BM25 + Vector Search",
+                "Research Day — Reranking Experiment",
+                "RAG Generation with Citations",
+                "Query Rewriting and Multi-Query Retrieval",
+                "Production Debugging — RAG Retrieval Drift",
+                "Conversational RAG with Access Control",
+                "Research Day — RAG Evaluation and Hallucination Measurement",
+                "Phase 7 Capstone — Production Enterprise RAG",
+                "Cloud Deployment Architecture Mapping",
+                "Research Day — Retrieval vs Fine-Tuning Decision Study",
+                "Production Debugging — CI/CD Failure Drill",
+                "AI Security Threat Model and Red-Team Test Suite",
+                "Observability: Logs, Traces, Metrics for AI",
+                "Research Day — Inference Optimization and Compression",
+                "Enterprise AI Data Lifecycle and Governance",
+                "Production Debugging — RAG Latency Regression",
+                "Research Day — End-to-End AI System Benchmark",
+                "Final Capstone — Enterprise AI Platform"
+            ];
+
+            // Phase mapping (days -> phase index for header)
+            const phases = [
+                { start: 1, end: 10, name: "Phase 1: Professional Data Analytics Foundations" },
+                { start: 11, end: 20, name: "Phase 2: Advanced Analytics + Data Engineering" },
+                { start: 21, end: 35, name: "Phase 3: Machine Learning" },
+                { start: 36, end: 50, name: "Phase 4: Advanced ML + End-to-End ML Systems" },
+                { start: 51, end: 65, name: "Phase 5: Deep Learning" },
+                { start: 66, end: 80, name: "Phase 6: Generative AI + LLM Engineering" },
+                { start: 81, end: 90, name: "Phase 7: RAG + Agentic AI" },
+                { start: 91, end: 100, name: "Phase 8: Production AI + Research + MLOps" }
+            ];
+
+            const STORAGE_KEY = 'dayTrackerData_v1';
+            let data = {};
+
+            // Load data from localStorage
+            function loadData() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    try {
+                        data = JSON.parse(stored);
+                    } catch(e) {
+                        console.error('Failed to parse stored data', e);
+                        data = {};
+                    }
+                }
+                // Ensure all days exist as objects
+                for (let d=1; d<=100; d++) {
+                    if (!data[d]) data[d] = {
+                        title: '',
+                        repoUrl: '',
+                        fileUrls: '',
+                        docUrls: '',
+                        notes: ''
+                    };
+                }
+            }
+
+            // Save data to localStorage
+            function saveData() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            }
+
+            // Get phase for a day
+            function getPhase(day) {
+                for (let p of phases) {
+                    if (day >= p.start && day <= p.end) return p.name;
+                }
+                return '';
+            }
+
+            // Generate the DOM for all day cards
+            function renderDays() {
+                const container = document.getElementById('daysContainer');
+                container.innerHTML = '';
+                let currentPhase = '';
+                let phaseDiv = null;
+
+                for (let day = 1; day <= 100; day++) {
+                    const phaseName = getPhase(day);
+                    if (phaseName !== currentPhase) {
+                        currentPhase = phaseName;
+                        phaseDiv = document.createElement('div');
+                        phaseDiv.className = 'phase-header';
+                        phaseDiv.textContent = phaseName;
+                        container.appendChild(phaseDiv);
+                    }
+
+                    const card = document.createElement('details');
+                    card.className = 'day-card';
+                    card.id = `day-${day}`;
+
+                    const summary = document.createElement('summary');
+                    summary.innerHTML = `
+                        <span class="day-num">DAY ${day}</span>
+                        <span class="day-title">${data[day].title || dayTitles[day-1] || 'Untitled'}</span>
+                        <span class="saved-indicator">💾 saved</span>
+                    `;
+                    card.appendChild(summary);
+
+                    const content = document.createElement('div');
+                    content.className = 'day-card-content';
+
+                    // Title input
+                    content.innerHTML += `
+                        <div class="field">
+                            <label>Title</label>
+                            <input type="text" class="input-title" value="${escapeHtml(data[day].title || '')}" placeholder="${escapeHtml(dayTitles[day-1] || '')}">
+                        </div>
+                        <div class="field">
+                            <label>Repo URL</label>
+                            <input type="url" class="input-repo" value="${escapeHtml(data[day].repoUrl || '')}" placeholder="https://github.com/...">
+                        </div>
+                        <div class="field">
+                            <label>File URLs</label>
+                            <textarea class="input-files" placeholder="One URL per line">${escapeHtml(data[day].fileUrls || '')}</textarea>
+                            <div class="hint">Additional files (notebook, data, etc.) one per line</div>
+                        </div>
+                        <div class="field">
+                            <label>Doc URLs</label>
+                            <textarea class="input-docs" placeholder="One URL per line">${escapeHtml(data[day].docUrls || '')}</textarea>
+                            <div class="hint">Documentation, reports, etc.</div>
+                        </div>
+                        <div class="field">
+                            <label>Notes</label>
+                            <textarea class="input-notes" placeholder="Optional notes">${escapeHtml(data[day].notes || '')}</textarea>
+                        </div>
+                        <div class="save-btn-container">
+                            <button class="save-btn" data-day="${day}">💾 Save Day ${day}</button>
+                        </div>
+                    `;
+                    card.appendChild(content);
+                    container.appendChild(card);
+
+                    // Update summary title on input change (optional)
+                    const titleInput = content.querySelector('.input-title');
+                    titleInput.addEventListener('input', function() {
+                        const newTitle = this.value || dayTitles[day-1] || '';
+                        summary.querySelector('.day-title').textContent = newTitle;
+                    });
+                }
+
+                // Add event listeners for save buttons
+                container.querySelectorAll('.save-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        const day = parseInt(this.dataset.day);
+                        const card = document.getElementById(`day-${day}`);
+                        const titleInput = card.querySelector('.input-title');
+                        const repoInput = card.querySelector('.input-repo');
+                        const filesInput = card.querySelector('.input-files');
+                        const docsInput = card.querySelector('.input-docs');
+                        const notesInput = card.querySelector('.input-notes');
+
+                        data[day] = {
+                            title: titleInput.value.trim(),
+                            repoUrl: repoInput.value.trim(),
+                            fileUrls: filesInput.value.trim(),
+                            docUrls: docsInput.value.trim(),
+                            notes: notesInput.value.trim()
+                        };
+                        saveData();
+                        showStatus(`Day ${day} saved!`);
+                    });
+                });
+            }
+
+            // Helper to escape HTML
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+            }
+
+            // Show status message temporarily
+            function showStatus(msg) {
+                const el = document.getElementById('statusMsg');
+                el.textContent = msg;
+                setTimeout(() => { el.textContent = ''; }, 2500);
+            }
+
+            // Export data as JSON file
+            function exportData() {
+                const json = JSON.stringify(data, null, 2);
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'day_tracker_backup.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showStatus('Exported JSON!');
+            }
+
+            // Import data from JSON file
+            function importData(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const imported = JSON.parse(e.target.result);
+                        if (typeof imported !== 'object') throw new Error('Invalid format');
+                        // Merge: only keep days 1-100, override with imported values
+                        for (let d=1; d<=100; d++) {
+                            if (imported[d]) {
+                                data[d] = {
+                                    title: imported[d].title || '',
+                                    repoUrl: imported[d].repoUrl || '',
+                                    fileUrls: imported[d].fileUrls || '',
+                                    docUrls: imported[d].docUrls || '',
+                                    notes: imported[d].notes || ''
+                                };
+                            }
+                        }
+                        saveData();
+                        renderDays();
+                        showStatus('Imported successfully!');
+                    } catch(err) {
+                        alert('Failed to import: ' + err.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+
+            // Initialize
+            function init() {
+                loadData();
+                renderDays();
+
+                document.getElementById('exportBtn').addEventListener('click', exportData);
+                document.getElementById('importBtn').addEventListener('click', function() {
+                    document.getElementById('importFile').click();
+                });
+                document.getElementById('importFile').addEventListener('change', function(e) {
+                    if (this.files && this.files[0]) {
+                        importData(this.files[0]);
+                    }
+                    this.value = '';
+                });
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>
