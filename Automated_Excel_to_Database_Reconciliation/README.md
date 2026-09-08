@@ -1,4 +1,4 @@
-# Day 6 — Automated Excel-to-Database Reconciliation
+# Automated Excel-to-Database Reconciliation
 
 > **Synthetic Dataset — Not Real Financial Data.** All records in this
 > repository are generated locally for educational purposes.
